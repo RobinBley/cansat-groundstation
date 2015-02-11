@@ -5,7 +5,7 @@ package de.gt.input.sources;
  * for instance USB
  * @author mhuisi
  */
-public interface DataSources {
+public interface DataSource {
 
     String nextData();
     boolean hasData();
