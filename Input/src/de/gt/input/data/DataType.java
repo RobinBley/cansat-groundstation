@@ -10,6 +10,7 @@ package de.gt.input.data;
  * @author Kevin
  */
 public enum DataType {
-    TYPE_LONG,
-    TYPE, 
+    LONG,
+    STRING,
+    DOUBLE
 }
