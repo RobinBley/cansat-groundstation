@@ -6,8 +6,17 @@ package de.gt.input.sources;
  * @author mhuisi
  */
 public interface DataSource {
-
+    
+    /**
+     * Gets the next datum
+     * @return datum in some format
+     */
     String nextData();
+    
+    /**
+     * Checks if the DataSource has any data.
+     * @return has any data
+     */
     boolean hasData();
     
 }
