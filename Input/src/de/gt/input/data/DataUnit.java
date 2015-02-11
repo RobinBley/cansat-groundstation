@@ -9,19 +9,13 @@ package de.gt.input.data;
  *
  * @author Kevin
  */
-public abstract class DataUnit {
+public class DataUnit {
 
     private Double doubleValue;
     private String stringValue;
     private Long longValue;
 
     private DataType type;
-
-    public abstract String getString();
-
-    public abstract Long getLong();
-
-    public abstract Double getDouble();
 
     public DataUnit(Double doubleValue) {
         this.doubleValue = doubleValue;
