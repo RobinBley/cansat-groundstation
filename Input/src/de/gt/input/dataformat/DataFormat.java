@@ -1,5 +1,7 @@
 package de.gt.input.dataformat;
 
+import de.gt.input.data.Data;
+
 /**
  *
  * @author Robin
