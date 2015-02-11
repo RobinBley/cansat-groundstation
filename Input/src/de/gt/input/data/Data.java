@@ -5,23 +5,32 @@
  */
 package de.gt.input.data;
 
+import java.util.HashMap;
+import java.util.Set;
+
 /**
  *
  * @author Kevin
  */
-public abstract class Data {
-    
+public class Data {
+
+    private HashMap<String, DataUnit> values;
+
     /**
      * Liefert alle möglichen Keys zurück an die DatenUnits gebunden sind.
-     * 
-     * @return String[] Ein Array aus den vorhandenen Data Keys
+     *
+     * @return Set<String> Ein Array aus den vorhandenen Data Keys
      */
-    public abstract String[] getKeys();
-    
+    public Set<String> getKeys() {
+        return values.keySet();
+    }
+
     /**
      * Liefert einen einzelnen Datenwert in einem Kapselobjekt zurück.
-     * 
+     *
      * @return DataUnit Generelles Kapselobjekt für einen Datenwert
      */
-    public abstract DataUnit getDataUnit();
+    public DataUnit getDataUnit(String dataUnitKey) {
+        return values.get(dataUnitKey);
+    }
 }
