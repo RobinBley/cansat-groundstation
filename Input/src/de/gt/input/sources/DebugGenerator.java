@@ -4,7 +4,6 @@ import de.gt.input.data.DataType;
 import de.gt.input.data.DataUnit;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
@@ -14,7 +13,7 @@ import java.util.stream.Collectors;
  * Generator for random debug data
  * @author mhuisi
  */
-public class DebugGenerator {
+public final class DebugGenerator {
     
     private static final Set<Entry<String, DataType>> keys = new HashSet<>();
     static {
@@ -32,7 +31,11 @@ public class DebugGenerator {
         keys.add(new SimpleEntry<>("humidity", DataType.DOUBLE));
     }
     
-    public Map<String, DataUnit> generate() {
+    /**
+     * Generates a random set of data.
+     * @return set of data
+     */
+    public static Set<Entry<String, DataUnit>> generate() {
         Random r = new Random();
         return keys.stream().map(e -> {
             String k = e.getKey();
@@ -47,7 +50,7 @@ public class DebugGenerator {
                     // GPS data
             }
             return null;
-        }).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+        }).collect(Collectors.toSet());
     }
     
 }
