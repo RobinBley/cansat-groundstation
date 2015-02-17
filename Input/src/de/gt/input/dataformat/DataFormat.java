@@ -1,6 +1,7 @@
 package de.gt.input.dataformat;
 
 import de.gt.input.data.DataUnit;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,8 +20,7 @@ public interface DataFormat {
     /**
      * Parst Daten vom vorgesehenen Datentyp
      *
-     * @return Liefert Eine Data-Objekt zurueck, welches die geparsten Daten
-     * enthaelt
+     * @return Liefert Eine ArrayList zurück, welche Data-Unit-Objekte enthaelt
      */
-    public DataUnit parseData();
+    public ArrayList<DataUnit> parseData();
 }
