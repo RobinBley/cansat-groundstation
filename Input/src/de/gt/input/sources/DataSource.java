@@ -8,7 +8,7 @@ package de.gt.input.sources;
 public interface DataSource {
     
     /**
-     * Gets the next datum
+     * Gets the next datum.
      * @return datum in some format
      */
     String nextData();

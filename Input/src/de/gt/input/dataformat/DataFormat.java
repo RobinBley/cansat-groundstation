@@ -1,6 +1,7 @@
 package de.gt.input.dataformat;
 
-import de.gt.input.data.Data;
+import de.gt.input.data.DataUnit;
+import de.gt.input.sources.DataSource;
 
 /**
  *
@@ -21,7 +22,7 @@ public interface DataFormat {
      * 
      * @return Liefert Eine Data-Objekt zurueck, welches die geparsten Daten enthaelt
      */
-    public Data paseData();
+    public DataUnit parseData();
     
     
     
