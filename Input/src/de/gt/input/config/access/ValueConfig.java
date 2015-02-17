@@ -5,20 +5,22 @@
  */
 package de.gt.input.config.access;
 
+import de.gt.input.data.DataType;
+
 /**
  *
  * @author Kevin
  */
 public class ValueConfig {
-    private String type;
+    private DataType type;
     private String identifier;
 
-    public ValueConfig(String type, String identifier) {
+    public ValueConfig(DataType type, String identifier) {
         this.type = type;
         this.identifier = identifier;
     }
 
-    public String getType() {
+    public DataType getType() {
         return type;
     }
 
