@@ -10,5 +10,5 @@ package de.gt.input.config.access;
  * @author Kevin
  */
 public interface ConfigParser {
-    
+    public Config parse();
 }
