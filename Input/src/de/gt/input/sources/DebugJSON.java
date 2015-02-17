@@ -9,10 +9,12 @@ import org.json.JSONObject;
  */
 public class DebugJSON implements DataSource {
 
+    private final DebugGenerator gen = new DebugGenerator();
+    
     @Override
     public String nextData() {
         JSONObject json = new JSONObject();
-        DebugGenerator.generate().forEach(entry -> {
+        gen.generate().forEach(entry -> {
             String k = entry.getKey();
             DataUnit u = entry.getValue();
             switch (u.getType()) {
