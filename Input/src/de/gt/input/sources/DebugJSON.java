@@ -1,6 +1,7 @@
 package de.gt.input.sources;
 
 import de.gt.input.data.DataUnit;
+import java.io.IOException;
 import org.json.JSONObject;
 
 /**
@@ -36,6 +37,11 @@ public class DebugJSON implements DataSource {
     public boolean hasData() {
         // Debug source always has data
         return true;
+    }
+
+    @Override
+    public void close() throws IOException {
+        // Nothing to close
     }
     
 }

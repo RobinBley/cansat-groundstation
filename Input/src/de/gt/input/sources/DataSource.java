@@ -1,11 +1,13 @@
 package de.gt.input.sources;
 
+import java.io.Closeable;
+
 /**
  * Interface for all sources of data,
  * for instance USB
  * @author mhuisi
  */
-public interface DataSource {
+public interface DataSource extends Closeable {
     
     /**
      * Gets the next datum.
