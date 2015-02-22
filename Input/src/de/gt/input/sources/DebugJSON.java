@@ -9,7 +9,7 @@ import org.json.JSONObject;
  */
 public class DebugJSON implements DataSource {
 
-    private final DebugGenerator gen = new DebugGenerator();
+    private final DebugGenerator gen = DebugGenerator.createWithDebugKeys();
     
     @Override
     public String nextData() {

@@ -31,8 +31,18 @@ public class DebugGenerator {
     
     private final Map<String, Object> values;
     
-    public DebugGenerator() {
-        values = keys.stream().map(e -> {
+    /**
+     * 
+     * @param values - default values for the debug generation 
+     * in a key:start_value mapping. Allowed start_values include 
+     * Strings, Doubles and Longs.
+     */
+    public DebugGenerator(Map<String, Object> values) {
+        this.values = values;
+    }
+    
+    public static DebugGenerator createWithDebugKeys() {
+        Map<String, Object> values = keys.stream().map(e -> {
             String k = e.getKey();
             switch (e.getValue()) {
                 case LONG:
@@ -46,6 +56,7 @@ public class DebugGenerator {
             }
             return null;
         }).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+        return new DebugGenerator(values);
     }
     
     /**
