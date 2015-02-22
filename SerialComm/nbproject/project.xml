@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.apisupport.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
+            <code-name-base>com.google.code.serialcomm</code-name-base>
+            <suite-component/>
+            <module-dependencies/>
+            <public-packages>
+                <package>j.extensions.comm</package>
+            </public-packages>
+            <class-path-extension>
+                <runtime-relative-path>ext/SerialComm.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/SerialComm.jar</binary-origin>
+            </class-path-extension>
+        </data>
+    </configuration>
+</project>
