@@ -34,7 +34,7 @@ public class Stream implements DataSource {
     public boolean hasData() {
         int b;
         try {
-            while ((b = stream.read()) != -1) {
+            while (segments.isEmpty() && (b = stream.read()) != -1 && stream.available() > 0) {
                 segmentBuffer.add((byte) b);
                 if (b == delimiter) {
                     int bufLen = segmentBuffer.size();
