@@ -1,0 +1,47 @@
+package de.gt.input.sources;
+
+import de.gt.input.data.DataUnit;
+import java.io.IOException;
+import org.json.JSONObject;
+
+/**
+ * Debug source generating JSON
+ * @author mhuisi
+ */
+public class DebugJSON implements DataSource {
+
+    private final DebugGenerator gen = DebugGenerator.createWithDebugKeys();
+    
+    @Override
+    public String nextData() {
+        JSONObject json = new JSONObject();
+        gen.generate().forEach(entry -> {
+            String k = entry.getKey();
+            DataUnit u = entry.getValue();
+            switch (u.getType()) {
+                case LONG:
+                    json.put(k, u.getLongValue());
+                    break;
+                case DOUBLE:
+                    json.put(k, u.getDoubleValue());
+                    break;
+                case STRING:
+                    json.put(k, u.getStringValue());
+                    break;
+            }
+        });
+        return json.toString();
+    }
+
+    @Override
+    public boolean hasData() {
+        // Debug source always has data
+        return true;
+    }
+
+    @Override
+    public void close() throws IOException {
+        // Nothing to close
+    }
+    
+}
