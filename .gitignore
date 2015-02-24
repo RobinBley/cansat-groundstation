@@ -1,2 +1,11 @@
-/GUI/build/
+/nbproject/private/
+/Input/nbproject/private/
 /GUI/nbproject/private/
+/SerialComm/nbproject/private/
+/JSON/nbproject/private/
+/build/
+/Input/build/
+/GUI/build/
+/SerialComm/build/
+/JSON/build/
+>>>>>>> af5a01438cdfd28b6bc700bc3e931425c024a0ab
