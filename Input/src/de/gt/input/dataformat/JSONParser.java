@@ -46,14 +46,12 @@ public class JSONParser implements DataFormat {
 
                             case DOUBLE:
                                 units.add(new DataUnit(jData.getDouble(key)));
-
+                                break;
                             case LONG:
                                 units.add(new DataUnit(jData.getLong(key)));
-
+                                break;
                             case STRING:
                                 units.add(new DataUnit(jData.getString(key)));
-
-                            default:
                                 break;
 
                         }

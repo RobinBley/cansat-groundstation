@@ -27,6 +27,9 @@ public class Stream implements DataSource {
     
     @Override
     public String nextData() {
+        if (!hasData()) {
+            return null;
+        }
         return segments.remove();
     }
 
