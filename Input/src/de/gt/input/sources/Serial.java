@@ -1,8 +1,10 @@
 package de.gt.input.sources;
 
+import de.gt.input.dataformat.DataFormat;
 import j.extensions.comm.SerialComm;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 
 /**
  * Data source for serial ports
@@ -10,23 +12,42 @@ import java.nio.charset.Charset;
  */
 public class Serial implements DataSource {
     
+    private DataFormat formatter;
     private final SerialComm port;
     private final Stream stream;
     
-    public Serial(SerialComm p, byte delimiter, Charset c) {
-        p.openPort();
+    /**
+     * 
+     * @param f - formatter to push data to
+     * @param p - port to stream data from
+     * @param delimiter - delimiter value between every datum in the stream
+     * @param c - charset the data is streamed in
+     */
+    public Serial(DataFormat f, SerialComm p, byte delimiter, Charset c) {
+        this.formatter = f;
         this.port = p;
-        this.stream = new Stream(p.getInputStream(), delimiter, c);
+        this.stream = new Stream(f, p.getInputStream(), delimiter, c);
     }
     
-    public static Serial createInitialized(String portName, byte delimiter, Charset c) {
-        SerialComm[] ports = SerialComm.getCommPorts();
-        for (SerialComm p : ports) {
-            if (p.getDescriptivePortName().equals(portName)) {
-                return new Serial(p, delimiter, c);
-            }
-        }
-        return null;
+    /**
+     * Creates a serial source from a port name.
+     * @param f - formatter to push data to
+     * @param portName
+     * @param delimiter - delimiter value between every datum in the stream
+     * @param c - charset the data is streamed in
+     * @return serial source
+     */
+    public static Serial createFromName(DataFormat f, String portName, byte delimiter, Charset c) {
+        return Arrays.stream(SerialComm.getCommPorts())
+                .filter(p -> p.getDescriptivePortName().equals(portName))
+                .map(p -> new Serial(f, p, delimiter, c))
+                .findAny().orElse(null);
+    }
+    
+    @Override
+    public void open() {
+        port.openPort();
+        stream.open();
     }
     
     @Override
@@ -34,15 +55,15 @@ public class Serial implements DataSource {
         port.closePort();
         stream.close();
     }
-    
+
     @Override
-    public String nextData() {
-        return stream.nextData();
+    public DataFormat getFormatter() {
+        return formatter;
     }
 
     @Override
-    public boolean hasData() {
-        return stream.hasData();
+    public void setFormatter(DataFormat f) {
+        this.formatter = f;
     }
     
 }

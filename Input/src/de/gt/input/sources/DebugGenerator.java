@@ -41,6 +41,11 @@ public class DebugGenerator {
         this.values = values;
     }
     
+    /**
+     * Creates a debug generator with default initialized
+     * debug keys and values.
+     * @return generator
+     */
     public static DebugGenerator createWithDebugKeys() {
         Map<String, Object> values = keys.stream().map(e -> {
             String k = e.getKey();

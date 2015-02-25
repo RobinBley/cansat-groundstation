@@ -1,5 +1,6 @@
 package de.gt.input.sources;
 
+import de.gt.input.dataformat.DataFormat;
 import java.io.Closeable;
 
 /**
@@ -10,15 +11,22 @@ import java.io.Closeable;
 public interface DataSource extends Closeable {
     
     /**
-     * Gets the next datum.
-     * @return datum in some format
+     * Opens this source.
      */
-    String nextData();
+    void open();
     
     /**
-     * Checks if the DataSource has any data.
-     * @return has any data
+     * Gets the formatter that this source
+     * relays the data to.
+     * @return formatter
      */
-    boolean hasData();
+    DataFormat getFormatter();
+    
+    /**
+     * Sets the formatter that this source 
+     * relays the data to.
+     * @param f - formatter
+     */
+    void setFormatter(DataFormat f);
     
 }

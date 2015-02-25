@@ -1,65 +1,56 @@
 package de.gt.input.dataformat;
 
+import de.gt.input.sources.Relay;
 import de.gt.input.config.access.Config;
 import de.gt.input.config.access.ValueConfig;
+import static de.gt.input.data.DataType.DOUBLE;
+import static de.gt.input.data.DataType.LONG;
+import static de.gt.input.data.DataType.STRING;
 import de.gt.input.data.DataUnit;
-import de.gt.input.sources.DataSource;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import org.json.JSONObject;
 
 public class JSONParser implements DataFormat {
 
-    private final DataSource dataSource;
+    private final Relay relay;
     private final Config config;
-    private ArrayList<DataUnit> units;
 
     /**
      *
-     * @param dataSource Quelle der zu bearbeitenden Daten
+     * @param r Relay zum Weiterleiten der Daten
      * @param config Konfigurationsdaten zur idetifizierung von Daten
      */
-    public JSONParser(DataSource dataSource, Config config) {
-        this.dataSource = dataSource;
+    public JSONParser(Relay r, Config config) {
+        this.relay = r;
         this.config = config;
-        units = null;
     }
 
     @Override
-    public boolean hasData() {
-        return dataSource.hasData();
-    }
+    public void parseData(String data) {
+        Map<String, DataUnit> units = new HashMap<>();
+        JSONObject jData = new JSONObject(data);
+        Map<String, ValueConfig> keys = config.getValueConfigs();
+        for (Entry<String, ValueConfig> entry : keys.entrySet()) {
+            String key = entry.getKey();
+            if (jData.has(key)) {
+                switch (entry.getValue().getType()) {
 
-    @Override
-    public ArrayList<DataUnit> parseData() {
-        if (hasData()) {
-            units = new ArrayList<>();
-            JSONObject jData = new JSONObject();
+                    case DOUBLE:
+                        units.put(key, new DataUnit(jData.getDouble(key)));
+                        break;
+                    case LONG:
+                        units.put(key, new DataUnit(jData.getLong(key)));
+                        break;
+                    case STRING:
+                        units.put(key, new DataUnit(jData.getString(key)));
+                        break;
 
-            jData.getJSONObject(dataSource.nextData());
-            Map<String, ValueConfig> keys = config.getValueConfigs();
-            while (dataSource.hasData()) {
-
-                for (String key : keys.keySet()) {
-                    if (jData.has(key)) {
-                        switch (keys.get(key).getType()) {
-
-                            case DOUBLE:
-                                units.add(new DataUnit(jData.getDouble(key)));
-                                break;
-                            case LONG:
-                                units.add(new DataUnit(jData.getLong(key)));
-                                break;
-                            case STRING:
-                                units.add(new DataUnit(jData.getString(key)));
-                                break;
-
-                        }
-                    }
                 }
             }
         }
-        return units;
+        relay.relay(units);
     }
 
 }

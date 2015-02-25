@@ -1,8 +1,5 @@
 package de.gt.input.dataformat;
 
-import de.gt.input.data.DataUnit;
-import java.util.ArrayList;
-
 /**
  *
  * @author Robin
@@ -10,17 +7,10 @@ import java.util.ArrayList;
 public interface DataFormat {
 
     /**
-     * Prueft ob Daten vorhanden sind.
-     *
-     * @return Liefert true, wenn Datenvorhanden sind. Andernfalls wird false
-     * zurueckgegeben.
+     * Parst Daten vom vorgesehenen Datentyp und gibt sie an ein
+     * Relay weiter.
+     * @param data - daten die geparst werden sollen
      */
-    public boolean hasData();
-
-    /**
-     * Parst Daten vom vorgesehenen Datentyp
-     *
-     * @return Liefert Eine ArrayList zurück, welche Data-Unit-Objekte enthaelt
-     */
-    public ArrayList<DataUnit> parseData();
+    public void parseData(String data);
+    
 }
