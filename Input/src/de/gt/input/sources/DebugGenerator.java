@@ -37,7 +37,7 @@ public class DebugGenerator {
      * in a key:start_value mapping. Allowed start_values include 
      * Strings, Doubles and Longs.
      */
-    public DebugGenerator(Map<String, Object> values) {
+    private DebugGenerator(Map<String, Object> values) {
         this.values = values;
     }
     
