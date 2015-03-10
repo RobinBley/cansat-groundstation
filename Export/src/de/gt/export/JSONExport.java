@@ -35,7 +35,7 @@ public class JSONExport implements Exporter {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()));
             writer.write(jsonData.toString());
-            
+
         } catch (IOException ex) {
             Logger.getLogger(JSONExport.class.getName()).log(Level.SEVERE, null, ex);
             return false;

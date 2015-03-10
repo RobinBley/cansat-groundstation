@@ -8,47 +8,21 @@ package de.gt.export;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
 public class TxtExporter implements Exporter {
 
-    /**
-     * Liefert einen existierenden Pfad einer CSV-Datei zurueck.
-     *
-     * @param output Datei, aus der der Pfad gelsen wird
-     * @return Ein Pfad einer CSV-Datei
-     */
-    private String getPath(File output) {
-        String path;
-        if (output == null) {
-
-            StringBuilder buffer = new StringBuilder();
-            buffer.append(System.getProperty("user.dir"));
-            buffer.append(String.valueOf(new Timestamp(new java.util.Date().getTime())));
-            buffer.append(".csv");
-            path = buffer.toString();
-
-        } else if (!output.getParent().endsWith(".txt")) {
-            path = output.getPath() + ".txt";
-        } else {
-            path = output.getPath();
-        }
-        return path;
-    }
-
     @Override
     public boolean exportData(Map<String, List> data, File output) {
-        String path = getPath(output);
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(output));
             for (int i = 0; i < data.get(data.keySet().toArray()[0]).size(); i++) {
-                StringBuffer buffer = new StringBuffer("%-15s %15s %n");
+                StringBuilder buffer = new StringBuilder("%-15s %15s %n");
 
                 for (String key : data.keySet()) {
                     if (data.get(key).size() <= i) {
-                        buffer.append(", " + data.get(key).get(i));
+                        buffer.append(", ").append(data.get(key).get(i));
                     } else {
                         buffer.append(", NULL");
                     }
