@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.apisupport.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
+            <code-name-base>de.gt.chart</code-name-base>
+            <suite-component/>
+            <module-dependencies/>
+            <public-packages>
+                <package>info.monitorenter.gui.chart</package>
+                <package>info.monitorenter.gui.chart.annotations</package>
+                <package>info.monitorenter.gui.chart.annotations.bubble</package>
+                <package>info.monitorenter.gui.chart.axis</package>
+                <package>info.monitorenter.gui.chart.axis.scalepolicy</package>
+                <package>info.monitorenter.gui.chart.axistickpainters</package>
+                <package>info.monitorenter.gui.chart.axistitlepainters</package>
+                <package>info.monitorenter.gui.chart.controls</package>
+                <package>info.monitorenter.gui.chart.controls.errorbarwizard</package>
+                <package>info.monitorenter.gui.chart.demos</package>
+                <package>info.monitorenter.gui.chart.dialogs</package>
+                <package>info.monitorenter.gui.chart.errorbars</package>
+                <package>info.monitorenter.gui.chart.events</package>
+                <package>info.monitorenter.gui.chart.io</package>
+                <package>info.monitorenter.gui.chart.labelformatters</package>
+                <package>info.monitorenter.gui.chart.layouts</package>
+                <package>info.monitorenter.gui.chart.pointpainters</package>
+                <package>info.monitorenter.gui.chart.rangepolicies</package>
+                <package>info.monitorenter.gui.chart.traces</package>
+                <package>info.monitorenter.gui.chart.traces.computing</package>
+                <package>info.monitorenter.gui.chart.traces.painters</package>
+                <package>info.monitorenter.gui.chart.views</package>
+                <package>info.monitorenter.gui.util</package>
+                <package>info.monitorenter.reflection</package>
+                <package>info.monitorenter.util</package>
+                <package>info.monitorenter.util.collections</package>
+                <package>info.monitorenter.util.math</package>
+                <package>info.monitorenter.util.units</package>
+            </public-packages>
+            <class-path-extension>
+                <runtime-relative-path>ext/jchart2d-3.2.2.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jchart2d-3.2.2.jar</binary-origin>
+            </class-path-extension>
+        </data>
+    </configuration>
+</project>
