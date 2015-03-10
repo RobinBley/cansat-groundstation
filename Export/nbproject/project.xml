@@ -24,7 +24,10 @@
                     </test-dependency>
                 </test-type>
             </test-dependencies>
-            <public-packages/>
+            <friend-packages>
+                <friend>de.gt.input</friend>
+                <package>de.gt.export</package>
+            </friend-packages>
         </data>
     </configuration>
 </project>
