@@ -16,6 +16,10 @@ import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * Diese Klasse regelt das exportieren von Daten im JSON-Format.
+ * @author Robin
+ */
 public class JSONExport implements Exporter {
 
     @Override

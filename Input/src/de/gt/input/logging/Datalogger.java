@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Diese Klasse sorgt fuer das speichern von empfangenen Daten.
  * @author Robin
  */
 public class Datalogger implements Receiver {

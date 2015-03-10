@@ -14,6 +14,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import org.json.JSONObject;
 
+/**
+ * 
+ * @author Robin
+ */
 public class JSONParser implements DataFormat {
 
     private final Relay relay;
@@ -21,11 +25,11 @@ public class JSONParser implements DataFormat {
 
     /**
      *
-     * @param r Relay zum Weiterleiten der Daten
+     * @param relay Relay zum Weiterleiten der Daten
      * @param config Konfigurationsdaten zur idetifizierung von Daten
      */
-    public JSONParser(Relay r, Config config) {
-        this.relay = r;
+    public JSONParser(Relay relay, Config config) {
+        this.relay = relay;
         this.config = config;
     }
 
@@ -49,6 +53,7 @@ public class JSONParser implements DataFormat {
                     case STRING:
                         datum = new DataUnit(jData.getString(key));
                         break;
+                    default: break;
 
                 }
                 units.add(new SimpleEntry<>(key, datum));

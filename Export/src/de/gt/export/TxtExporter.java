@@ -11,6 +11,10 @@ import java.io.FileWriter;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Diese Klasse regelt das exportieren von Daten in eine Txt-Datei.
+ * @author Robin
+ */
 public class TxtExporter implements Exporter {
 
     @Override

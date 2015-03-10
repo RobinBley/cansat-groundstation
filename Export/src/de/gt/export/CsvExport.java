@@ -11,6 +11,10 @@ import java.io.FileWriter;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Diese Klasse regelt das exportieren von Daten in eine CSV Datei.
+ * @author Robin
+ */
 public class CsvExport implements Exporter {
 
     @Override
