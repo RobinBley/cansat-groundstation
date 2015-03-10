@@ -71,18 +71,23 @@ public class DebugGenerator {
     public Collection<Entry<String, DataUnit>> generate() {
         return keys.stream().map(e -> {
             String k = e.getKey();
-            switch (e.getValue()) {
+            DataType t = e.getValue();
+            if (Math.random() < 0.02) {
+                return new SimpleEntry<>(k, new DataUnit(t));
+            }
+            Object generated = values.get(k);
+            switch (t) {
                 case LONG:
-                    long longValue = (long) values.get(k);
+                    long longValue = (long) generated;
                     values.put(k, longValue + 1);
                     return new SimpleEntry<>(k, new DataUnit(longValue));
                 case DOUBLE:
-                    double doubleValue = (double) values.get(k);
+                    double doubleValue = (double) generated;
                     values.put(k, doubleValue + 1.0);
                     return new SimpleEntry<>(k, new DataUnit(doubleValue));
                 case STRING:
                     // It is assumed that all strings are GPS data
-                    GPGGA gps = GPGGA.createFromString((String) values.get(k));
+                    GPGGA gps = GPGGA.createFromString((String) generated);
                     GPGGA nextGPS = new GPGGA(gps.getLatitude() + 0.2, 
                             gps.getLongitude() + 0.4,
                             gps.getAltitude() + 0.5);

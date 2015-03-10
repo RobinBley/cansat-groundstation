@@ -1,4 +1,4 @@
-package de.gt.input.sources;
+    package de.gt.input.sources;
 
 import java.text.DecimalFormat;
 
