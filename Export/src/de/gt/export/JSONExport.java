@@ -33,7 +33,7 @@ public class JSONExport implements Exporter {
             for (int i = 0; i < data.get(key).size(); i++) {
                 jarray.put(i, data.get(key).get(i));
             }
-            jsonData.append(key, jarray);
+            jsonData.put(key, jarray);
         }
 
         try {

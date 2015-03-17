@@ -20,6 +20,9 @@ public class TxtExporter implements Exporter {
     @Override
     public boolean exportData(Map<String, List> data, File output) {
         try {
+            if(output.exists()){
+                output.createNewFile();
+            }
             BufferedWriter writer = new BufferedWriter(new FileWriter(output));
             for (int i = 0; i < data.get(data.keySet().toArray()[0]).size(); i++) {
                 StringBuilder buffer = new StringBuilder("%-15s %15s %n");

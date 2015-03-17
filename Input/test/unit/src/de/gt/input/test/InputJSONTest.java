@@ -17,11 +17,8 @@ import de.gt.relay.Relay;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.netbeans.junit.NbTestCase;
 
