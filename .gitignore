@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /Input/build/
 /build/
 /Input/nbproject/private/
@@ -10,4 +10,14 @@
 =======
 /GUI/build/
 /GUI/nbproject/private/
->>>>>>> GUI Modul reparieren
+
+/nbproject/private/
+/Input/nbproject/private/
+/GUI/nbproject/private/
+/SerialComm/nbproject/private/
+/JSON/nbproject/private/
+/build/
+/Input/build/
+/GUI/build/
+/SerialComm/build/
+/JSON/build/
