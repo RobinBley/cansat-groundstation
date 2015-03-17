@@ -7,6 +7,14 @@
             <suite-component/>
             <module-dependencies>
                 <dependency>
+                    <code-name-base>de.gt.export</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>1.0</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
                     <code-name-base>j.extensions.comm</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
@@ -23,7 +31,15 @@
                     </run-dependency>
                 </dependency>
             </module-dependencies>
-            <public-packages/>
+            <friend-packages>
+                <friend>de.gt.export</friend>
+                <package>de.gt.input.config.access</package>
+                <package>de.gt.input.data</package>
+                <package>de.gt.input.dataformat</package>
+                <package>de.gt.input.logging</package>
+                <package>de.gt.input.sources</package>
+                <package>de.gt.relay</package>
+            </friend-packages>
         </data>
     </configuration>
 </project>

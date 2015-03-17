@@ -11,27 +11,39 @@ package de.gt.input.data;
  */
 public class DataUnit {
 
-    private Double doubleValue;
-    private String stringValue;
-    private Long longValue;
+    private Object objectValue = null;
+    private Double doubleValue = null;
+    private String stringValue = null;
+    private Long longValue = null;
 
     private DataType type;
-
+ 
+    public DataUnit(DataType t) {
+        this.type = t;
+    }
+    
     public DataUnit(Double doubleValue) {
+        this.objectValue = doubleValue;
         this.doubleValue = doubleValue;
         this.type = DataType.DOUBLE;
     }
 
     public DataUnit(String stringValue) {
+        this.objectValue = stringValue;
         this.stringValue = stringValue;
         this.type = DataType.STRING;
     }
 
     public DataUnit(Long longValue) {
+        this.objectValue = longValue;
         this.longValue = longValue;
         this.type = DataType.LONG;
     }
-
+    
+    public Object getObjectValue() {
+        return objectValue;
+    }
+    
     public Double getDoubleValue() {
         return doubleValue;
     }
