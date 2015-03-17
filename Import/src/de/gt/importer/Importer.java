@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.gt.input;
+package de.gt.importer;
 
 import java.io.File;
 import java.util.List;
