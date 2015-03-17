@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="CanSat"/>
+        <group>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/data/DataUnit.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/config/access/ValueConfig.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/sources/DataSource.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/sources/DebugJSON.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/config/access/ConfigParser.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/config/access/ConfigLoader.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/sources/GPGGA.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/config/access/Config.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/Importer.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/sources/Serial.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/data/DataType.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/CsvImporter.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/sources/Stream.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/dataformat/JSONParser.java</file>
+            <file>file:/home/laze/Workspaces/java/netbeans/cansat-groundstation/Input/src/de/gt/input/sources/DebugGenerator.java</file>
+        </group>
+    </open-files>
+</project-private>
