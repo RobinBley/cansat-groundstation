@@ -35,6 +35,15 @@
                 <attr
                     bundlevalue="de.gt.gui.window.Bundle#CTL_VisualizationAction" name="displayName"/>
             </file>
+            <file name="de-gt-gui-window-TextDisplayTopComponent.instance">
+                <!--de.gt.gui.window.TextDisplayTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="de.gt.gui.window.TextDisplayTopComponent"/>
+                <attr name="preferredID" stringvalue="TextDisplayTopComponent"/>
+                <attr
+                    bundlevalue="de.gt.gui.window.Bundle#CTL_TextDisplayAction" name="displayName"/>
+            </file>
         </folder>
     </folder>
     <folder name="Menu">
@@ -57,6 +66,10 @@
                 <!--de.gt.gui.window.VisualizationTopComponent-->
                 <attr name="originalFile" stringvalue="Actions/Window/de-gt-gui-window-VisualizationTopComponent.instance"/>
             </file>
+            <file name="de-gt-gui-window-TextDisplayTopComponent.shadow">
+                <!--de.gt.gui.window.TextDisplayTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/de-gt-gui-window-TextDisplayTopComponent.instance"/>
+            </file>
         </folder>
     </folder>
     <folder name="xml">
@@ -65,6 +78,10 @@
                 <file name="Visualization" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
                     <!--de.gt.gui.window.VisualizationTopComponent-->
                     <attr name="hint.originalPublicID" stringvalue="-//de.gt.gui.window//Visualization//EN"/>
+                </file>
+                <file name="TextDisplay" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--de.gt.gui.window.TextDisplayTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//de.gt.gui.window//TextDisplay//EN"/>
                 </file>
             </folder>
         </folder>
@@ -76,6 +93,10 @@
                             <file name="VisualizationTopComponent">
                                 <!--de.gt.gui.window.VisualizationTopComponent-->
                                 <attr name="settings.providerPath" stringvalue="xml/lookups//de_gt_gui_window/Visualization.instance"/>
+                            </file>
+                            <file name="TextDisplayTopComponent">
+                                <!--de.gt.gui.window.TextDisplayTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//de_gt_gui_window/TextDisplay.instance"/>
                             </file>
                         </folder>
                     </folder>
@@ -94,6 +115,16 @@
                     <attr name="settings.instanceOf" stringvalue="de.gt.gui.window.VisualizationTopComponent"/>
                     <attr boolvalue="true" name="xmlproperties.preventStoring"/>
                 </file>
+                <file name="TextDisplay.instance">
+                    <!--de.gt.gui.window.TextDisplayTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="de.gt.gui.window.TextDisplayTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="de.gt.gui.window.TextDisplayTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
             </folder>
         </folder>
     </folder>
@@ -106,6 +137,13 @@
   <instance class="de.gt.gui.window.VisualizationTopComponent"/>
 </settings>
 ]]></file>
+            <file name="TextDisplayTopComponent.settings">
+                <!--de.gt.gui.window.TextDisplayTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="de.gt.gui.window.TextDisplayTopComponent"/>
+</settings>
+]]></file>
         </folder>
         <folder name="Modes">
             <folder name="editor">
@@ -115,6 +153,14 @@
 <tc-ref version="2.0">
   <tc-id id="VisualizationTopComponent"/>
   <state opened="true"/>
+</tc-ref>
+]]></file>
+                <file name="TextDisplayTopComponent.wstcref">
+                    <!--de.gt.gui.window.TextDisplayTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="TextDisplayTopComponent"/>
+  <state opened="false"/>
 </tc-ref>
 ]]></file>
             </folder>
