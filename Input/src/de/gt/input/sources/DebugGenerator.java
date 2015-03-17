@@ -69,12 +69,9 @@ public class DebugGenerator {
      * @return set of data
      */
     public Collection<Entry<String, DataUnit>> generate() {
-        return keys.stream().map(e -> {
+        return keys.stream().filter(e -> Math.random() > 0.98).map(e -> {
             String k = e.getKey();
             DataType t = e.getValue();
-            if (Math.random() < 0.02) {
-                return new SimpleEntry<>(k, new DataUnit(t));
-            }
             Object generated = values.get(k);
             switch (t) {
                 case LONG:
