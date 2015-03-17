@@ -12,38 +12,25 @@ import java.util.Map;
  *
  * @author Robin
  */
-public class ConsoleOutput implements Receiver{
+public class ConsoleOutput implements Receiver {
 
     @Override
     public void receive(Map<String, DataUnit> datum) {
-        System.out.println("Daten Empfangen:");
-        
-        
-        
-        
         String outData = null;
-        for (String key : datum.keySet()){
+        for (String key : datum.keySet()) {
             switch (datum.get(key).getType()) {
-
-                    case DOUBLE:
-                        outData = String.valueOf(datum.get(key).getDoubleValue());
-                        break;
-                    case LONG:
-                        outData = String.valueOf(datum.get(key).getLongValue());
-                        break;
-                    case STRING:
-                        outData = datum.get(key).getStringValue();
-                        break;
-                    default:
-
-                }
-                    
-                    
-                    
-                    
-                    
+                case DOUBLE:
+                    outData = String.valueOf(datum.get(key).getDoubleValue());
+                    break;
+                case LONG:
+                    outData = String.valueOf(datum.get(key).getLongValue());
+                    break;
+                case STRING:
+                    outData = datum.get(key).getStringValue();
+                    break;
+                default:
+            }
             System.out.println(key + ": " + outData);
         }
     }
-    
 }
