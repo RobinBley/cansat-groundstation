@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN"
+                            "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Manage">
+            <file name="de-gt-gui-action-ManageSatellitesAction.instance">
+                <!--de.gt.gui.action.ManageSatellitesAction-->
+                <attr
+                    bundlevalue="de.gt.gui.action.Bundle#CTL_ManageSatellitesAction" name="displayName"/>
+                <attr
+                    methodvalue="org.openide.awt.Actions.alwaysEnabled" name="instanceCreate"/>
+                <attr name="delegate" newvalue="de.gt.gui.action.ManageSatellitesAction"/>
+                <attr boolvalue="false" name="noIconInMenu"/>
+            </file>
+        </folder>
+        <folder name="File">
+            <file name="de-gt-gui-action-AddSatelliteAction.instance">
+                <!--de.gt.gui.action.AddSatelliteAction-->
+                <attr
+                    bundlevalue="de.gt.gui.action.Bundle#CTL_AddSatelliteAction" name="displayName"/>
+                <attr
+                    methodvalue="org.openide.awt.Actions.alwaysEnabled" name="instanceCreate"/>
+                <attr name="delegate" newvalue="de.gt.gui.action.AddSatelliteAction"/>
+                <attr boolvalue="false" name="noIconInMenu"/>
+            </file>
+        </folder>
+        <folder name="Window">
+            <file name="de-gt-gui-window-VisualizationTopComponent.instance">
+                <!--de.gt.gui.window.VisualizationTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="de.gt.gui.window.VisualizationTopComponent"/>
+                <attr name="preferredID" stringvalue="VisualizationTopComponent"/>
+                <attr
+                    bundlevalue="de.gt.gui.window.Bundle#CTL_VisualizationAction" name="displayName"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="File">
+            <folder name="Satellites">
+                <file name="de-gt-gui-action-ManageSatellitesAction.shadow">
+                    <!--de.gt.gui.action.ManageSatellitesAction-->
+                    <attr name="originalFile" stringvalue="Actions/Manage/de-gt-gui-action-ManageSatellitesAction.instance"/>
+                    <attr intvalue="1100" name="position"/>
+                </file>
+                <file name="de-gt-gui-action-AddSatelliteAction.shadow">
+                    <!--de.gt.gui.action.AddSatelliteAction-->
+                    <attr name="originalFile" stringvalue="Actions/File/de-gt-gui-action-AddSatelliteAction.instance"/>
+                    <attr intvalue="1000" name="position"/>
+                </file>
+            </folder>
+        </folder>
+        <folder name="Window">
+            <file name="de-gt-gui-window-VisualizationTopComponent.shadow">
+                <!--de.gt.gui.window.VisualizationTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/de-gt-gui-window-VisualizationTopComponent.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="xml">
+        <folder name="entities">
+            <folder name="de_gt_gui_window">
+                <file name="Visualization" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--de.gt.gui.window.VisualizationTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//de.gt.gui.window//Visualization//EN"/>
+                </file>
+            </folder>
+        </folder>
+        <folder name="memory">
+            <folder name="de">
+                <folder name="gt">
+                    <folder name="gui">
+                        <folder name="window">
+                            <file name="VisualizationTopComponent">
+                                <!--de.gt.gui.window.VisualizationTopComponent-->
+                                <attr name="settings.providerPath" stringvalue="xml/lookups//de_gt_gui_window/Visualization.instance"/>
+                            </file>
+                        </folder>
+                    </folder>
+                </folder>
+            </folder>
+        </folder>
+        <folder name="lookups">
+            <folder name="de_gt_gui_window">
+                <file name="Visualization.instance">
+                    <!--de.gt.gui.window.VisualizationTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="de.gt.gui.window.VisualizationTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="de.gt.gui.window.VisualizationTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="VisualizationTopComponent.settings">
+                <!--de.gt.gui.window.VisualizationTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="de.gt.gui.window.VisualizationTopComponent"/>
+</settings>
+]]></file>
+        </folder>
+        <folder name="Modes">
+            <folder name="editor">
+                <file name="VisualizationTopComponent.wstcref">
+                    <!--de.gt.gui.window.VisualizationTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="VisualizationTopComponent"/>
+  <state opened="true"/>
+</tc-ref>
+]]></file>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>
