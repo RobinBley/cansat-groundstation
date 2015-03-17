@@ -15,7 +15,7 @@ import java.util.Map.Entry;
 import org.json.JSONObject;
 
 /**
- * 
+ *
  * @author Robin
  */
 public class JSONParser implements DataFormat {
@@ -53,7 +53,8 @@ public class JSONParser implements DataFormat {
                     case STRING:
                         datum = new DataUnit(jData.getString(key));
                         break;
-                    default: break;
+                    default:
+                        datum = new DataUnit(entry.getValue().getType());
 
                 }
                 units.add(new SimpleEntry<>(key, datum));
