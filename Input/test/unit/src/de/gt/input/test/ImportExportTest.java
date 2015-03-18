@@ -7,8 +7,8 @@ package de.gt.input.test;
 
 import de.gt.export.CsvExport;
 import de.gt.export.Exporter;
-import de.gt.input.CsvImporter;
-import de.gt.input.Importer;
+import de.gt.importer.CsvImporter;
+import de.gt.importer.Importer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
