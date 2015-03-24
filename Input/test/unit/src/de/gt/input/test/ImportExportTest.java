@@ -7,8 +7,8 @@ package de.gt.input.test;
 
 import de.gt.export.CsvExport;
 import de.gt.export.Exporter;
-import de.gt.input.CsvImporter;
-import de.gt.input.Importer;
+import de.gt.importer.CsvImporter;
+import de.gt.importer.Importer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,13 +47,13 @@ public class ImportExportTest extends NbTestCase {
     @Before
     public void setUp() {
         //Write into file
-        Map<String, List>  data = new HashMap<>();
+        Map<String, List> data = new HashMap<>();
         ArrayList values = new ArrayList();
         values.add("1");
         data.put("time", values);
         File file = new File("testDatei.csv");
         exporter.exportData(data, file);
-        
+
         
         //read File
         Map<String, List> readData = importer.importData(file);

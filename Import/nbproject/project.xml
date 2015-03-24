@@ -7,7 +7,7 @@
             <suite-component/>
             <module-dependencies/>
             <public-packages>
-                <package>de.gt.input</package>
+                <package>de.gt.importer</package>
             </public-packages>
         </data>
     </configuration>
