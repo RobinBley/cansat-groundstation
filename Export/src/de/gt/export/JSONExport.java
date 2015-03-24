@@ -23,7 +23,7 @@ import org.json.JSONObject;
 public class JSONExport implements Exporter {
 
     @Override
-    public boolean exportData(Map<String, List> data, File output) {
+    public boolean exportData(Map<String, List<Object>> data, File output) {
 
         JSONObject jsonData = new JSONObject();
         JSONArray jarray = new JSONArray();

@@ -22,6 +22,6 @@ public interface Exporter {
      * @param output Die Datei, in der die Daten exportiert werden
      * @return Gibt true zurueck, wenn das Exportieren der Daten erfolgt ist.
      */
-    public boolean exportData(Map<String, List> data, File output);
+    public boolean exportData(Map<String, List<Object>> data, File output);
 
 }

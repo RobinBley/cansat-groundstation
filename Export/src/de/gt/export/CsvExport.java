@@ -13,24 +13,26 @@ import java.util.Map;
 
 /**
  * Diese Klasse regelt das exportieren von Daten in eine CSV Datei.
+ *
  * @author Robin
  */
 public class CsvExport implements Exporter {
 
     @Override
-    public boolean exportData(Map<String, List> data, File output) {
+    public boolean exportData(Map<String, List<Object>> data, File output) {
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(output));
             for (String key : data.keySet()) {
-
+                writer.write(key + ";");
                 for (int i = 0; i < data.get(key).size(); i++) {
 
                     writer.write(String.valueOf(data.get(key).get(i)) + ";");
                 }
                 writer.write(System.getProperty("line.separator"));
-                writer.close();
             }
+            writer.flush();
+            writer.close();
         } catch (Exception e) {
             return false;
         }
