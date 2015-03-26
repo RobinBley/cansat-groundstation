@@ -45,14 +45,20 @@ public class TxtExportTest {
         ArrayList<Object> values = new ArrayList<>();
         values.add("1");
         values.add("234");
+        values.add(null);
         data.put("time", (List<Object>) values.clone());
         values.clear();
         values.add("346");
         values.add("346345");
         values.add("899922");
+        values.add("2");
+        values.add("34");
         data.put("temp", (List<Object>) values.clone());
-        File file = new File(System.getProperty("user.home") + "\\CSVEXPORTTEST.txt");
+        File file = new File(System.getProperty("user.home") + "\\TXTEXPORTTEST.txt");
         Assert.assertTrue(exporter.exportData(data, file));
+        Assert.assertFalse(exporter.exportData(null, null));
+        Assert.assertFalse(exporter.exportData(data, null));
+        Assert.assertFalse(exporter.exportData(null, file));
 
     }
     @After

@@ -5,7 +5,6 @@
  */
 package de.gt.export;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Diese Klasse regelt das exportieren von Daten in eine Txt-Datei.
+ * Diese Klasse regelt das exportieren von Daten in eine formatierte Txt-Datei.
  *
  * @author Robin
  */
@@ -21,46 +20,42 @@ public class TxtExporter implements Exporter {
 
     @Override
     public boolean exportData(Map<String, List<Object>> data, File output) {
+        if (output == null || data == null) {
+            return false;
+        }
         try {
-            if (output.exists()) {
-                output.createNewFile();
-            }
             FileWriter writer = (new FileWriter(output));
 
             StringBuilder formatStr = new StringBuilder("%-20s ");
 
+            int maxSize = 0;
+            Object[] keys = data.keySet().toArray();
             for (int i = 1; i < data.keySet().size(); i++) {
+                if (data.get(keys[i - 1]).size() > maxSize) {
+                    maxSize = data.get(keys[i - 1]).size();
+                }
                 formatStr.append(" %-15s");
             }
+            keys = null;
             formatStr.append("%n");
 
             writer.write(String.format(formatStr.toString(), data.keySet().toArray()));
-
             ArrayList<String> buffer;
             int index = 0;
-            //MUSS NOCH GEFIXT WERDEN 
-            //AUF JEDEN NOCH DIE BEDINGUNG FUER DIE WHILE
-            while (index < data.get("time").size()) {
+            while (index < maxSize) {
                 buffer = new ArrayList();
                 for (String key : data.keySet()) {
-                    buffer.add((String) data.get(key).get(index));
+                    if (data.get(key).size() <= index) {
+                        buffer.add("null");
+                    } else if (data.get(key).get(index) == null) {
+                        buffer.add("null");
+                    } else {
+                        buffer.add((String) data.get(key).get(index));
+                    }
                 }
                 writer.write(String.format(formatStr.toString(), buffer.toArray()));
                 index++;
             }
-
-//            for (int i = 0; i < data.get(data.keySet().toArray()[0]).size(); i++) {
-//                
-//                for (String key : data.keySet()) {
-//                    if (data.get(key).size() <= i) {
-//                        formatStr.append(", ").append(data.get(key).get(i));
-//                    } else {
-//                        formatStr.append(", NULL");
-//                    }
-//                }
-//                formatStr.append(formatStr.toString());
-//                formatStr.append(System.getProperty("line.separator"));
-//            }
             writer.flush();
             writer.close();
 
