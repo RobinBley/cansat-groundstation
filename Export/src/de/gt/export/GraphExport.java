@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.export;
 
 import java.awt.Image;
@@ -22,22 +17,26 @@ public class GraphExport {
     /**
      * Diese Funktion sorgt fuer das Exportieren eines Images in eine Datei.
      *
-     * @param image Ein Image, welches gespeichert werden soll (BufferedImage, ect).
+     * @param image Ein Image, welches gespeichert werden soll (BufferedImage,
+     * ect).
      * @param output Datei, in der das Image gespechert werden soll.
      * @param extension Dateityp, welche die Datei haben soll (png, jpeg, etc).
      * @return true, wenn das Speichern erfolgreich war. Ansonsten false,
      */
     public boolean exportData(Image image, File output, String extension) {
+        //Wenn das uebergebene Image oder das uebergebene File null ist, wird false zurueckgegeben.
         if (output == null || image == null) {
             return false;
         }
-        if(extension == null){
+        //Wenn die Datei nicht die entsorechende Dateiendung hat, wird "png" als Default-Dateiendung hinzugefuegt.
+        if (extension == null) {
             extension = "png";
         }
+        if (!output.getPath().endsWith(extension)) {
+            output = new File(output.getPath() + "." + extension);
+        }
         try {
-            if (!output.getPath().endsWith(extension)) {
-                output = new File(output.getPath() + "." + extension);
-            }
+            //Die Daten werden in die Datei gesschrieben.
             ImageIO.write((RenderedImage) image, extension, output);
         } catch (IOException ex) {
             Logger.getLogger(GraphExport.class.getName()).log(Level.SEVERE, null, ex);

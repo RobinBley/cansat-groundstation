@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.export;
 
 import java.io.File;
@@ -18,9 +13,10 @@ import org.junit.Test;
  * @author Robin
  */
 public class JSONExportTest {
-    
+
     public JSONExportTest() {
     }
+
     @Test
     public void testExportData() {
         Exporter exporter = new JSONExport();
@@ -44,8 +40,5 @@ public class JSONExportTest {
         Assert.assertFalse(exporter.exportData(null, file));
 
     }
-    
-    
-    
-    
+
 }

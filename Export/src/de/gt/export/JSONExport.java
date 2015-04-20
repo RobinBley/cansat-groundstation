@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.export;
 
 import java.io.BufferedWriter;
@@ -17,7 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- * Diese Klasse regelt das exportieren von Daten im JSON-Format.
+ * Diese Klasse regelt das exportieren von Daten ins JSON-Format.
  *
  * @author Robin
  */
@@ -25,13 +20,15 @@ public class JSONExport implements Exporter {
 
     @Override
     public boolean exportData(Map<String, List<Object>> data, File output) {
+        //Wenn das uebergebene File oder die uebergebene Map null ist, wird false zurueckgegeben.
         if (output == null || data == null) {
             return false;
         }
 
         JSONObject jsonData = new JSONObject();
         JSONArray jarray;
-
+        //Die Daten der einzelnen Keys der uebergebenen Map werden jeweils ein JSONArray hinzugefuegt,
+        //welche wiederum alle zusammen einem JSONObject hinzugefuegt werden.
         for (String key : data.keySet()) {
             jarray = new JSONArray();
             for (int i = 0; i < data.get(key).size(); i++) {
@@ -41,6 +38,7 @@ public class JSONExport implements Exporter {
         }
 
         try {
+            //Die Daten des JSONObjects werden in eine Datei geschrieben.
             BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()));
             jsonData.write(writer);
             writer.flush();
@@ -48,7 +46,6 @@ public class JSONExport implements Exporter {
 
         } catch (IOException ex) {
             Logger.getLogger(JSONExport.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("exception");
             return false;
         }
         return true;
