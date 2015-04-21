@@ -17,13 +17,13 @@ import org.json.JSONObject;
 public class JSONImporter implements Importer {
 
     @Override
-    public Map<String, List> importData(File input) {
+    public Map<String, List<Object>> importData(File input) {
         //Es wird geprueft ob eine Datei uebergeben wurde.
         if (input == null) {
             return null;
         }
         //Eine HashMap wird erzeugt, welche spaeter die Daten des uebergebenen Files enthaelt.
-        HashMap<String, List> data = new HashMap<String, List>();
+        HashMap<String, List<Object>> data = new HashMap<String, List<Object>>();
 
         try {
             //Ein BufferedReader wird erzeugt um die uebergebene Datei zu lesen.

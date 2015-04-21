@@ -1,5 +1,7 @@
-package de.gt.export;
+package de.gt.importer;
 
+import de.gt.export.Exporter;
+import de.gt.export.JSONExport;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,9 +15,6 @@ import org.junit.Test;
  * @author Robin
  */
 public class JSONExportTest {
-
-    public JSONExportTest() {
-    }
 
     @Test
     public void testExportData() {

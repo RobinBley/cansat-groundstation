@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class CsvImporter implements Importer {
 
     @Override
-    public Map<String, List> importData(File input) {
+    public Map<String, List<Object>> importData(File input) {
         //Es wird ueberprueft ob eine Datei uebergeben wurde.
         if (input == null) {
             return null;
