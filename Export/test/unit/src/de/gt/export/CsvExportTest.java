@@ -5,11 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -24,9 +20,9 @@ public class CsvExportTest {
     @Test
     public void testExportData() {
         Exporter exporter = new CsvExport();
-        Map<String, List<Object>> data = new HashMap<>();
-        ArrayList<Object> values = new ArrayList<>();
-        values.add("1");
+        Map<String, List<Object>> data = new HashMap<String, List<Object>>();
+        ArrayList<Object> values = new ArrayList<Object>();
+        values.add("19");
         values.add("2");
         values.add("3");
         values.add("4");

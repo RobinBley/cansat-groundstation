@@ -1,7 +1,5 @@
-package de.gt.importer;
+package de.gt.export;
 
-import de.gt.export.Exporter;
-import de.gt.export.JSONExport;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,8 +17,8 @@ public class JSONExportTest {
     @Test
     public void testExportData() {
         Exporter exporter = new JSONExport();
-        Map<String, List<Object>> data = new HashMap<>();
-        ArrayList<Object> values = new ArrayList<>();
+        Map<String, List<Object>> data = new HashMap<String, List<Object>>();
+        ArrayList<Object> values = new ArrayList<Object>();
         values.add("1");
         values.add("234");
         values.add(null);
@@ -29,7 +27,7 @@ public class JSONExportTest {
         values.add("346");
         values.add("346345");
         values.add("899922");
-        values.add("2");
+        values.add("222");
         values.add("34");
         data.put("temp", (List<Object>) values.clone());
         File file = new File(System.getProperty("user.home") + "\\JSONEXPORTTEST.json");

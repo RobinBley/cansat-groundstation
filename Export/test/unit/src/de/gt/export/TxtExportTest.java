@@ -17,9 +17,9 @@ public class TxtExportTest {
     @Test
     public void testExportData() {
         Exporter exporter = new TxtExport();
-        Map<String, List<Object>> data = new HashMap<>();
-        ArrayList<Object> values = new ArrayList<>();
-        values.add("1");
+        Map<String, List<Object>> data = new HashMap<String, List<Object>>();
+        ArrayList<Object> values = new ArrayList<Object>();
+        values.add("11111");
         values.add("234");
         values.add(null);
         data.put("time", (List<Object>) values.clone());

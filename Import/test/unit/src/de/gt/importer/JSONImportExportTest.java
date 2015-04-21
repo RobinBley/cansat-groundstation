@@ -5,8 +5,8 @@
  */
 package de.gt.importer;
 
-import de.gt.export.CsvExport;
 import de.gt.export.Exporter;
+import de.gt.export.JSONExport;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,13 +21,13 @@ import org.junit.Test;
  *
  * @author Robin
  */
-public class CsvImportExportTest {
+public class JSONImportExportTest {
 
     private String path;
     Map<String, List<Object>> data;
     File file;
 
-    public CsvImportExportTest() {
+    public JSONImportExportTest() {
         path = System.getProperty("user.home") + "\\CSVEXPORTTEST.csv";
         data = new HashMap<String, List<Object>>();
         file = new File(path);
@@ -38,17 +38,16 @@ public class CsvImportExportTest {
 
         ArrayList<Object> values = new ArrayList<Object>();
         values.add("1");
-        values.add("6");
+        values.add("234");
+        values.add(null);
         data.put("time", (List<Object>) values.clone());
         values.clear();
         values.add("346");
         values.add("346345");
-        values.add("8299922");
-        values.add("829");
+        values.add("899922");
+        values.add("222");
+        values.add("34");
         data.put("temp", (List<Object>) values.clone());
-        values.clear();
-        values.add("921");
-        data.put("co2", (List<Object>) values.clone());
 
     }
 
@@ -57,23 +56,15 @@ public class CsvImportExportTest {
      */
     @Test
     public void testImportData() {
-        Exporter exporter = new CsvExport();
+        Exporter exporter = new JSONExport();
         exporter.exportData(data, file);
-        Importer importer = new CsvImporter();
+        Importer importer = new JSONImporter();
         Assert.assertTrue(exporter.exportData(data, file));
         Assert.assertFalse(exporter.exportData(null, null));
         Assert.assertFalse(exporter.exportData(data, null));
         Assert.assertFalse(exporter.exportData(null, file));
 
         Map<String, List<Object>> importedData = importer.importData(file);
-        for (String key : importedData.keySet()) {
-            for (int i = 0; i < importedData.get(key).size(); i++) {
-                if (importedData.get(key).get(i).equals("null")) {
-                    importedData.get(key).remove(i);
-                    i--;
-                }
-            }
-        }
 
         Assert.assertEquals(importedData, data);
     }

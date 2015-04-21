@@ -1,8 +1,8 @@
 package de.gt.importer;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,8 +20,7 @@ public class JSONImporterTest {
 
         File file = new File(System.getProperty("user.home") + "\\JSONEXPORTTEST.json");
         JSONImporter importer = new JSONImporter();
-        HashMap<String, List> data = new HashMap<String, List>();
-        data = (HashMap<String, List>) importer.importData(file);
+        Map<String, List<Object>> data = importer.importData(file);
 
         for (String key : data.keySet()) {
             System.out.println(key);
@@ -30,7 +29,6 @@ public class JSONImporterTest {
 
             }
         }
-        Assert.assertThat(importer.importData(null), null);
     }
 
 }
