@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.input.logging;
 
 import de.gt.export.Exporter;
@@ -23,7 +18,7 @@ public class Datalogger implements Receiver {
 
     public Datalogger(Exporter exporter, File output) {
         this.expoerter = exporter;
-        this.output = this.output;
+        this.output = output;
     }
 
     /**
