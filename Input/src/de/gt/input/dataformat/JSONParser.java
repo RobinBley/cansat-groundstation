@@ -55,6 +55,7 @@ public class JSONParser implements DataFormat {
                         break;
                     default:
                         datum = new DataUnit(entry.getValue().getType());
+                        break;
 
                 }
                 units.add(new SimpleEntry<>(key, datum));
