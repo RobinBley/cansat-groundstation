@@ -23,6 +23,9 @@ public class JSONLogger implements Exporter {
             return false;
         }
         try {
+            if (!output.exists()){
+                output.createNewFile();
+            }
             //Es wird ein FileWriter erzeugund, um das uebergebene File zu beschreiben.
             FileWriter writer = new FileWriter(output, true);
             
@@ -31,6 +34,8 @@ public class JSONLogger implements Exporter {
                 jData.put(key, data.get(key));
             }
             writer.write(jData.toString());
+            writer.flush();
+            writer.close();
             
         } catch (Exception e) {
             Logger.getLogger(JSONLogger.class.getName()).log(Level.SEVERE, null, e);

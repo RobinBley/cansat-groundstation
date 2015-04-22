@@ -24,10 +24,10 @@ public class JSONExportTest {
         values.add(null);
         data.put("time", (List<Object>) values.clone());
         values.clear();
-        values.add("346");
-        values.add("346345");
-        values.add("899922");
-        values.add("222");
+        values.add(2L);
+        values.add(346345);
+        values.add(899922.20032);
+        values.add(222D);
         values.add("34");
         data.put("temp", (List<Object>) values.clone());
         File file = new File(System.getProperty("user.home") + "\\JSONEXPORTTEST.json");
@@ -35,6 +35,7 @@ public class JSONExportTest {
         Assert.assertFalse(exporter.exportData(null, null));
         Assert.assertFalse(exporter.exportData(data, null));
         Assert.assertFalse(exporter.exportData(null, file));
+        
 
     }
 
