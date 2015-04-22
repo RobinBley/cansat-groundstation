@@ -21,3 +21,5 @@
 /GUI/build/
 /SerialComm/build/
 /JSON/build/
+/gdal/nbproject/private/
+/WorldWind/nbproject/private/
