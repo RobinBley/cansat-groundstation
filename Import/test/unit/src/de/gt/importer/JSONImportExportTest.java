@@ -67,6 +67,7 @@ public class JSONImportExportTest {
         Map<String, List<Object>> importedData = importer.importData(file);
 
         Assert.assertEquals(importedData, data);
+
     }
 
     @After

@@ -13,11 +13,11 @@ import java.util.Map;
  */
 public class Datalogger implements Receiver {
 
-    private Exporter expoerter;
+    private Exporter exporter;
     private File output;
 
     public Datalogger(Exporter exporter, File output) {
-        this.expoerter = exporter;
+        this.exporter = exporter;
         this.output = output;
     }
 
@@ -33,7 +33,10 @@ public class Datalogger implements Receiver {
         datum.keySet().stream().forEach((key) -> {
             map.put(key, map.get(key));
         });
-        expoerter.exportData(map, output);
+        exporter.exportData(map, output);
+        
+        
+        
 
     }
 

@@ -29,20 +29,23 @@ public class JSONImporter implements Importer {
             //Ein BufferedReader wird erzeugt um die uebergebene Datei zu lesen.
             BufferedReader reader = new BufferedReader(new FileReader(input));
             //Die Daten Der uebergebenen Datei werden als JSONObject gespeichert.
-            JSONObject jsonData = new JSONObject(reader.readLine());
+            JSONObject jsonData;
             JSONArray jArray;
             ArrayList dataArray;
-
-            //Es wird durch die Keys des JSONObject iteriert
-            for (String key : jsonData.keySet()) {
-                //Das jeweilige JSONArrays eines Keys wird zu einer ArrayList konvertiert.
-                jArray = jsonData.getJSONArray(key);
-                dataArray = new ArrayList();
-                for (int i = 0; i < jArray.length(); i++) {
-                    dataArray.add(jArray.get(i));
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                jsonData = new JSONObject(line);
+                //Es wird durch die Keys des JSONObject iteriert
+                for (String key : jsonData.keySet()) {
+                    //Das jeweilige JSONArrays eines Keys wird zu einer ArrayList konvertiert.
+                    jArray = jsonData.getJSONArray(key);
+                    dataArray = new ArrayList();
+                    for (int i = 0; i < jArray.length(); i++) {
+                        dataArray.add(jArray.get(i));
+                    }
+                    //Der jeweilige Key und das jeweilige Array eines Datensatztes werden der HashMap hinzugefuegt.
+                    data.put(key, dataArray);
                 }
-                //Der jeweilige Key und das jeweilige Array eines Datensatztes werden der HashMap hinzugefuegt.
-                data.put(key, dataArray);
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(JSONImporter.class.getName()).log(Level.SEVERE, null, ex);
