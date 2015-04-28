@@ -5,8 +5,6 @@
  */
 package de.gt.api.config;
 
-import de.gt.core.input.config.access.Config;
-
 /**
  *
  * @author Kevin

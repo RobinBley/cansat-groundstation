@@ -6,7 +6,13 @@
             <code-name-base>de.gt.api</code-name-base>
             <suite-component/>
             <module-dependencies/>
-            <public-packages/>
+            <public-packages>
+                <package>de.gt.api.config</package>
+                <package>de.gt.api.export</package>
+                <package>de.gt.api.importer</package>
+                <package>de.gt.api.input.dataformat</package>
+                <package>de.gt.api.relay</package>
+            </public-packages>
         </data>
     </configuration>
 </project>
