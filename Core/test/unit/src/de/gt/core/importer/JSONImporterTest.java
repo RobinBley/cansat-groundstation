@@ -19,7 +19,7 @@ public class JSONImporterTest {
     @Test
     public void testImportData() {
 
-        File file = new File(System.getProperty("user.home") + "\\JSONExportTest.json");
+        File file = new File(System.getProperty("user.home") + "\\TG-JSON-Exporttest.json");
         JSONImporter importer = new JSONImporter();
         Map<String, List<DataUnit>> data = importer.importData(file);
 
