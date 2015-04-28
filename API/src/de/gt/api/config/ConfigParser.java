@@ -10,5 +10,5 @@ package de.gt.api.config;
  * @author Kevin
  */
 public interface ConfigParser {
-    public IConfig parse();
+    public Config parse();
 }

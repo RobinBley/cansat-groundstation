@@ -5,15 +5,18 @@
  */
 package de.gt.api.config;
 
-import de.gt.api.input.data.DataType;
+import java.util.Map;
 
 /**
  *
  * @author Kevin
  */
-public interface IValueConfig {
-
-    public DataType getType();
+public interface Config {
+    public String getName();
 
     public String getIdentifier();
+
+    public String getFormat();
+
+    public Map<String, ValueConfig> getValueConfigs();
 }
