@@ -7,6 +7,7 @@ package de.gt.core.input;
 
 import de.gt.api.input.data.DataType;
 import de.gt.api.input.data.DataUnit;
+import de.gt.api.relay.Receiver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,13 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import de.gt.core.config.Config;
+import de.gt.core.config.ValueConfig;
+import de.gt.core.data.ConsoleOutput;
+import de.gt.core.input.dataformat.JSONParser;
+import de.gt.core.relay.Relay;
+import de.gt.core.sources.DebugJSON;
+import org.netbeans.junit.NbTestCase;
 
 /**
  *
