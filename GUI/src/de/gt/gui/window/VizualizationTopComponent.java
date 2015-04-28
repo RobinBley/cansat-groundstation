@@ -52,7 +52,7 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
         initComponents();
         
         Relay relay = Lookup.getDefault().lookup(Relay.class);
-        System.out.println("penis");
+        relay.addReceiver(this);
     }
 
     @Override

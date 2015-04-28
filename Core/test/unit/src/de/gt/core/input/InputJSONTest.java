@@ -19,7 +19,7 @@ import de.gt.core.config.Config;
 import de.gt.core.config.ValueConfig;
 import de.gt.core.data.ConsoleOutput;
 import de.gt.core.input.dataformat.JSONParser;
-import de.gt.core.relay.Relay;
+import de.gt.core.relay.DataProvider;
 import de.gt.core.sources.DebugJSON;
 import org.netbeans.junit.NbTestCase;
 
@@ -43,7 +43,7 @@ public class InputJSONTest extends NbTestCase implements Receiver {
 
         Config config = new Config("config", "identifier", "json", valueConfigs);
 
-        Relay relay = new Relay();
+        DataProvider relay = new DataProvider();
         //Dem Relay out als Receiver hinzuzufuegen.
         ConsoleOutput out = new ConsoleOutput();
         relay.addReceiver(out);

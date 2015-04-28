@@ -5,6 +5,7 @@ import static de.gt.api.input.data.DataType.DOUBLE;
 import static de.gt.api.input.data.DataType.LONG;
 import static de.gt.api.input.data.DataType.STRING;
 import de.gt.api.input.data.DataUnit;
+import de.gt.api.relay.Relay;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,13 +14,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Relay to move data from a formatter to several receivers.
  *
  * @author mhuisi
  */
-public class Relay implements de.gt.api.relay.Relay{
+@ServiceProvider(service = Relay.class)
+public class DataProvider implements Relay{
 
     private static final String GPS_DEFAULT = "$GPGGA,125000.0,6917.6938,N,1601.8514,E,1,3,0.95,34.5,M,17.8,M,,*65";
 

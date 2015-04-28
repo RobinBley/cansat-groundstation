@@ -5,7 +5,7 @@ import static de.gt.api.input.data.DataType.DOUBLE;
 import static de.gt.api.input.data.DataType.LONG;
 import static de.gt.api.input.data.DataType.STRING;
 import de.gt.api.input.data.DataUnit;
-import de.gt.core.relay.Relay;
+import de.gt.core.relay.DataProvider;
 import de.gt.core.config.Config;
 import de.gt.core.config.ValueConfig;
 import java.util.AbstractMap.SimpleEntry;
@@ -21,7 +21,7 @@ import org.json.JSONObject;
  */
 public class JSONParser implements DataFormat {
 
-    private final Relay relay;
+    private final DataProvider relay;
     private final Config config;
 
     /**
@@ -29,7 +29,7 @@ public class JSONParser implements DataFormat {
      * @param relay Relay zum Weiterleiten der Daten
      * @param config Konfigurationsdaten zur idetifizierung von Daten
      */
-    public JSONParser(Relay relay, Config config) {
+    public JSONParser(DataProvider relay, Config config) {
         this.relay = relay;
         this.config = config;
     }
