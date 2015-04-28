@@ -5,8 +5,8 @@
  */
 package de.gt.gui.window;
 
-import de.gt.input.data.DataUnit;
-import de.gt.relay.Receiver;
+import de.gt.api.input.data.DataUnit;
+import de.gt.api.relay.Receiver;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.text.BadLocationException;
@@ -14,7 +14,6 @@ import javax.swing.text.Document;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
-import org.openide.util.Exceptions;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 

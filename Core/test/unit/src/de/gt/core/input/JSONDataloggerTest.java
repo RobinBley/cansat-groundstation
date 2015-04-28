@@ -6,8 +6,8 @@ package de.gt.core.input;
  * and open the template in the editor.
  */
 
-import de.gt.core.data.DataUnit;
-import de.gt.input.logging.JSONLogger;
+import de.gt.api.input.data.DataUnit;
+import de.gt.core.input.logging.JSONLogger;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;

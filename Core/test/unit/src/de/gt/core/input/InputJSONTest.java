@@ -5,22 +5,15 @@
  */
 package de.gt.core.input;
 
-import de.gt.core.data.DataType;
-import de.gt.core.data.DataUnit;
-import de.gt.input.config.access.Config;
-import de.gt.input.config.access.ValueConfig;
-import de.gt.input.data.ConsoleOutput;
-import de.gt.input.dataformat.JSONParser;
-import de.gt.input.sources.DebugJSON;
-import de.gt.relay.Receiver;
-import de.gt.relay.Relay;
+import de.gt.api.input.data.DataType;
+import de.gt.api.input.data.DataUnit;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.netbeans.junit.NbTestCase;
 
 /**
  *

@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.gt.core.input.data;
+package de.gt.core.data;
 
-import static de.gt.core.data.DataType.DOUBLE;
-import de.gt.core.data.DataUnit;
+import static de.gt.api.input.data.DataType.DOUBLE;
+import static de.gt.api.input.data.DataType.LONG;
+import static de.gt.api.input.data.DataType.STRING;
+import de.gt.api.input.data.DataUnit;
 import de.gt.api.relay.Receiver;
 import java.util.Map;
 

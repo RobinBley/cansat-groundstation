@@ -5,10 +5,15 @@
  */
 package de.gt.api.config;
 
+import de.gt.api.input.data.DataType;
+
 /**
  *
  * @author Kevin
  */
-public interface ConfigParser {
-    public IConfig parse();
+public interface IValueConfig {
+
+    public DataType getType();
+
+    public String getIdentifier();
 }

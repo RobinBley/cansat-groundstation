@@ -1,10 +1,10 @@
 package de.gt.core.input.dataformat;
 
 import de.gt.api.input.dataformat.DataFormat;
-import static de.gt.core.data.DataType.DOUBLE;
-import static de.gt.core.data.DataType.LONG;
-import static de.gt.core.data.DataType.STRING;
-import de.gt.core.data.DataUnit;
+import static de.gt.api.input.data.DataType.DOUBLE;
+import static de.gt.api.input.data.DataType.LONG;
+import static de.gt.api.input.data.DataType.STRING;
+import de.gt.api.input.data.DataUnit;
 import de.gt.core.relay.Relay;
 import de.gt.core.config.Config;
 import de.gt.core.config.ValueConfig;

@@ -1,6 +1,7 @@
-package de.gt.core.input.sources;
+package de.gt.core.sources;
 
-import de.gt.core.data.DataUnit;
+import de.gt.api.sources.DataSource;
+import de.gt.api.input.data.DataUnit;
 import de.gt.api.input.dataformat.DataFormat;
 import java.io.IOException;
 import org.json.JSONObject;

@@ -5,10 +5,10 @@
  */
 package de.gt.core.input.logging;
 
-import static de.gt.core.data.DataType.DOUBLE;
-import static de.gt.core.data.DataType.LONG;
-import static de.gt.core.data.DataType.STRING;
-import de.gt.core.data.DataUnit;
+import static de.gt.api.input.data.DataType.DOUBLE;
+import static de.gt.api.input.data.DataType.LONG;
+import static de.gt.api.input.data.DataType.STRING;
+import de.gt.api.input.data.DataUnit;
 import de.gt.api.relay.Receiver;
 import java.io.BufferedWriter;
 import java.io.File;

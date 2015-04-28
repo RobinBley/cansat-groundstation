@@ -5,11 +5,10 @@
  */
 package de.gt.gui.window;
 
-import de.gt.input.data.DataType;
-import de.gt.input.data.DataUnit;
-import de.gt.relay.Receiver;
+import de.gt.api.input.data.DataType;
+import de.gt.api.input.data.DataUnit;
+import de.gt.api.relay.Receiver;
 import info.monitorenter.gui.chart.IAxis;
-import info.monitorenter.gui.chart.Chart2D;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.netbeans.api.settings.ConvertAsProperties;

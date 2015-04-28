@@ -1,5 +1,6 @@
-package de.gt.core.input.sources;
+package de.gt.core.sources;
 
+import de.gt.api.sources.DataSource;
 import de.gt.api.input.dataformat.DataFormat;
 import java.io.IOException;
 import java.io.InputStream;

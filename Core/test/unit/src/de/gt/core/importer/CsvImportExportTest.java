@@ -5,8 +5,10 @@
  */
 package de.gt.core.importer;
 
-import de.gt.export.CsvExport;
-import de.gt.export.Exporter;
+import de.gt.api.export.Exporter;
+import de.gt.api.importer.Importer;
+import de.gt.core.export.CsvExport;
+import de.gt.importer.CsvImporter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;

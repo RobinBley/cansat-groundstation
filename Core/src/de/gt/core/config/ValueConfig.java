@@ -5,7 +5,8 @@
  */
 package de.gt.core.config;
 
-import de.gt.core.data.DataType;
+import de.gt.api.input.data.DataType;
+
 /**
  *
  * @author Kevin

@@ -1,8 +1,8 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
-import static de.gt.core.data.DataType.DOUBLE;
-import de.gt.core.data.DataUnit;
+import static de.gt.api.input.data.DataType.DOUBLE;
+import de.gt.api.input.data.DataUnit;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

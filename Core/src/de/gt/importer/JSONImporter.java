@@ -1,6 +1,6 @@
 package de.gt.importer;
 
-import de.gt.data.DataUnit;
+import de.gt.api.input.data.DataUnit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

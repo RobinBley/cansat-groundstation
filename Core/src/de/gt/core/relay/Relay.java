@@ -1,10 +1,10 @@
 package de.gt.core.relay;
 
 import de.gt.api.relay.Receiver;
-import static de.gt.core.data.DataType.DOUBLE;
-import static de.gt.core.data.DataType.LONG;
-import static de.gt.core.data.DataType.STRING;
-import de.gt.core.data.DataUnit;
+import static de.gt.api.input.data.DataType.DOUBLE;
+import static de.gt.api.input.data.DataType.LONG;
+import static de.gt.api.input.data.DataType.STRING;
+import de.gt.api.input.data.DataUnit;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,10 +12,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import static java.util.TimeZone.LONG;
 import java.util.stream.Collectors;
-import static javax.management.openmbean.SimpleType.DOUBLE;
-import javax.print.DocFlavor.STRING;
 
 /**
  * Relay to move data from a formatter to several receivers.

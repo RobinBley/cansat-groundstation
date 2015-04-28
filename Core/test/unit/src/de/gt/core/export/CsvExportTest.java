@@ -1,7 +1,6 @@
 package de.gt.core.export;
 
-import de.gt.core.export.CsvExport;
-import de.gt.core.export.Exporter;
+import de.gt.api.export.Exporter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;

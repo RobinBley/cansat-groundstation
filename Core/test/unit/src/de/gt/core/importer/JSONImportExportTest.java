@@ -5,9 +5,10 @@
  */
 package de.gt.core.importer;
 
-import de.gt.data.DataUnit;
-import de.gt.export.Exporter;
-import de.gt.export.JSONExport;
+import de.gt.api.export.Exporter;
+import de.gt.api.input.data.DataUnit;
+import de.gt.core.export.JSONExport;
+import de.gt.importer.JSONImporter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;

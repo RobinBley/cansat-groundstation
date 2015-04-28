@@ -1,4 +1,4 @@
-package de.gt.core.input.sources;
+package de.gt.api.sources;
 
 import de.gt.api.input.dataformat.DataFormat;
 import java.io.Closeable;

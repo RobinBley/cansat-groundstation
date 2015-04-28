@@ -5,9 +5,9 @@
  */
 package de.gt.gui.window;
 
-import de.gt.input.data.DataUnit;
-import de.gt.input.sources.GPGGA;
-import de.gt.relay.Receiver;
+import de.gt.api.input.data.DataUnit;
+import de.gt.api.relay.Receiver;
+import de.gt.api.sources.GPGGA;
 import gov.nasa.worldwind.BasicModel;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.awt.WorldWindowGLCanvas;

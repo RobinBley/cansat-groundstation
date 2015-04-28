@@ -5,10 +5,18 @@
  */
 package de.gt.api.config;
 
+import java.util.Map;
+
 /**
  *
  * @author Kevin
  */
-public interface ConfigParser {
-    public IConfig parse();
+public interface IConfig {
+    public String getName();
+
+    public String getIdentifier();
+
+    public String getFormat();
+
+    public Map<String, IValueConfig> getValueConfigs();
 }
