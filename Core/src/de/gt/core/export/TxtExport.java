@@ -1,6 +1,7 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
+import de.gt.api.input.data.DataUnit;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 public class TxtExport implements Exporter {
 
     @Override
-    public boolean exportData(Map<String, List<Object>> data, File output) {
+    public boolean exportData(Map<String, List<DataUnit>> data, File output) {
         //Wenn das uebergebene File oder die uebergebene Map null ist, wird false zurueckgegeben.
         if (output == null || data == null) {
             return false;
@@ -48,10 +49,10 @@ public class TxtExport implements Exporter {
                 for (String key : data.keySet()) {
                     if (data.get(key).size() <= index) {
                         buffer.add("null");
-                    } else if (data.get(key).get(index) == null) {
+                    } else if (data.get(key).get(index).getObjectValue() == null) {
                         buffer.add("null");
                     } else {
-                        buffer.add((String) data.get(key).get(index));
+                        buffer.add((String) data.get(key).get(index).getObjectValue());
                     }
                 }
                 //Der fertige und formatierte String wird mittels des FileWriters in ein File geschrieben.

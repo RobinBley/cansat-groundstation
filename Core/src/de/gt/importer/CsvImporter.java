@@ -18,10 +18,15 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * 
+ * @author Robin
+ */
+
 public class CsvImporter implements Importer {
 
     @Override
-    public Map<String, List> importData(File input) {
+    public Map<String, List<Object>> importData(File input) {
         HashMap data = new HashMap();
 
         try {
