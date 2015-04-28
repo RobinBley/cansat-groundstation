@@ -9,9 +9,12 @@ import de.gt.input.data.DataUnit;
 import de.gt.input.sources.GPGGA;
 import de.gt.relay.Receiver;
 import gov.nasa.worldwind.BasicModel;
+import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.awt.WorldWindowGLCanvas;
 import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.layers.RenderableLayer;
+import gov.nasa.worldwind.render.AnnotationAttributes;
+import gov.nasa.worldwind.render.GlobeAnnotation;
 import gov.nasa.worldwind.render.Polyline;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,38 +49,50 @@ import org.openide.util.NbBundle.Messages;
     "CTL_LivePathEarthTopComponent=LivePathEarth Window",
     "HINT_LivePathEarthTopComponent=This is a LivePathEarth window"
 })
-public final class LivePathEarthTopComponent extends TopComponent implements Receiver {
-
+public final class EarthTopComponent extends TopComponent implements Receiver {
+    
     private static final String GPS_KEY = "gps";
+    private static final AnnotationAttributes ATTRIBS = new AnnotationAttributes();
+    static {
+        ATTRIBS.setAdjustWidthToText(AVKey.SIZE_FIT_TEXT);
+    }
     
     private final List<Position> positions = new ArrayList<>();
     
     private final WorldWindowGLCanvas wwd;
+    private final RenderableLayer layer;
     private final Polyline path;
     
-    public LivePathEarthTopComponent() {
+    public EarthTopComponent() {
         initComponents();
         setName(Bundle.CTL_LivePathEarthTopComponent());
         setToolTipText(Bundle.HINT_LivePathEarthTopComponent());
         wwd = new WorldWindowGLCanvas();
         BasicModel bm = new BasicModel();
         wwd.setModel(bm);
-        RenderableLayer layer = new RenderableLayer();
+        layer = new RenderableLayer();
         path = new Polyline();
         layer.addRenderable(path);
         bm.getLayers().add(layer);
     }
 
-    private void add(Position p) {
+    private void add(Position p, GlobeAnnotation a) {
         positions.add(p);
         path.setPositions(positions);
+        layer.addRenderable(a);
         wwd.redraw();
     }
-
+    
     @Override
     public void receive(Map<String, DataUnit> datum) {
         GPGGA gps = GPGGA.createFromString(datum.get(GPS_KEY).getStringValue());
-        add(Position.fromDegrees(gps.getLatitude(), gps.getLongitude(), gps.getAltitude()));
+        Position p = Position.fromDegrees(gps.getLatitude(), gps.getLongitude(), gps.getAltitude());
+        StringBuilder b = new StringBuilder();
+        datum.entrySet().stream()
+                .map(e -> String.format("%s: %s", e.getKey(), e.getValue().getObjectValue()))
+                .forEach(b::append);
+        GlobeAnnotation a = new GlobeAnnotation(b.toString(), p, ATTRIBS);
+        add(p, a);
     }
     
     /**
