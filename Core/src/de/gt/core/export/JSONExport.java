@@ -22,7 +22,7 @@ import org.json.JSONObject;
 public class JSONExport implements Exporter {
 
     @Override
-    public boolean exportData(Map<String, List<Object>> data, File output) {
+    public boolean exportData(Map<String, List<DataUnit>> data, File output) {
         //Wenn das uebergebene File oder die uebergebene Map null ist, wird false zurueckgegeben.
         if (output == null || data == null) {
             return false;
@@ -33,7 +33,7 @@ public class JSONExport implements Exporter {
             JSONObject jsonData = new JSONObject();
             DataUnit unit;
             for (String key : data.keySet()) {
-                unit = (DataUnit) data.get(key);
+                unit = data.get(key).get(0);
                 switch (unit.getType()) {
                     case DOUBLE:
                         jsonData.put(key, unit.getDoubleValue());
@@ -57,7 +57,7 @@ public class JSONExport implements Exporter {
             for (String key : data.keySet()) {
                 jarray = new JSONArray();
                 for (int i = 0; i < data.get(key).size(); i++) {
-                    jarray.put(i, data.get(key).get(i));
+                    jarray.put(i, data.get(key).get(i).getObjectValue());
                 }
                 jsonData.put(key, jarray);
             }

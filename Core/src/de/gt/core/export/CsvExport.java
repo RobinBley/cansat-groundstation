@@ -1,6 +1,7 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
+import de.gt.api.input.data.DataUnit;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 public class CsvExport implements Exporter {
 
     @Override
-    public boolean exportData(Map<String, List<Object>> data, File output) {
+    public boolean exportData(Map<String, List<DataUnit>> data, File output) {
         //Wenn das uebergebene File oder die uebergebene Map null ist, wird false zurueckgegeben.
         if (output == null || data == null) {
             return false;
@@ -48,7 +49,7 @@ public class CsvExport implements Exporter {
                     } else if (data.get(key).get(index) == null) {
                         buffer.append("null");
                     } else {
-                        buffer.append((String) data.get(key).get(index));
+                        buffer.append((String) data.get(key).get(index).getObjectValue());
                     }
                     buffer.append(";");
                 }
