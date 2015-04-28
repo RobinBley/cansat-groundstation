@@ -1,4 +1,4 @@
-package de.gt.input.test;
+package de.gt.core.input;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,7 +6,7 @@ package de.gt.input.test;
  * and open the template in the editor.
  */
 
-import de.gt.data.DataUnit;
+import de.gt.core.data.DataUnit;
 import de.gt.input.logging.JSONLogger;
 import java.io.File;
 import java.io.IOException;

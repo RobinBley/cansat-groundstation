@@ -1,4 +1,4 @@
-package de.gt.importer;
+package de.gt.core.importer;
 
 import de.gt.data.DataUnit;
 import java.io.File;

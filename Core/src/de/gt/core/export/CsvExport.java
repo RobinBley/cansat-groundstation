@@ -1,5 +1,6 @@
-package de.gt.export;
+package de.gt.core.export;
 
+import de.gt.api.export.Exporter;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

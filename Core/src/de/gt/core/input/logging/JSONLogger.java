@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.gt.input.logging;
+package de.gt.core.input.logging;
 
-import static de.gt.data.DataType.DOUBLE;
-import static de.gt.data.DataType.LONG;
-import static de.gt.data.DataType.STRING;
-import de.gt.data.DataUnit;
-import de.gt.relay.Receiver;
+import static de.gt.core.data.DataType.DOUBLE;
+import static de.gt.core.data.DataType.LONG;
+import static de.gt.core.data.DataType.STRING;
+import de.gt.core.data.DataUnit;
+import de.gt.api.relay.Receiver;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

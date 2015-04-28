@@ -1,10 +1,10 @@
-package de.gt.input.sources;
+package de.gt.core.input.sources;
 
-import de.gt.data.DataType;
-import static de.gt.data.DataType.DOUBLE;
-import static de.gt.data.DataType.LONG;
-import static de.gt.data.DataType.STRING;
-import de.gt.data.DataUnit;
+import de.gt.core.data.DataType;
+import static de.gt.core.data.DataType.DOUBLE;
+import static de.gt.core.data.DataType.LONG;
+import static de.gt.core.data.DataType.STRING;
+import de.gt.core.data.DataUnit;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Collection;

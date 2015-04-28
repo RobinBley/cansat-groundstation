@@ -1,5 +1,6 @@
-package de.gt.export;
+package de.gt.core.export;
 
+import de.gt.core.export.GraphExport;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import org.junit.Assert;

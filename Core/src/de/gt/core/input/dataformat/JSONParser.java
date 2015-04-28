@@ -1,12 +1,13 @@
-package de.gt.input.dataformat;
+package de.gt.core.input.dataformat;
 
-import static de.gt.data.DataType.DOUBLE;
-import static de.gt.data.DataType.LONG;
-import static de.gt.data.DataType.STRING;
-import de.gt.data.DataUnit;
-import de.gt.relay.Relay;
-import de.gt.input.config.access.Config;
-import de.gt.input.config.access.ValueConfig;
+import de.gt.api.input.dataformat.DataFormat;
+import static de.gt.core.data.DataType.DOUBLE;
+import static de.gt.core.data.DataType.LONG;
+import static de.gt.core.data.DataType.STRING;
+import de.gt.core.data.DataUnit;
+import de.gt.core.relay.Relay;
+import de.gt.core.config.Config;
+import de.gt.core.config.ValueConfig;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Collection;

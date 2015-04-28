@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.gt.input.data;
+package de.gt.core.input.data;
 
-import static de.gt.data.DataType.DOUBLE;
-import de.gt.data.DataUnit;
-import de.gt.relay.Receiver;
+import static de.gt.core.data.DataType.DOUBLE;
+import de.gt.core.data.DataUnit;
+import de.gt.api.relay.Receiver;
 import java.util.Map;
 
 /**

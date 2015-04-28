@@ -1,9 +1,10 @@
-package de.gt.relay;
+package de.gt.core.relay;
 
-import static de.gt.data.DataType.DOUBLE;
-import static de.gt.data.DataType.LONG;
-import static de.gt.data.DataType.STRING;
-import de.gt.data.DataUnit;
+import de.gt.api.relay.Receiver;
+import static de.gt.core.data.DataType.DOUBLE;
+import static de.gt.core.data.DataType.LONG;
+import static de.gt.core.data.DataType.STRING;
+import de.gt.core.data.DataUnit;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Collection;
 import java.util.HashMap;

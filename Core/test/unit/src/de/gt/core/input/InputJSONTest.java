@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.gt.input.test;
+package de.gt.core.input;
 
-import de.gt.data.DataType;
-import de.gt.data.DataUnit;
+import de.gt.core.data.DataType;
+import de.gt.core.data.DataUnit;
 import de.gt.input.config.access.Config;
 import de.gt.input.config.access.ValueConfig;
 import de.gt.input.data.ConsoleOutput;

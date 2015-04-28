@@ -1,6 +1,6 @@
-package de.gt.input.sources;
+package de.gt.core.input.sources;
 
-import de.gt.input.dataformat.DataFormat;
+import de.gt.api.input.dataformat.DataFormat;
 import j.extensions.comm.SerialComm;
 import java.io.IOException;
 import java.nio.charset.Charset;

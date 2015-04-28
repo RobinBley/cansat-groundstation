@@ -1,4 +1,4 @@
-package de.gt.export;
+package de.gt.core.export;
 
 import java.awt.Image;
 import java.awt.image.RenderedImage;

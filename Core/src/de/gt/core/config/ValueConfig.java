@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.gt.input.config.access;
+package de.gt.core.config;
 
-import de.gt.data.DataType;
+import de.gt.core.data.DataType;
 /**
  *
  * @author Kevin

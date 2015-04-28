@@ -5,6 +5,7 @@
  */
 package de.gt.importer;
 
+import de.gt.api.importer.Importer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
