@@ -49,7 +49,7 @@ public class CsvExport implements Exporter {
                     } else if (data.get(key).get(index) == null) {
                         buffer.append("null");
                     } else {
-                        buffer.append((String) data.get(key).get(index).getObjectValue());
+                        buffer.append((String) data.get(key).get(index).getObjectValue().toString());
                     }
                     buffer.append(";");
                 }

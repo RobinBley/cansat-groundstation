@@ -1,6 +1,7 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
+import de.gt.api.input.data.DataUnit;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,25 +19,22 @@ public class JSONExportTest {
     @Test
     public void testExportData() {
         Exporter exporter = new JSONExport();
-        Map<String, List<Object>> data = new HashMap<String, List<Object>>();
-        ArrayList<Object> values = new ArrayList<Object>();
-        values.add("1");
-        values.add("234");
-        values.add(null);
-        data.put("time", (List<Object>) values.clone());
+        Map<String, List<DataUnit>> data = new HashMap<String, List<DataUnit>>();
+        ArrayList<DataUnit> values = new ArrayList<DataUnit>();
+        values.add(new DataUnit("dsf"));
+        values.add(new DataUnit(234235.4235D));
+        values.add(new DataUnit(23435L));
+        data.put("time", (List<DataUnit>) values.clone());
         values.clear();
-        values.add(2L);
-        values.add(346345);
-        values.add(899922.20032);
-        values.add(222D);
-        values.add("34");
-        data.put("temp", (List<Object>) values.clone());
-        File file = new File(System.getProperty("user.home") + "\\JSONEXPORTTEST.json");
+        values.add(new DataUnit("sdfsgd"));
+        values.add(new DataUnit(099995.4235D));
+        values.add(new DataUnit(999L));
+        data.put("temp", values);
+        File file = new File(System.getProperty("user.home") + "\\TG-JSON-Exporttest.json");
         Assert.assertTrue(exporter.exportData(data, file));
         Assert.assertFalse(exporter.exportData(null, null));
         Assert.assertFalse(exporter.exportData(data, null));
         Assert.assertFalse(exporter.exportData(null, file));
-        
 
     }
 

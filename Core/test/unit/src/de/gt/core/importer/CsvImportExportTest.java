@@ -7,6 +7,7 @@ package de.gt.core.importer;
 
 import de.gt.api.export.Exporter;
 import de.gt.api.importer.Importer;
+import de.gt.api.input.data.DataUnit;
 import de.gt.core.export.CsvExport;
 import de.gt.importer.CsvImporter;
 import java.io.File;
@@ -26,31 +27,28 @@ import org.junit.Test;
 public class CsvImportExportTest {
 
     private String path;
-    Map<String, List<Object>> data;
+    Map<String, List<DataUnit>> data;
     File file;
 
     public CsvImportExportTest() {
         path = System.getProperty("user.home") + "\\CSVEXPORTTEST.csv";
-        data = new HashMap<String, List<Object>>();
+        data = new HashMap<String, List<DataUnit>>();
         file = new File(path);
     }
 
     @Before
     public void setUp() {
 
-        ArrayList<Object> values = new ArrayList<Object>();
-        values.add("1");
-        values.add("6");
-        data.put("time", (List<Object>) values.clone());
+        ArrayList<DataUnit> values = new ArrayList<DataUnit>();
+        values.add(new DataUnit("dsf"));
+        values.add(new DataUnit(234235.4235D));
+        values.add(new DataUnit(23435L));
+        data.put("time", values);
         values.clear();
-        values.add("346");
-        values.add("346345");
-        values.add("8299922");
-        values.add("829");
-        data.put("temp", (List<Object>) values.clone());
-        values.clear();
-        values.add("921");
-        data.put("co2", (List<Object>) values.clone());
+        values.add(new DataUnit("sdfsgd"));
+        values.add(new DataUnit(099995.4235D));
+        values.add(new DataUnit(999L));
+        data.put("temp", values);
 
     }
 
