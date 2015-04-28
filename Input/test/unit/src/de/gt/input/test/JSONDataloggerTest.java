@@ -1,3 +1,5 @@
+package de.gt.input.test;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,12 +31,9 @@ public class JSONDataloggerTest {
 //        JSONLogger logger = new JSONLogger();
         File file = new File(System.getProperty("user.home") + "\\JSONLoggingTest.json");
         JSONLogger logger = new JSONLogger(file);
-        DataUnit unit = new DataUnit("444444");
+        DataUnit unit = new DataUnit("12354");
         Map data = new HashMap<String, DataUnit>();
         data.put("temp", unit);
-        unit = new DataUnit(4L);
-        logger.receive(data);
-        data.put("time", unit);
         logger.receive(data);
         
         

@@ -1,5 +1,7 @@
 package de.gt.export;
 
+import de.gt.temp.DataType;
+import de.gt.temp.DataUnit;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -25,28 +27,52 @@ public class JSONExport implements Exporter {
             return false;
         }
 
-        JSONObject jsonData = new JSONObject();
         JSONArray jarray;
-        //Die Daten der einzelnen Keys der uebergebenen Map werden jeweils ein JSONArray hinzugefuegt,
-        //welche wiederum alle zusammen einem JSONObject hinzugefuegt werden.
-        for (String key : data.keySet()) {
-            jarray = new JSONArray();
-            for (int i = 0; i < data.get(key).size(); i++) {
-                jarray.put(i, data.get(key).get(i));
-            }
-            jsonData.put(key, jarray);
-        }
-
         try {
-            //Die Daten des JSONObjects werden in eine Datei geschrieben.
-            BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()));
-            jsonData.write(writer);
-            writer.flush();
-            writer.close();
+            JSONObject jsonData = new JSONObject();
+            DataUnit unit;
+            for (String key : data.keySet()) {
+                unit = (DataUnit) data.get(key);
+                switch (unit.getType()) {
+                    case DOUBLE:
+                        jsonData.put(key, unit.getDoubleValue());
+                        break;
+                    case LONG:
+                        jsonData.put(key, unit.getLongValue());
+                        break;
+                    case STRING:
+                        jsonData.put(key, unit.getStringValue());
+                    default:
+                        break;
+                }
 
-        } catch (IOException ex) {
-            Logger.getLogger(JSONExport.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            }
+
+        } catch (Exception e) {
+
+            //Die Daten der einzelnen Keys der uebergebenen Map werden jeweils ein JSONArray hinzugefuegt,
+            //welche wiederum alle zusammen einem JSONObject hinzugefuegt werden.
+            JSONObject jsonData = new JSONObject();
+            for (String key : data.keySet()) {
+                jarray = new JSONArray();
+                for (int i = 0; i < data.get(key).size(); i++) {
+                    jarray.put(i, data.get(key).get(i));
+                }
+                jsonData.put(key, jarray);
+            }
+
+            try {
+                //Die Daten des JSONObjects werden in eine Datei geschrieben.
+                BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()));
+                jsonData.write(writer);
+                writer.flush();
+                writer.close();
+
+            } catch (IOException ex) {
+                Logger.getLogger(JSONExport.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+
+            }
         }
         return true;
     }

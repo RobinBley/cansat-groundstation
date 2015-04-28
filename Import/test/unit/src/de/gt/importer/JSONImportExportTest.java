@@ -7,6 +7,7 @@ package de.gt.importer;
 
 import de.gt.export.Exporter;
 import de.gt.export.JSONExport;
+import de.gt.temp.DataUnit;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,13 +59,13 @@ public class JSONImportExportTest {
     public void testImportData() {
         Exporter exporter = new JSONExport();
         exporter.exportData(data, file);
-        Importer importer = new JSONImporter();
+        JSONImporter importer = new JSONImporter();
         Assert.assertTrue(exporter.exportData(data, file));
         Assert.assertFalse(exporter.exportData(null, null));
         Assert.assertFalse(exporter.exportData(data, null));
         Assert.assertFalse(exporter.exportData(null, file));
 
-        Map<String, List<Object>> importedData = importer.importData(file);
+        Map<String, List<DataUnit>> importedData = importer.importData(file);
 
         Assert.assertEquals(importedData, data);
 

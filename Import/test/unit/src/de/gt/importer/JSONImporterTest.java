@@ -1,9 +1,9 @@
 package de.gt.importer;
 
+import de.gt.temp.DataUnit;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -18,14 +18,13 @@ public class JSONImporterTest {
     @Test
     public void testImportData() {
 
-        File file = new File(System.getProperty("user.home") + "\\JSONEXPORTTEST.json");
+        File file = new File(System.getProperty("user.home") + "\\JSONLoggingTest.json");
         JSONImporter importer = new JSONImporter();
-        Map<String, List<Object>> data = importer.importData(file);
+        Map<String, List<DataUnit>> data = importer.importData(file);
 
         for (String key : data.keySet()) {
-            System.out.println(key);
-            for (Object datum : data.get(key)) {
-                System.out.println(datum);
+            for (int i = 0; i < data.get(key).size(); i++) {
+                System.out.println(key + data.get(key).get(i).getType() + ":" +data.get(key).get(i).getObjectValue());
 
             }
         }

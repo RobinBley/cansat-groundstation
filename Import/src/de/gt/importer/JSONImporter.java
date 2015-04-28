@@ -1,8 +1,9 @@
 package de.gt.importer;
 
+import de.gt.temp.DataType;
+import de.gt.temp.DataUnit;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,51 +13,97 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class JSONImporter implements Importer {
+public class JSONImporter {
 
-    @Override
-    public Map<String, List<Object>> importData(File input) {
+    public Map<String, List<DataUnit>> importData(File input) {
         //Es wird geprueft ob eine Datei uebergeben wurde.
         if (input == null) {
             return null;
         }
         //Eine HashMap wird erzeugt, welche spaeter die Daten des uebergebenen Files enthaelt.
-        HashMap<String, List<Object>> data = new HashMap<String, List<Object>>();
+        HashMap<String, List<DataUnit>> data = new HashMap<String, List<DataUnit>>();
 
         try {
             //Ein BufferedReader wird erzeugt um die uebergebene Datei zu lesen.
             BufferedReader reader = new BufferedReader(new FileReader(input));
             //Die Daten Der uebergebenen Datei werden als JSONObject gespeichert.
-            JSONObject jsonData;
             JSONArray jArray;
-            ArrayList dataArray;
             String line = null;
+            DataUnit unit;
+            Object value;
+            JSONObject jsonData;
+
             while ((line = reader.readLine()) != null) {
                 jsonData = new JSONObject(line);
-                //Es wird durch die Keys des JSONObject iteriert
-                for (String key : jsonData.keySet()) {
-                    //Das jeweilige JSONArrays eines Keys wird zu einer ArrayList konvertiert.
-                    jArray = jsonData.getJSONArray(key);
-                    dataArray = new ArrayList();
-                    for (int i = 0; i < jArray.length(); i++) {
-                        dataArray.add(jArray.get(i));
-                    }
-                    //Der jeweilige Key und das jeweilige Array eines Datensatztes werden der HashMap hinzugefuegt.
-                    data.put(key, dataArray);
-                }
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(JSONImporter.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        } catch (IOException ex) {
-            Logger.getLogger(JSONImporter.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
 
-        //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.
+                //Es wird versucht ein JSONArray aus der Zeile zuerzeugen
+                for (String key : jsonData.keySet()) {
+
+                    try {
+                        for (int i = 0; i < jsonData.getJSONArray(key).length(); i++) {
+
+                            try {
+                                unit = new DataUnit(jsonData.getJSONArray(key).getDouble(i));
+                            } catch (Exception e) {
+                                try {
+                                    unit = new DataUnit(jsonData.getJSONArray(key).getLong(i));
+                                } catch (Exception ex) {
+                                    try {
+                                        unit = new DataUnit(jsonData.getJSONArray(key).getString(i));
+                                    } catch (Exception exception) {
+                                        unit = new DataUnit(jsonData.get(key).toString());
+                                    }
+                                }
+
+                            }
+                            if (data.containsKey(key)) {
+                                data.get(key).add(unit);
+                            } else {
+                                data.put(key, new ArrayList<DataUnit>());
+                                data.get(key).add(unit);
+                            }
+
+                            //mit den einzelnen werten arbeiten!!
+                        }
+                    } catch (Exception exc) {
+                        try {
+                            unit = new DataUnit(jsonData.getDouble(key));
+                        } catch (Exception e) {
+                            try {
+                                unit = new DataUnit(jsonData.getLong(key));
+                            } catch (Exception ex) {
+                                try {
+                                    unit = new DataUnit(jsonData.getString(key));
+                                } catch (Exception exception) {
+                                    unit = new DataUnit(jsonData.get(key).toString());
+                                }
+                            }
+                        }
+
+                        if (data.containsKey(key)) {
+                            data.get(key).add(unit);
+                        } else {
+                            data.put(key, new ArrayList<DataUnit>());
+                            data.get(key).add(unit);
+                        }
+
+                    }
+
+                }
+                //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.
+            }
+            return data;
+
+        } catch (IOException e) {
+            Logger.getLogger(JSONImporter.class.getName()).log(Level.SEVERE, null, e);
+
+        } catch (JSONException e) {
+            Logger.getLogger(JSONImporter.class.getName()).log(Level.SEVERE, null, e);
+
+        }
         return data;
     }
-
 }
