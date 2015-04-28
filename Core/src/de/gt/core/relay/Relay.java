@@ -26,16 +26,6 @@ public class Relay {
     private final Set<Receiver> receivers = new HashSet<>();
     private final Map<String, DataUnit> latest = new HashMap<>();
 
-    private static Relay instance;
-
-    public static Relay getInstance() {
-        if (instance == null) {
-            instance = new Relay();
-        }
-
-        return instance;
-    }
-
     /**
      * Builds an entry that is either the default value if no values have been
      * received yet or the last received entry.
