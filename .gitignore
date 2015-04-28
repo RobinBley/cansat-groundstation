@@ -12,9 +12,8 @@
 /SerialComm/nbproject/private/
 /SerialComm/build/
 /JSON/build/
-<<<<<<< HEAD
 /gdal/nbproject/private/
+/WorldWind/build/
 /WorldWind/nbproject/private/
-=======
 /charts/build/
->>>>>>> feature_charts
+/Export/nbproject/private/
