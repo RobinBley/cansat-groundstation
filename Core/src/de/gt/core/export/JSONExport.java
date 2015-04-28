@@ -29,52 +29,61 @@ public class JSONExport implements Exporter {
         }
 
         JSONArray jarray;
+        JSONObject jsonData = new JSONObject();
+        int index;
         try {
-            JSONObject jsonData = new JSONObject();
-            DataUnit unit;
-            for (String key : data.keySet()) {
-                unit = data.get(key).get(0);
-                switch (unit.getType()) {
-                    case DOUBLE:
-                        jsonData.put(key, unit.getDoubleValue());
-                        break;
-                    case LONG:
-                        jsonData.put(key, unit.getLongValue());
-                        break;
-                    case STRING:
-                        jsonData.put(key, unit.getStringValue());
-                    default:
-                        break;
-                }
-
-            }
-
-        } catch (Exception e) {
-
-            //Die Daten der einzelnen Keys der uebergebenen Map werden jeweils ein JSONArray hinzugefuegt,
-            //welche wiederum alle zusammen einem JSONObject hinzugefuegt werden.
-            JSONObject jsonData = new JSONObject();
             for (String key : data.keySet()) {
                 jarray = new JSONArray();
-                for (int i = 0; i < data.get(key).size(); i++) {
-                    jarray.put(i, data.get(key).get(i).getObjectValue());
+                index = 0;
+                for (DataUnit unit : data.get(key)) {
+                    switch (unit.getType()) {
+                        case DOUBLE:
+                            jarray.put(index, unit.getDoubleValue());
+                            index++;
+                            break;
+                        case LONG:
+                            jarray.put(index, unit.getLongValue());
+                            index++;
+                            break;
+                        case STRING:
+                            jarray.put(index, unit.getStringValue());
+                            index++;
+                            break;
+                        default:
+                            jarray.put(index, unit.getObjectValue());
+                            index++;
+                            break;
+                    }
+
                 }
                 jsonData.put(key, jarray);
             }
+        } catch (Exception e) {
 
-            try {
-                //Die Daten des JSONObjects werden in eine Datei geschrieben.
-                BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()));
-                jsonData.write(writer);
-                writer.flush();
-                writer.close();
-
-            } catch (IOException ex) {
-                Logger.getLogger(JSONExport.class.getName()).log(Level.SEVERE, null, ex);
-                return false;
-
-            }
+//            //Die Daten der einzelnen Keys der uebergebenen Map werden jeweils ein JSONArray hinzugefuegt,
+//            //welche wiederum alle zusammen einem JSONObject hinzugefuegt werden.
+//            jsonData = new JSONObject();
+//            for (String key : data.keySet()) {
+//                jarray = new JSONArray();
+//                for (int i = 0; i < data.get(key).size(); i++) {
+//                    jarray.put(i, data.get(key).get(i).getObjectValue());
+//                }
+//                jsonData.put(key, jarray);
+//            }
         }
+        try {
+            //Die Daten des JSONObjects werden in eine Datei geschrieben.
+            BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()));
+            jsonData.write(writer);
+            writer.flush();
+            writer.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(JSONExport.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+
+        }
+
         return true;
     }
 
