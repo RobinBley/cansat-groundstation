@@ -5,11 +5,11 @@
  */
 package de.gt.input.test;
 
+import de.gt.data.DataType;
+import de.gt.data.DataUnit;
 import de.gt.input.config.access.Config;
 import de.gt.input.config.access.ValueConfig;
 import de.gt.input.data.ConsoleOutput;
-import de.gt.input.data.DataType;
-import de.gt.input.data.DataUnit;
 import de.gt.input.dataformat.JSONParser;
 import de.gt.input.sources.DebugJSON;
 import de.gt.relay.Receiver;
@@ -52,7 +52,7 @@ public class InputJSONTest extends NbTestCase implements Receiver {
 
         //Daten selber generieren um beim testen ueberpruefen zu koennen.
         JSONObject jdata = new JSONObject();
-        
+
         jdata.put("temp", 1234522);
         dataFormat.parseData(jdata.toString());
         DebugJSON.createWithDebugGenerator(dataFormat);

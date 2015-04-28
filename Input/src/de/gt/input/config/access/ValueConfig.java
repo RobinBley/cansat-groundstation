@@ -5,8 +5,7 @@
  */
 package de.gt.input.config.access;
 
-import de.gt.input.data.DataType;
-
+import de.gt.data.DataType;
 /**
  *
  * @author Kevin

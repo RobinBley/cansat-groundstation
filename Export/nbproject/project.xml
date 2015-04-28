@@ -7,6 +7,14 @@
             <suite-component/>
             <module-dependencies>
                 <dependency>
+                    <code-name-base>de.gt.data</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>1.0</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
                     <code-name-base>org.json</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
@@ -25,6 +33,7 @@
                 </test-type>
             </test-dependencies>
             <friend-packages>
+                <friend>de.gt.importer</friend>
                 <friend>de.gt.input</friend>
                 <package>de.gt.export</package>
             </friend-packages>

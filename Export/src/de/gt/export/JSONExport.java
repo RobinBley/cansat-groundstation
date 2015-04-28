@@ -1,7 +1,7 @@
 package de.gt.export;
 
-import de.gt.temp.DataType;
-import de.gt.temp.DataUnit;
+import static de.gt.data.DataType.DOUBLE;
+import de.gt.data.DataUnit;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

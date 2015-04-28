@@ -6,7 +6,7 @@ package de.gt.input.test;
  * and open the template in the editor.
  */
 
-import de.gt.input.data.DataUnit;
+import de.gt.data.DataUnit;
 import de.gt.input.logging.JSONLogger;
 import java.io.File;
 import java.io.IOException;

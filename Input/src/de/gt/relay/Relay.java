@@ -1,6 +1,9 @@
 package de.gt.relay;
 
-import de.gt.input.data.DataUnit;
+import static de.gt.data.DataType.DOUBLE;
+import static de.gt.data.DataType.LONG;
+import static de.gt.data.DataType.STRING;
+import de.gt.data.DataUnit;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Collection;

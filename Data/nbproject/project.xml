@@ -6,7 +6,12 @@
             <code-name-base>de.gt.data</code-name-base>
             <suite-component/>
             <module-dependencies/>
-            <public-packages/>
+            <friend-packages>
+                <friend>de.gt.export</friend>
+                <friend>de.gt.importer</friend>
+                <friend>de.gt.input</friend>
+                <package>de.gt.data</package>
+            </friend-packages>
         </data>
     </configuration>
 </project>

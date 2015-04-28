@@ -1,6 +1,6 @@
 package de.gt.relay;
 
-import de.gt.input.data.DataUnit;
+import de.gt.data.DataUnit;
 import java.util.Map;
 
 /**

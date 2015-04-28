@@ -1,7 +1,10 @@
 package de.gt.input.sources;
 
-import de.gt.input.data.DataType;
-import de.gt.input.data.DataUnit;
+import de.gt.data.DataType;
+import static de.gt.data.DataType.DOUBLE;
+import static de.gt.data.DataType.LONG;
+import static de.gt.data.DataType.STRING;
+import de.gt.data.DataUnit;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,11 +14,13 @@ import java.util.stream.Collectors;
 
 /**
  * Generator for random debug data
+ *
  * @author mhuisi
  */
 public class DebugGenerator {
-    
+
     private static final Collection<Entry<String, DataType>> keys = new ArrayList<>();
+
     static {
         // Data transmitted in the European CanSat 2014
         // Competition by the Team Gamma satellite
@@ -28,22 +33,22 @@ public class DebugGenerator {
         keys.add(new SimpleEntry<>("temp", DataType.DOUBLE));
         keys.add(new SimpleEntry<>("humidity", DataType.DOUBLE));
     }
-    
+
     private final Map<String, Object> values;
-    
+
     /**
-     * 
-     * @param values - default values for the debug generation 
-     * in a key:start_value mapping. Allowed start_values include 
-     * Strings, Doubles and Longs.
+     *
+     * @param values - default values for the debug generation in a
+     * key:start_value mapping. Allowed start_values include Strings, Doubles
+     * and Longs.
      */
     private DebugGenerator(Map<String, Object> values) {
         this.values = values;
     }
-    
+
     /**
-     * Creates a debug generator with default initialized
-     * debug keys and values.
+     * Creates a debug generator with default initialized debug keys and values.
+     *
      * @return generator
      */
     public static DebugGenerator createWithDebugKeys() {
@@ -63,9 +68,10 @@ public class DebugGenerator {
         }).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
         return new DebugGenerator(values);
     }
-    
+
     /**
      * Generates a linear set of data.
+     *
      * @return set of data
      */
     public Collection<Entry<String, DataUnit>> generate() {
@@ -85,7 +91,7 @@ public class DebugGenerator {
                 case STRING:
                     // It is assumed that all strings are GPS data
                     GPGGA gps = GPGGA.createFromString((String) generated);
-                    GPGGA nextGPS = new GPGGA(gps.getLatitude() + 0.2, 
+                    GPGGA nextGPS = new GPGGA(gps.getLatitude() + 0.2,
                             gps.getLongitude() + 0.4,
                             gps.getAltitude() + 0.5);
                     values.put(k, nextGPS.toString());
@@ -94,5 +100,5 @@ public class DebugGenerator {
             return null;
         }).collect(Collectors.toList());
     }
-    
+
 }

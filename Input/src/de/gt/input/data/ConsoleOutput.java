@@ -5,6 +5,8 @@
  */
 package de.gt.input.data;
 
+import static de.gt.data.DataType.DOUBLE;
+import de.gt.data.DataUnit;
 import de.gt.relay.Receiver;
 import java.util.Map;
 
