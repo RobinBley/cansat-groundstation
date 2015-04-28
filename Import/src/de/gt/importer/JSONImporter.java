@@ -1,6 +1,5 @@
 package de.gt.importer;
 
-import de.gt.temp.DataType;
 import de.gt.temp.DataUnit;
 import java.io.BufferedReader;
 import java.io.File;
@@ -46,7 +45,12 @@ public class JSONImporter {
                         for (int i = 0; i < jsonData.getJSONArray(key).length(); i++) {
 
                             try {
-                                unit = new DataUnit(jsonData.getJSONArray(key).getDouble(i));
+                                Double d = jsonData.getDouble(key);
+                                if (d.toString().endsWith(".0")) {
+                                    unit = new DataUnit(jsonData.getLong(key));
+                                } else {
+                                    unit = new DataUnit(jsonData.getDouble(key));
+                                }
                             } catch (Exception e) {
                                 try {
                                     unit = new DataUnit(jsonData.getJSONArray(key).getLong(i));
@@ -70,7 +74,12 @@ public class JSONImporter {
                         }
                     } catch (Exception exc) {
                         try {
-                            unit = new DataUnit(jsonData.getDouble(key));
+                            Double d = jsonData.getDouble(key);
+                            if (d.toString().endsWith(".0")) {
+                                unit = new DataUnit(jsonData.getLong(key));
+                            } else {
+                                unit = new DataUnit(jsonData.getDouble(key));
+                            }
                         } catch (Exception e) {
                             try {
                                 unit = new DataUnit(jsonData.getLong(key));

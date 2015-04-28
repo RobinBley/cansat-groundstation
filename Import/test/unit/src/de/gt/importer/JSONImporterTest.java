@@ -18,7 +18,7 @@ public class JSONImporterTest {
     @Test
     public void testImportData() {
 
-        File file = new File(System.getProperty("user.home") + "\\JSONLoggingTest.json");
+        File file = new File(System.getProperty("user.home") + "\\JSONExportTest.json");
         JSONImporter importer = new JSONImporter();
         Map<String, List<DataUnit>> data = importer.importData(file);
 
