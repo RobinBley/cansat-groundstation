@@ -5,7 +5,10 @@
  */
 package de.gt.gui.window;
 
+import de.gt.input.data.DataUnit;
+import de.gt.relay.Receiver;
 import info.monitorenter.gui.chart.Chart2D;
+import java.util.Map;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -113,4 +116,9 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private info.monitorenter.gui.chart.Chart2D chart;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void receive(Map<String, DataUnit> datum) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
