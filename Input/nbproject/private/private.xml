@@ -6,6 +6,8 @@
         <group>
             <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/Input/src/de/gt/input/sources/Serial.java</file>
             <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/Input/src/de/gt/input/sources/GPGGA.java</file>
+            <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/Input/src/de/gt/input/data/DataUnit.java</file>
+            <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/Input/src/de/gt/input/data/DataType.java</file>
             <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/Input/src/de/gt/input/sources/Stream.java</file>
             <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/Input/src/de/gt/input/dataformat/JSONParser.java</file>
         </group>
