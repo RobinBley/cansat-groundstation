@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  *
  * @author mhuisi
  */
-public class Relay {
+public class Relay implements de.gt.api.relay.Relay{
 
     private static final String GPS_DEFAULT = "$GPGGA,125000.0,6917.6938,N,1601.8514,E,1,3,0.95,34.5,M,17.8,M,,*65";
 

@@ -8,12 +8,14 @@ package de.gt.gui.window;
 import de.gt.api.input.data.DataType;
 import de.gt.api.input.data.DataUnit;
 import de.gt.api.relay.Receiver;
+import de.gt.api.relay.Relay;
 import info.monitorenter.gui.chart.IAxis;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle.Messages;
 import org.openide.windows.TopComponent;
 
@@ -48,6 +50,9 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
      */
     public VizualizationTopComponent() {
         initComponents();
+        
+        Relay relay = Lookup.getDefault().lookup(Relay.class);
+        System.out.println("penis");
     }
 
     @Override
