@@ -31,7 +31,7 @@ public class JSONDataloggerTest {
 //        JSONLogger logger = new JSONLogger();
         File file = new File(System.getProperty("user.home") + "\\JSONLoggingTest.json");
         JSONLogger logger = new JSONLogger(file);
-        DataUnit unit = new DataUnit("12354");
+        DataUnit unit = new DataUnit(123.87854);
         Map data = new HashMap<String, DataUnit>();
         data.put("temp", unit);
         logger.receive(data);

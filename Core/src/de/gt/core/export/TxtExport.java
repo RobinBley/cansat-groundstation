@@ -52,7 +52,7 @@ public class TxtExport implements Exporter {
                     } else if (data.get(key).get(index).getObjectValue() == null) {
                         buffer.add("null");
                     } else {
-                        buffer.add((String) data.get(key).get(index).getObjectValue());
+                        buffer.add((String) data.get(key).get(index).getObjectValue().toString());
                     }
                 }
                 //Der fertige und formatierte String wird mittels des FileWriters in ein File geschrieben.
