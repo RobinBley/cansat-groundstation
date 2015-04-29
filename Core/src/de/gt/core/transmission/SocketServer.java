@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.core.transmission;
 
 import de.gt.api.input.data.DataUnit;
@@ -42,6 +37,7 @@ public class SocketServer implements Receiver, Runnable {
                     writers.remove(client);
                     Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, "client removed");
                 } else {
+                    //Es wird versucht den Clients die Nachricht zu uebermitteln.
                     try {
                         client.println(message);
                         client.flush();
@@ -56,7 +52,6 @@ public class SocketServer implements Receiver, Runnable {
         } catch (Exception ex) {
             Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(message);
     }
 
     /**
@@ -77,9 +72,6 @@ public class SocketServer implements Receiver, Runnable {
                 Thread t = new Thread(new ClientHandler(clientSocket));
                 //Der Thread wird gestartet.
                 t.start();
-                broadcast("client connected");
-                System.out.println(writers.size());
-
             }
 
         } catch (Exception ex) {
@@ -104,7 +96,7 @@ public class SocketServer implements Receiver, Runnable {
     }
 
     /**
-     *
+     * @author Robin Wartet auf Nachrichten von Clients und loggt diese.
      */
     public class ClientHandler implements Runnable {
 
@@ -130,6 +122,7 @@ public class SocketServer implements Receiver, Runnable {
         public void run() {
             String message;
             try {
+                //Wenn Ein Client Daten schickt, werden sie geloggt.
                 while ((message = reader.readLine()) != null) {
                     Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, null, "client: " + message);
                     System.out.println(message);
