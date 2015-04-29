@@ -1,5 +1,6 @@
 package de.gt.core.sources;
 
+import de.gt.api.streamutils.MapCollector;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,7 +51,7 @@ public class DebugGenerator {
                     double last = values.get(k);
                     values.put(k, last + r.doubles(0.1, 4.0).findFirst().getAsDouble());
                     return new SimpleEntry<>(k, last);
-                }).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+                }).collect(MapCollector.create());
     }
 
 }

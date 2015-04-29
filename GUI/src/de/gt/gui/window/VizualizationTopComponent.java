@@ -1,6 +1,7 @@
 package de.gt.gui.window;
 
 import de.gt.api.relay.Receiver;
+import de.gt.api.streamutils.MapCollector;
 import info.monitorenter.gui.chart.IAxis;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -166,7 +167,7 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
     public void receive(Map<String, Double> datum) {
         //String typen aus der Map im Stream style filtern
         Map<String, Double> filtered = datum.entrySet().stream()
-                .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+                .collect(MapCollector.create());
         // TODO: Daten zum Graphen hinzufügen
         
     }

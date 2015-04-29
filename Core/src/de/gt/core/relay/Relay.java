@@ -1,6 +1,7 @@
 package de.gt.core.relay;
 
 import de.gt.api.relay.Receiver;
+import de.gt.api.streamutils.MapCollector;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -44,7 +45,7 @@ public class Relay {
                     }
                     latest.put(k, v);
                     return e;
-                }).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+                }).collect(MapCollector.create());
         receivers.stream().forEach(d -> d.receive(cleaned));
     }
 
