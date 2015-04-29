@@ -21,7 +21,7 @@ public class TxtExportTest {
         Exporter exporter = new TxtExport();
         Map<String, List<DataUnit>> data = new HashMap<String, List<DataUnit>>();
         ArrayList<DataUnit> values = new ArrayList<DataUnit>();
-        values.add(new DataUnit("dsf"));
+        values.add(new DataUnit("test"));
         values.add(new DataUnit(234235.4235D));
         values.add(new DataUnit(23435L));
         data.put("time", values);

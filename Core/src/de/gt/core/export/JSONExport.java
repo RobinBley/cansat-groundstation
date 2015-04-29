@@ -28,6 +28,8 @@ public class JSONExport implements Exporter {
             return false;
         }
 
+        //Die Daten der einzelnen Keys der uebergebenen Map werden jeweils ein JSONArray hinzugefuegt,
+        //welche wiederum alle zusammen einem JSONObject hinzugefuegt werden.
         JSONArray jarray;
         JSONObject jsonData = new JSONObject();
         int index;
@@ -59,17 +61,7 @@ public class JSONExport implements Exporter {
                 jsonData.put(key, jarray);
             }
         } catch (Exception e) {
-
-//            //Die Daten der einzelnen Keys der uebergebenen Map werden jeweils ein JSONArray hinzugefuegt,
-//            //welche wiederum alle zusammen einem JSONObject hinzugefuegt werden.
-//            jsonData = new JSONObject();
-//            for (String key : data.keySet()) {
-//                jarray = new JSONArray();
-//                for (int i = 0; i < data.get(key).size(); i++) {
-//                    jarray.put(i, data.get(key).get(i).getObjectValue());
-//                }
-//                jsonData.put(key, jarray);
-//            }
+            Logger.getLogger(JSONExport.class.getName()).log(Level.SEVERE, null, e);
         }
         try {
             //Die Daten des JSONObjects werden in eine Datei geschrieben.
