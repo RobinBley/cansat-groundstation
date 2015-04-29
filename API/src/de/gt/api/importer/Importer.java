@@ -21,5 +21,5 @@ public interface Importer {
      * @param input Dein, dessen Daten eingelesen werden sollen.
      * @return Eingelesene Daten in From einer Map.
      */
-    public Map<String, List<Object>> importData(File input);
+    public Map<String, List<Double>> importData(File input);
 }

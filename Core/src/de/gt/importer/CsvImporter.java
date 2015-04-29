@@ -19,42 +19,40 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ *
  * @author Robin
  */
-
 public class CsvImporter implements Importer {
 
     @Override
-    public Map<String, List<Object>> importData(File input) {
-        HashMap data = new HashMap();
+    public Map<String, List<Double>> importData(File input) {
+        Map<String, List<Double>> data = new HashMap<String, List<Double>>();
 
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(input));
+        try (BufferedReader reader = new BufferedReader(new FileReader(input));) {
+
             String line;
-            ArrayList list = new ArrayList<String>();
-            try {
-                line = reader.readLine();
-                while ((line = reader.readLine()) != null) {
-                    String[] dataSet = line.split(";");
-                    if (dataSet.length >= 2) {
+            line = reader.readLine();
+            String[] keys = line.split(";");
+            String[] dataSet;
+            for (String key : keys) {
+                data.put(key, new ArrayList<Double>());
+            }
 
-                        for (int i = 1; i < dataSet.length; i++) {
-                            list.add(dataSet[i]);
-                        }
-                        data.put(dataSet[0], list);
+            while ((line = reader.readLine()) != null) {
+                dataSet = line.split(";");
 
-                    }
+                for (int i = 0; i < dataSet.length; i++) {
+                    data.get(String.valueOf(keys[0])).add(Double.valueOf(dataSet[i]));
 
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(CsvImporter.class.getName()).log(Level.SEVERE, null, ex);
+
             }
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CsvImporter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CsvImporter.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return data;
     }
 
