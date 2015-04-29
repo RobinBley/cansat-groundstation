@@ -1,6 +1,5 @@
 package de.gt.api.relay;
 
-import de.gt.api.input.data.DataUnit;
 import java.util.Map;
 
 /**
@@ -10,6 +9,6 @@ import java.util.Map;
  */
 public interface Receiver {
     
-    void receive(Map<String, DataUnit> datum);
+    void receive(Map<String, Double> datum);
     
 }

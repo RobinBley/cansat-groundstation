@@ -1,16 +1,11 @@
 package de.gt.core.sources;
 
-import de.gt.api.input.data.DataType;
-import de.gt.api.sources.GPGGA;
-import static de.gt.api.input.data.DataType.DOUBLE;
-import static de.gt.api.input.data.DataType.LONG;
-import static de.gt.api.input.data.DataType.STRING;
-import de.gt.api.input.data.DataUnit;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -20,53 +15,24 @@ import java.util.stream.Collectors;
  */
 public class DebugGenerator {
 
-    private static final Collection<Entry<String, DataType>> keys = new ArrayList<>();
-
-    static {
-        // Data transmitted in the European CanSat 2014
-        // Competition by the Team Gamma satellite
-        keys.add(new SimpleEntry<>("time", DataType.LONG));
-        keys.add(new SimpleEntry<>("gps", DataType.STRING));
-        keys.add(new SimpleEntry<>("accel_x", DataType.DOUBLE));
-        keys.add(new SimpleEntry<>("accel_y", DataType.DOUBLE));
-        keys.add(new SimpleEntry<>("accel_z", DataType.DOUBLE));
-        keys.add(new SimpleEntry<>("pressure", DataType.DOUBLE));
-        keys.add(new SimpleEntry<>("temp", DataType.DOUBLE));
-        keys.add(new SimpleEntry<>("humidity", DataType.DOUBLE));
-    }
-
-    private final Map<String, Object> values;
+    private final Map<String, Double> values;
 
     /**
      *
      * @param values - default values for the debug generation in a
-     * key:start_value mapping. Allowed start_values include Strings, Doubles
-     * and Longs.
+     * key:start_value mapping.
      */
-    private DebugGenerator(Map<String, Object> values) {
+    private DebugGenerator(Map<String, Double> values) {
         this.values = values;
     }
 
     /**
      * Creates a debug generator with default initialized debug keys and values.
-     *
      * @return generator
      */
-    public static DebugGenerator createWithDebugKeys() {
-        Map<String, Object> values = keys.stream().map(e -> {
-            String k = e.getKey();
-            switch (e.getValue()) {
-                case LONG:
-                    return new SimpleEntry<>(k, 0);
-                case DOUBLE:
-                    return new SimpleEntry<>(k, 0.0);
-                case STRING:
-                    // It is assumed that all strings are GPS data
-                    GPGGA gps = new GPGGA(6917.6938, 1601.8514, 34.5);
-                    return new SimpleEntry<>(k, gps.toString());
-            }
-            return null;
-        }).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+    public static DebugGenerator createWithKeys(Collection<String> keys) {
+        Map<String, Double> values = keys.stream()
+                .collect(Collectors.toMap(k -> k, k -> 0.0));
         return new DebugGenerator(values);
     }
 
@@ -75,31 +41,16 @@ public class DebugGenerator {
      *
      * @return set of data
      */
-    public Collection<Entry<String, DataUnit>> generate() {
-        return keys.stream().filter(e -> Math.random() > 0.98).map(e -> {
-            String k = e.getKey();
-            DataType t = e.getValue();
-            Object generated = values.get(k);
-            switch (t) {
-                case LONG:
-                    long longValue = (long) generated;
-                    values.put(k, longValue + 1);
-                    return new SimpleEntry<>(k, new DataUnit(longValue));
-                case DOUBLE:
-                    double doubleValue = (double) generated;
-                    values.put(k, doubleValue + 1.0);
-                    return new SimpleEntry<>(k, new DataUnit(doubleValue));
-                case STRING:
-                    // It is assumed that all strings are GPS data
-                    GPGGA gps = GPGGA.createFromString((String) generated);
-                    GPGGA nextGPS = new GPGGA(gps.getLatitude() + 0.2,
-                            gps.getLongitude() + 0.4,
-                            gps.getAltitude() + 0.5);
-                    values.put(k, nextGPS.toString());
-                    return new SimpleEntry<>(k, new DataUnit(gps.toString()));
-            }
-            return null;
-        }).collect(Collectors.toList());
+    public Map<String, Double> generate() {
+        Random r = new Random();
+        return values.entrySet().stream()
+                .filter(e -> Math.random() > 0.98)
+                .map(e -> {
+                    String k = e.getKey();
+                    double last = values.get(k);
+                    values.put(k, last + r.doubles(0.1, 4.0).findFirst().getAsDouble());
+                    return new SimpleEntry<>(k, last);
+                }).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
     }
 
 }

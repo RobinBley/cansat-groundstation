@@ -1,9 +1,9 @@
 package de.gt.core.sources;
 
 import de.gt.api.sources.DataSource;
-import de.gt.api.input.data.DataUnit;
 import de.gt.api.input.dataformat.DataFormat;
 import java.io.IOException;
+import java.util.Collection;
 import org.json.JSONObject;
 
 /**
@@ -15,6 +15,7 @@ public class DebugJSON implements DataSource {
 
     private DataFormat formatter;
     private final DebugGenerator gen;
+    private boolean closed = true;
 
     public DebugJSON(DataFormat formatter, DebugGenerator gen) {
         this.gen = gen;
@@ -25,27 +26,27 @@ public class DebugJSON implements DataSource {
      * Creates a debug json source with a default initialized DebugGenerator.
      *
      * @param formatter - formatter to push data to
+     * @param keys - keys to generate debug data for
      * @return source
      */
-    public static DebugJSON createWithDebugGenerator(DataFormat formatter) {
-        DebugGenerator gen = DebugGenerator.createWithDebugKeys();
+    public static DebugJSON createWithDebugGenerator(DataFormat formatter, Collection<String> keys) {
+        DebugGenerator gen = DebugGenerator.createWithKeys(keys);
         return new DebugJSON(formatter, gen);
     }
 
     @Override
     public void open() {
-        JSONObject json = new JSONObject();
-        gen.generate().forEach(entry -> {
-            String k = entry.getKey();
-            DataUnit u = entry.getValue();
-            json.put(k, u.getObjectValue());
-        });
-        formatter.parseData(json.toString());
+        closed = false;
+        while (!closed) {
+            JSONObject json = new JSONObject();
+            gen.generate().entrySet().forEach(e -> json.put(e.getKey(), e.getValue()));
+            formatter.parseData(json.toString());
+        }
     }
 
     @Override
     public void close() throws IOException {
-        // Nothing to close
+        closed = true;
     }
 
     @Override

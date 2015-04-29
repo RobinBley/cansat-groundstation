@@ -5,10 +5,6 @@
  */
 package de.gt.core.data;
 
-import static de.gt.api.input.data.DataType.DOUBLE;
-import static de.gt.api.input.data.DataType.LONG;
-import static de.gt.api.input.data.DataType.STRING;
-import de.gt.api.input.data.DataUnit;
 import de.gt.api.relay.Receiver;
 import java.util.Map;
 
@@ -19,22 +15,9 @@ import java.util.Map;
 public class ConsoleOutput implements Receiver {
 
     @Override
-    public void receive(Map<String, DataUnit> datum) {
-        String outData = null;
-        for (String key : datum.keySet()) {
-            switch (datum.get(key).getType()) {
-                case DOUBLE:
-                    outData = String.valueOf(datum.get(key).getDoubleValue());
-                    break;
-                case LONG:
-                    outData = String.valueOf(datum.get(key).getLongValue());
-                    break;
-                case STRING:
-                    outData = datum.get(key).getStringValue();
-                    break;
-                default:
-            }
-            System.out.println(key + ": " + outData);
-        }
+    public void receive(Map<String, Double> datum) {
+        datum.entrySet().stream()
+                .map(e -> String.format("%s: %s", e.getKey(), e.getValue()))
+                .forEach(System.out::println);
     }
 }

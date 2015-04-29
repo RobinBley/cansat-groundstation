@@ -5,10 +5,8 @@
  */
 package de.gt.gui.window;
 
-import de.gt.api.input.data.DataUnit;
 import de.gt.api.relay.Receiver;
 import java.util.Map;
-import java.util.Map.Entry;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import org.netbeans.api.settings.ConvertAsProperties;
@@ -50,11 +48,11 @@ public final class TextDisplayTopComponent extends TopComponent implements Recei
     }
     
     @Override
-    public void receive(Map<String, DataUnit> datum) {
+    public void receive(Map<String, Double> datum) {
         StringBuilder sb = new StringBuilder();
-        for (Entry<String, DataUnit> e : datum.entrySet()) {
-            sb.append(String.format("%s: %s\n", e.getKey(), e.getValue().getObjectValue()));
-        }
+        datum.entrySet().stream()
+                .map(e -> String.format("%s: %s\n", e.getKey(), e.getValue()))
+                .forEach(sb::append);
         sb.append("-----");
         Document d = jTextPane1.getDocument();
         try {

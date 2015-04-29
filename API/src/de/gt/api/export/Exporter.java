@@ -5,7 +5,6 @@
  */
 package de.gt.api.export;
 
-import de.gt.api.input.data.DataUnit;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +22,6 @@ public interface Exporter {
      * @param output Die Datei, in der die Daten exportiert werden
      * @return Gibt true zurueck, wenn das Exportieren der Daten erfolgt ist.
      */
-    public boolean exportData(Map<String, List<DataUnit>> data, File output);
+    public boolean exportData(Map<String, List<Double>> data, File output);
 
 }
