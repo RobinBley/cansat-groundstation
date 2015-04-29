@@ -5,7 +5,6 @@
  */
 package de.gt.api.relay;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import de.gt.api.input.data.DataUnit;
 import java.util.Collection;
 import java.util.Map;
