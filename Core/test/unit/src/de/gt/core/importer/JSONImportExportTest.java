@@ -29,7 +29,7 @@ public class JSONImportExportTest {
     File file;
 
     public JSONImportExportTest() {
-        path = System.getProperty("user.home") + "\\CSVEXPORTTEST.csv";
+        path = System.getProperty("user.home") + "\\JSON-Import-Export-Test.json";
         data = new HashMap<String, List<Double>>();
         file = new File(path);
     }
@@ -39,7 +39,7 @@ public class JSONImportExportTest {
 
         ArrayList<Double> values = new ArrayList<Double>();
         values.add(1D);
-        values.add(234D);
+        values.add(2355555555555555555555555555555554D);
         values.add(null);
         data.put("time", (List<Double>) values.clone());
         values.clear();

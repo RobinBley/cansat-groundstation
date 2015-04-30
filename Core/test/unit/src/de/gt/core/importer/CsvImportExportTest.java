@@ -40,18 +40,11 @@ public class CsvImportExportTest {
 
         ArrayList<Double> values = new ArrayList<Double>();
         values.add(1D);
-        values.add(32.4324);
+        values.add(32.4324D);
+        values.add(null);
         data.put("time", (List<Double>) values.clone());
-        values.clear();
-        values.add(435436.6435);
-        values.add(5555D);
-        values.add(9999D);
-        values.add(123214D);
-        data.put("temp", (List<Double>) values.clone());
-        values.clear();
-        values.add(4444435326D);
-        data.put("co2", (List<Double>) values.clone());
-
+        
+        
     }
 
     /**

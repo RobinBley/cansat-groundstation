@@ -44,12 +44,13 @@ public class CsvImporter implements Importer {
             while ((line = reader.readLine()) != null) {
                 dataSet = line.split(";");
                 for (int i = 0; i < dataSet.length; i++) {
-                    data.get(String.valueOf(keys[0])).add(Double.valueOf(dataSet[i]));
-
+                    if (!dataSet[i].toLowerCase().equals("null")) {
+                        data.get(String.valueOf(keys[i])).add(Double.valueOf(dataSet[i]));
+                    } else if(!dataSet[i].toLowerCase().equals("")){
+                        data.get(String.valueOf(keys[i])).add(null);
+                    }
                 }
-
             }
-
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CsvImporter.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

@@ -27,7 +27,7 @@ public class JSONExportTest {
         values.clear();
         values.add(2D);
         values.add(346345D);
-        values.add(899922.20032);
+        values.add(8999244444444444444444444444444444444444444442.20032);
         values.add(222D);
         values.add(34D);
         data.put("temp", (List<Double>) values.clone());

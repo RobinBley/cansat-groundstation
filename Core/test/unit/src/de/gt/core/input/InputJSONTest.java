@@ -61,7 +61,7 @@ public class InputJSONTest extends NbTestCase implements Receiver {
      */
     @Test
     public void testInput() {
-        Assert.assertEquals(Long.valueOf(1234522), output.get("temp"));
+        Assert.assertEquals(Double.valueOf(1234522), output.get("temp"));
     }
 
     @Override
