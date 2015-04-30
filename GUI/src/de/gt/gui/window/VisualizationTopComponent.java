@@ -1,13 +1,14 @@
 package de.gt.gui.window;
 
-import de.gt.api.config.Config;
-import de.gt.api.input.data.DataType;
-import de.gt.api.input.data.DataUnit;
 import de.gt.api.relay.Receiver;
+import de.gt.api.relay.Relay;
+import de.gt.api.streamutils.MapCollector;
 import info.monitorenter.gui.chart.IAxis;
 import java.util.Collection;
 import java.util.Map;
-import java.util.stream.Collectors;
+import org.netbeans.api.settings.ConvertAsProperties;
+import org.openide.awt.ActionID;
+import org.openide.awt.ActionReference;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -152,40 +153,11 @@ public class VisualizationTopComponent extends TopComponent implements Receiver,
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void receive(Map<String, DataUnit> datum) {
+    public void receive(Map<String, Double> datum) {
         //String typen aus der Map im Stream style filtern
-        Map<String, DataUnit> filtered = datum.entrySet().stream()
-                .filter(e -> e.getValue().getType() != DataType.STRING)
-                .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
-
-    }
-
-    /**
-     * Wird durch Lookup changes getriggert. Wird in diesem Fall benutzt falls
-     * sich die Satelliten Config ändert, damit die Komponenten auf die neue
-     * Config umschalten können.
-     *
-     * @param le
-     */
-    @Override
-    public void resultChanged(LookupEvent le) {
-        //Dieser Cast ist immer sicher
-        Lookup.Result res = (Lookup.Result) le.getSource();
-
-        //Alle instanzen aus der pipe holen
-        Collection pipeline = res.allInstances(); //we get all instances from the lookup
-
-        if (!pipeline.isEmpty()) {
-            //Wenn eine Config Änderung vorhanden ist, diese Durchgeben
-            pipeline.stream()
-                    .filter(i -> i instanceof Config)
-                    .findFirst()
-                    .ifPresent(i -> this.configChanged((Config) i));
-        }
-    }
-
-    private void configChanged(Config config) {
-        //Neue Config speichern
-        this.config = config;
+        Map<String, Double> filtered = datum.entrySet().stream()
+                .collect(MapCollector.create());
+        // TODO: Daten zum Graphen hinzufügen
+        
     }
 }

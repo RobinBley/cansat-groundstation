@@ -1,8 +1,7 @@
 package de.gt.gui.window;
 
-import de.gt.api.input.data.DataUnit;
+import de.gt.api.gps.GPSKey;
 import de.gt.api.relay.Receiver;
-import de.gt.api.sources.GPGGA;
 import gov.nasa.worldwind.BasicModel;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.awt.WorldWindowGLCanvas;
@@ -64,12 +63,14 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
     }
 
     @Override
-    public void receive(Map<String, DataUnit> datum) {
-        GPGGA gps = GPGGA.createFromString(datum.get(GPS_KEY).getStringValue());
-        Position p = Position.fromDegrees(gps.getLatitude(), gps.getLongitude(), gps.getAltitude());
+    public void receive(Map<String, Double> datum) {
+        double latitude = datum.get(k.getLatitudeKey());
+        double longitude = datum.get(k.getLongitudeKey());
+        double altitude = datum.get(k.getAltitudeKey());
+        Position p = Position.fromDegrees(latitude, longitude, altitude);
         StringBuilder b = new StringBuilder();
         datum.entrySet().stream()
-                .map(e -> String.format("%s: %s", e.getKey(), e.getValue().getObjectValue()))
+                .map(e -> String.format("%s: %s\n", e.getKey(), e.getValue()))
                 .forEach(b::append);
         GlobeAnnotation a = new GlobeAnnotation(b.toString(), p, ATTRIBS);
         add(p, a);

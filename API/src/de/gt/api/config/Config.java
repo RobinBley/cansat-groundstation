@@ -18,5 +18,5 @@ public interface Config {
 
     public String getFormat();
 
-    public Map<String, ValueConfig> getValueConfigs();
+    public Map<String, Double> getValueConfigs();
 }

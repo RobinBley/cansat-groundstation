@@ -5,8 +5,6 @@
  */
 package de.gt.api.relay;
 
-import de.gt.api.input.data.DataUnit;
-import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -15,7 +13,7 @@ import java.util.Map;
  */
 public interface Relay {
 
-    public void relay(Collection<Map.Entry<String, DataUnit>> datum);
+    public void relay(Map<String, Double> datum);
 
     public void addReceiver(Receiver receiver);
 
