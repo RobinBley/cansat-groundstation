@@ -6,7 +6,6 @@
 package de.gt.core.importer;
 
 import de.gt.api.export.Exporter;
-import de.gt.api.input.data.DataUnit;
 import de.gt.core.export.JSONExport;
 import de.gt.importer.JSONImporter;
 import java.io.File;
@@ -26,28 +25,24 @@ import org.junit.Test;
 public class JSONImportExportTest {
 
     private String path;
-    Map<String, List<DataUnit>> data;
+    Map<String, List<Double>> data;
     File file;
 
     public JSONImportExportTest() {
         path = System.getProperty("user.home") + "\\CSVEXPORTTEST.csv";
-        data = new HashMap<String, List<DataUnit>>();
+        data = new HashMap<String, List<Double>>();
         file = new File(path);
     }
 
     @Before
     public void setUp() {
 
-        ArrayList<DataUnit> values = new ArrayList<DataUnit>();
-        values.add(new DataUnit("dsf"));
-        values.add(new DataUnit(234235.4235D));
-        values.add(new DataUnit(23435L));
-        data.put("time", values);
+        ArrayList<Double> values = new ArrayList<Double>();
+        values.add(1D);
+        values.add(234D);
+        values.add(null);
+        data.put("time", (List<Double>) values.clone());
         values.clear();
-        values.add(new DataUnit("sdfsgd"));
-        values.add(new DataUnit(099995.4235D));
-        values.add(new DataUnit(999L));
-        data.put("temp", values);
 
     }
 
@@ -64,7 +59,7 @@ public class JSONImportExportTest {
         Assert.assertFalse(exporter.exportData(data, null));
         Assert.assertFalse(exporter.exportData(null, file));
 
-        Map<String, List<DataUnit>> importedData = importer.importData(file);
+        Map<String, List<Double>> importedData = importer.importData(file);
 
         Assert.assertEquals(importedData, data);
 
