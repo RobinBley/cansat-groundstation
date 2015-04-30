@@ -1,18 +1,11 @@
 package de.gt.core.input.dataformat;
 
 import de.gt.api.input.dataformat.DataFormat;
-import static de.gt.api.input.data.DataType.DOUBLE;
-import static de.gt.api.input.data.DataType.LONG;
-import static de.gt.api.input.data.DataType.STRING;
-import de.gt.api.input.data.DataUnit;
 import de.gt.core.relay.DataProvider;
 import de.gt.core.config.Config;
-import de.gt.core.config.ValueConfig;
-import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import org.json.JSONObject;
 
 /**
@@ -36,32 +29,12 @@ public class JSONParser implements DataFormat {
 
     @Override
     public void parseData(String data) {
-        Collection<Entry<String, DataUnit>> units = new ArrayList<>();
         JSONObject jData = new JSONObject(data);
-        Map<String, ValueConfig> keys = config.getValueConfigs();
-        for (Entry<String, ValueConfig> entry : keys.entrySet()) {
-            String key = entry.getKey();
-            if (jData.has(key)) {
-                DataUnit datum = null;
-                switch (entry.getValue().getType()) {
-
-                    case DOUBLE:
-                        datum = new DataUnit(jData.getDouble(key));
-                        break;
-                    case LONG:
-                        datum = new DataUnit(jData.getLong(key));
-                        break;
-                    case STRING:
-                        datum = new DataUnit(jData.getString(key));
-                        break;
-                    default:
-                        datum = new DataUnit(entry.getValue().getType());
-                        break;
-
-                }
-                units.add(new SimpleEntry<>(key, datum));
-            }
-        }
+        // TODO: Value configs?
+        Collection<String> keys = config.getValueConfigs();
+        Map<String, Double> units = keys.stream()
+                .filter(jData::has)
+                .collect(Collectors.toMap(k -> k, jData::getDouble));
         relay.relay(units);
     }
 

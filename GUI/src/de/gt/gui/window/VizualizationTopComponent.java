@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.gui.window;
 
-import de.gt.api.input.data.DataType;
-import de.gt.api.input.data.DataUnit;
 import de.gt.api.relay.Receiver;
 import de.gt.api.relay.Relay;
+import de.gt.api.streamutils.MapCollector;
 import info.monitorenter.gui.chart.IAxis;
 import java.util.Map;
-import java.util.stream.Collectors;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -175,12 +168,11 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void receive(Map<String, DataUnit> datum) {
+    public void receive(Map<String, Double> datum) {
         //String typen aus der Map im Stream style filtern
-        Map<String, DataUnit> filtered = datum.entrySet().stream()
-                .filter(e -> e.getValue().getType() != DataType.STRING)
-                .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
-        
+        Map<String, Double> filtered = datum.entrySet().stream()
+                .collect(MapCollector.create());
+        // TODO: Daten zum Graphen hinzufügen
         
     }
 }

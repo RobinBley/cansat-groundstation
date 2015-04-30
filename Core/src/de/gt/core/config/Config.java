@@ -5,6 +5,7 @@
  */
 package de.gt.core.config;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -15,9 +16,9 @@ public class Config {
     private String name;
     private String identifier;
     private String format;
-    private Map<String, ValueConfig> valueConfigs;
+    private Collection<String> valueConfigs;
 
-    public Config(String name, String identifier, String format, Map<String, ValueConfig> valueConfigs) {
+    public Config(String name, String identifier, String format, Collection<String> valueConfigs) {
         this.name = name;
         this.identifier = identifier;
         this.format = format;
@@ -36,7 +37,7 @@ public class Config {
         return format;
     }
 
-    public Map<String, ValueConfig> getValueConfigs() {
+    public Collection<String> getValueConfigs() {
         return valueConfigs;
     }
 }
