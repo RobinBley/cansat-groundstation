@@ -1,58 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.gui.window;
 
+import de.gt.api.config.Config;
 import de.gt.api.input.data.DataType;
 import de.gt.api.input.data.DataUnit;
 import de.gt.api.relay.Receiver;
-import de.gt.api.relay.Relay;
 import info.monitorenter.gui.chart.IAxis;
+import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
-import org.netbeans.api.settings.ConvertAsProperties;
-import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
 import org.openide.util.Lookup;
+import org.openide.util.LookupEvent;
+import org.openide.util.LookupListener;
 import org.openide.util.NbBundle.Messages;
 import org.openide.windows.TopComponent;
 
 /**
  *
- * @author Kevin
  */
-@ConvertAsProperties(
-        dtd = "-//de.gt.gui.window//Visualization//EN",
-        autostore = false
-)
 @TopComponent.Description(
         preferredID = "VisualizationTopComponent",
-        //iconBase="SET/PATH/TO/ICON/HERE", 
-        persistenceType = TopComponent.PERSISTENCE_ALWAYS
+        persistenceType = TopComponent.PERSISTENCE_NEVER
 )
-@TopComponent.Registration(mode = "editor", openAtStartup = true)
-@ActionID(category = "Window", id = "de.gt.gui.window.VisualizationTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_VisualizationAction",
-        preferredID = "VisualizationTopComponent"
-)
+@TopComponent.Registration(mode = "editor", openAtStartup = false)
 @Messages({
     "CTL_VisualizationAction=Visualization",
     "CTL_VisualizationTopComponent=Visualization Window",
     "HINT_VisualizationTopComponent=This is a Visualization window"
 })
-public class VizualizationTopComponent extends TopComponent implements Receiver {
+public class VisualizationTopComponent extends TopComponent implements Receiver, LookupListener {
+
+    private Config config;
+
     /**
      * Creates new form VizualizationTopComponent
      */
-    public VizualizationTopComponent() {
+    public VisualizationTopComponent(Config currentConfig) {
         initComponents();
         
-        Relay relay = Lookup.getDefault().lookup(Relay.class);
-        relay.addReceiver(this);
+        this.config = currentConfig;
     }
 
     @Override
@@ -61,22 +46,14 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
         return TopComponent.PERSISTENCE_NEVER;
     }
 
-    public void writeProperties(java.util.Properties p) {
-        //Component version
-        p.setProperty("version", "1.0");
-    }
-
-    public void readProperties(java.util.Properties p) {
-    }
-
-    private void setXAxisDescription(String title){
+    private void setXAxisDescription(String title) {
         chart.getAxisX().setAxisTitle(new IAxis.AxisTitle(title));
     }
-    
-    private void setYAxisDescription(String title){
+
+    private void setYAxisDescription(String title) {
         chart.getAxisY().setAxisTitle(new IAxis.AxisTitle(title));
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,11 +64,11 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
     private void initComponents() {
 
         chart = new info.monitorenter.gui.chart.Chart2D();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        cmbXAxis = new javax.swing.JComboBox();
+        cmbYAxis = new javax.swing.JComboBox();
+        lblXAxis = new javax.swing.JLabel();
+        lblYAxis = new javax.swing.JLabel();
+        btnUpdateView = new javax.swing.JButton();
 
         setBackground(java.awt.Color.lightGray);
 
@@ -108,18 +85,18 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
             .addGap(0, 267, Short.MAX_VALUE)
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbXAxis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbYAxis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(VizualizationTopComponent.class, "VizualizationTopComponent.jLabel1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(lblXAxis, org.openide.util.NbBundle.getMessage(VisualizationTopComponent.class, "VisualizationTopComponent.lblXAxis.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(VizualizationTopComponent.class, "VizualizationTopComponent.jLabel2.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(lblYAxis, org.openide.util.NbBundle.getMessage(VisualizationTopComponent.class, "VisualizationTopComponent.lblYAxis.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(VizualizationTopComponent.class, "VizualizationTopComponent.jButton1.text")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(btnUpdateView, org.openide.util.NbBundle.getMessage(VisualizationTopComponent.class, "VisualizationTopComponent.btnUpdateView.text")); // NOI18N
+        btnUpdateView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnUpdateViewActionPerformed(evt);
             }
         });
 
@@ -132,15 +109,15 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(lblYAxis)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbXAxis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
+                        .addComponent(lblXAxis)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbYAxis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnUpdateView)
                         .addGap(0, 197, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -149,29 +126,29 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton1))
+                    .addComponent(cmbXAxis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbYAxis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblXAxis)
+                    .addComponent(lblYAxis)
+                    .addComponent(btnUpdateView))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(chart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnUpdateViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateViewActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnUpdateViewActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnUpdateView;
     private info.monitorenter.gui.chart.Chart2D chart;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox cmbXAxis;
+    private javax.swing.JComboBox cmbYAxis;
+    private javax.swing.JLabel lblXAxis;
+    private javax.swing.JLabel lblYAxis;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -180,7 +157,35 @@ public class VizualizationTopComponent extends TopComponent implements Receiver 
         Map<String, DataUnit> filtered = datum.entrySet().stream()
                 .filter(e -> e.getValue().getType() != DataType.STRING)
                 .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
-        
-        
+
+    }
+
+    /**
+     * Wird durch Lookup changes getriggert. Wird in diesem Fall benutzt falls
+     * sich die Satelliten Config ändert, damit die Komponenten auf die neue
+     * Config umschalten können.
+     *
+     * @param le
+     */
+    @Override
+    public void resultChanged(LookupEvent le) {
+        //Dieser Cast ist immer sicher
+        Lookup.Result res = (Lookup.Result) le.getSource();
+
+        //Alle instanzen aus der pipe holen
+        Collection pipeline = res.allInstances(); //we get all instances from the lookup
+
+        if (!pipeline.isEmpty()) {
+            //Wenn eine Config Änderung vorhanden ist, diese Durchgeben
+            pipeline.stream()
+                    .filter(i -> i instanceof Config)
+                    .findFirst()
+                    .ifPresent(i -> this.configChanged((Config) i));
+        }
+    }
+
+    private void configChanged(Config config) {
+        //Neue Config speichern
+        this.config = config;
     }
 }
