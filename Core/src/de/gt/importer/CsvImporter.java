@@ -26,21 +26,23 @@ public class CsvImporter implements Importer {
 
     @Override
     public Map<String, List<Double>> importData(File input) {
+        //Eine HashMap wird erzeugt, welche spaeter die Daten des uebergebenen Files enthaelt.
         Map<String, List<Double>> data = new HashMap<String, List<Double>>();
 
+        //Ein BufferedReader wird erzeugt um die uebergebene Datei zu lesen.
         try (BufferedReader reader = new BufferedReader(new FileReader(input));) {
 
             String line;
             line = reader.readLine();
             String[] keys = line.split(";");
             String[] dataSet;
+            //Fuer jeden Key der Datei wird eine ArrayList in der Map erzeugt.
             for (String key : keys) {
                 data.put(key, new ArrayList<Double>());
             }
-
+            //Die Daten der Datei werden der jeweiligen ArrayList in der Map hinzugefuegt.
             while ((line = reader.readLine()) != null) {
                 dataSet = line.split(";");
-
                 for (int i = 0; i < dataSet.length; i++) {
                     data.get(String.valueOf(keys[0])).add(Double.valueOf(dataSet[i]));
 
@@ -53,6 +55,7 @@ public class CsvImporter implements Importer {
         } catch (IOException ex) {
             Logger.getLogger(CsvImporter.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.
         return data;
     }
 

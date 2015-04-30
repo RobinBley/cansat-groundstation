@@ -26,31 +26,31 @@ import org.junit.Test;
 public class CsvImportExportTest {
 
     private String path;
-    Map<String, List<Object>> data;
+    Map<String, List<Double>> data;
     File file;
 
     public CsvImportExportTest() {
         path = System.getProperty("user.home") + "\\CSVEXPORTTEST.csv";
-        data = new HashMap<String, List<Object>>();
+        data = new HashMap<String, List<Double>>();
         file = new File(path);
     }
 
     @Before
     public void setUp() {
 
-        ArrayList<Object> values = new ArrayList<Object>();
-        values.add("1");
-        values.add("6");
-        data.put("time", (List<Object>) values.clone());
+        ArrayList<Double> values = new ArrayList<Double>();
+        values.add(1D);
+        values.add(32.4324);
+        data.put("time", (List<Double>) values.clone());
         values.clear();
-        values.add("346");
-        values.add("346345");
-        values.add("8299922");
-        values.add("829");
-        data.put("temp", (List<Object>) values.clone());
+        values.add(435436.6435);
+        values.add(5555D);
+        values.add(9999D);
+        values.add(123214D);
+        data.put("temp", (List<Double>) values.clone());
         values.clear();
-        values.add("921");
-        data.put("co2", (List<Object>) values.clone());
+        values.add(4444435326D);
+        data.put("co2", (List<Double>) values.clone());
 
     }
 
@@ -67,16 +67,7 @@ public class CsvImportExportTest {
         Assert.assertFalse(exporter.exportData(data, null));
         Assert.assertFalse(exporter.exportData(null, file));
 
-        Map<String, List<Object>> importedData = importer.importData(file);
-        for (String key : importedData.keySet()) {
-            for (int i = 0; i < importedData.get(key).size(); i++) {
-                if (importedData.get(key).get(i).equals("null")) {
-                    importedData.get(key).remove(i);
-                    i--;
-                }
-            }
-        }
-
+        Map<String, List<Double>> importedData = importer.importData(file);
         Assert.assertEquals(importedData, data);
     }
 

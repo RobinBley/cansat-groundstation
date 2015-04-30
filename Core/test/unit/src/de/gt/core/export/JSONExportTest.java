@@ -18,19 +18,19 @@ public class JSONExportTest {
     @Test
     public void testExportData() {
         Exporter exporter = new JSONExport();
-        Map<String, List<Object>> data = new HashMap<String, List<Object>>();
-        ArrayList<Object> values = new ArrayList<Object>();
-        values.add("1");
-        values.add("234");
+        Map<String, List<Double>> data = new HashMap<String, List<Double>>();
+        ArrayList<Double> values = new ArrayList<Double>();
+        values.add(1D);
+        values.add(234D);
         values.add(null);
-        data.put("time", (List<Object>) values.clone());
+        data.put("time", (List<Double>) values.clone());
         values.clear();
-        values.add(2L);
-        values.add(346345);
+        values.add(2D);
+        values.add(346345D);
         values.add(899922.20032);
         values.add(222D);
-        values.add("34");
-        data.put("temp", (List<Object>) values.clone());
+        values.add(34D);
+        data.put("temp", (List<Double>) values.clone());
         File file = new File(System.getProperty("user.home") + "\\JSONEXPORTTEST.json");
         Assert.assertTrue(exporter.exportData(data, file));
         Assert.assertFalse(exporter.exportData(null, null));

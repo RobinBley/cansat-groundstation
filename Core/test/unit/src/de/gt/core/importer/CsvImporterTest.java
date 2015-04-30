@@ -21,7 +21,7 @@ public class CsvImporterTest {
     public void testImportData() {
         CsvImporter importer = new CsvImporter();
         File file = new File(System.getProperty("user.home") + "\\CSVEXPORTTEST.csv");
-        Map<String, List<Object>> data = importer.importData(file);
+        Map<String, List<Double>> data = importer.importData(file);
 
         for (String key : data.keySet()) {
             System.out.println(key);

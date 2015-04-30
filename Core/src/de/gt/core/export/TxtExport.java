@@ -1,7 +1,6 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
-import de.gt.api.input.data.DataUnit;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -18,14 +17,14 @@ import java.util.logging.Logger;
 public class TxtExport implements Exporter {
 
     @Override
-    public boolean exportData(Map<String, List<DataUnit>> data, File output) {
+    public boolean exportData(Map<String, List<Double>> data, File output) {
         //Wenn das uebergebene File oder die uebergebene Map null ist, wird false zurueckgegeben.
         if (output == null || data == null) {
             return false;
         }
-        try {
-            //Es wird ein FileWriter erzeugund, um das uebergebene File zu beschreiben.
-            FileWriter writer = (new FileWriter(output));
+        //Es wird ein FileWriter erzeugund, um das uebergebene File zu beschreiben.
+        try (FileWriter writer = (new FileWriter(output));) {
+
             //Es wird ein StringBuilder vorbereitet, welcher die ensprechende Syntax eines Formatierten Strings beinhaltet.
             StringBuilder formatStr = new StringBuilder("%-20s ");
             int maxSize = 0;
@@ -42,17 +41,20 @@ public class TxtExport implements Exporter {
             //Der fertige und formatierte String wird mittels des FileWriters in ein File geschrieben.
             writer.write(String.format(formatStr.toString(), data.keySet().toArray()));
             ArrayList<String> buffer;
+            ArrayList<Double> dataSet;
             int index = 0;
             //Die Daten der Map werden mit der ensprechenden Syntax, eines Formatierten Strings, dem StringBuilder hinzugefuegt.
+
             while (index < maxSize) {
                 buffer = new ArrayList();
                 for (String key : data.keySet()) {
-                    if (data.get(key).size() <= index) {
+                    dataSet = (ArrayList<Double>) data.get(key);
+                    if (dataSet.size() <= index) {
                         buffer.add("null");
-                    } else if (data.get(key).get(index).getObjectValue() == null) {
+                    } else if (dataSet.get(index) == null) {
                         buffer.add("null");
                     } else {
-                        buffer.add((String) data.get(key).get(index).getObjectValue());
+                        buffer.add(String.valueOf(dataSet.get(index)));
                     }
                 }
                 //Der fertige und formatierte String wird mittels des FileWriters in ein File geschrieben.
@@ -60,7 +62,6 @@ public class TxtExport implements Exporter {
                 index++;
             }
             writer.flush();
-            writer.close();
 
         } catch (Exception e) {
             Logger.getLogger(TxtExport.class.getName()).log(Level.SEVERE, null, e);

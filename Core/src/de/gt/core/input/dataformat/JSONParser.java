@@ -36,33 +36,17 @@ public class JSONParser implements DataFormat {
 
     @Override
     public void parseData(String data) {
-        Collection<Entry<String, DataUnit>> units = new ArrayList<>();
+        Collection<Entry<String, Double>> units = new ArrayList<>();
         JSONObject jData = new JSONObject(data);
         Map<String, ValueConfig> keys = config.getValueConfigs();
         for (Entry<String, ValueConfig> entry : keys.entrySet()) {
             String key = entry.getKey();
             if (jData.has(key)) {
-                DataUnit datum = null;
-                switch (entry.getValue().getType()) {
-
-                    case DOUBLE:
-                        datum = new DataUnit(jData.getDouble(key));
-                        break;
-                    case LONG:
-                        datum = new DataUnit(jData.getLong(key));
-                        break;
-                    case STRING:
-                        datum = new DataUnit(jData.getString(key));
-                        break;
-                    default:
-                        datum = new DataUnit(entry.getValue().getType());
-                        break;
-
-                }
+                Double datum = jData.getDouble(key);
                 units.add(new SimpleEntry<>(key, datum));
             }
         }
-        relay.relay(units);
+        relay.relay((Map<String, Double>) units);
     }
 
 }

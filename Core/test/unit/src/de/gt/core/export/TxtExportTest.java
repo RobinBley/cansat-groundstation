@@ -18,19 +18,19 @@ public class TxtExportTest {
     @Test
     public void testExportData() {
         Exporter exporter = new TxtExport();
-        Map<String, List<Object>> data = new HashMap<String, List<Object>>();
-        ArrayList<Object> values = new ArrayList<Object>();
-        values.add("11111");
-        values.add("234");
+        Map<String, List<Double>> data = new HashMap<String, List<Double>>();
+        ArrayList<Double> values = new ArrayList<Double>();
+        values.add(11111D);
+        values.add(234D);
         values.add(null);
-        data.put("time", (List<Object>) values.clone());
+        data.put("time", (List<Double>) values.clone());
         values.clear();
-        values.add("346");
-        values.add("346345");
-        values.add("899922");
-        values.add("2");
-        values.add("34");
-        data.put("temp", (List<Object>) values.clone());
+        values.add(346D);
+        values.add(346345D);
+        values.add(899922D);
+        values.add(2D);
+        values.add(34D);
+        data.put("temp", (List<Double>) values.clone());
         File file = new File(System.getProperty("user.home") + "\\TXTEXPORTTEST.txt");
         Assert.assertTrue(exporter.exportData(data, file));
         Assert.assertFalse(exporter.exportData(null, null));

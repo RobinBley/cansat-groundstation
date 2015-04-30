@@ -6,7 +6,6 @@
 package de.gt.core.input;
 
 import de.gt.api.input.data.DataType;
-import de.gt.api.input.data.DataUnit;
 import de.gt.api.relay.Receiver;
 
 import java.util.HashMap;
@@ -29,7 +28,7 @@ import org.netbeans.junit.NbTestCase;
  */
 public class InputJSONTest extends NbTestCase implements Receiver {
 
-    private Map<String, DataUnit> output;
+    private Map<String, Double> output;
 
     public InputJSONTest(String name) {
         super(name);
@@ -56,7 +55,8 @@ public class InputJSONTest extends NbTestCase implements Receiver {
 
         jdata.put("temp", 1234522);
         dataFormat.parseData(jdata.toString());
-        DebugJSON.createWithDebugGenerator(dataFormat);
+        //Zeile fehlerhaft durch refactoring (MARK!!!)
+//        DebugJSON.createWithDebugGenerator(dataFormat);
     }
 
     /**
@@ -64,11 +64,11 @@ public class InputJSONTest extends NbTestCase implements Receiver {
      */
     @Test
     public void testInput() {
-        Assert.assertEquals(Long.valueOf(1234522), output.get("temp").getLongValue());
+        Assert.assertEquals(Long.valueOf(1234522), output.get("temp"));
     }
 
     @Override
-    public void receive(Map<String, DataUnit> datum) {
+    public void receive(Map<String, Double> datum) {
         output = datum;
 
     }

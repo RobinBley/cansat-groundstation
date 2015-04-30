@@ -24,8 +24,8 @@ public class JSONImporter {
         HashMap<String, List<Double>> data = new HashMap<String, List<Double>>();
 
         //Ein BufferedReader wird erzeugt um die uebergebene Datei zu lesen.
-        try(BufferedReader reader = new BufferedReader(new FileReader(input));) {
-            
+        try (BufferedReader reader = new BufferedReader(new FileReader(input));) {
+
             //Die Daten Der uebergebenen Datei werden als JSONObject gespeichert.
             JSONArray jArray;
             String line = null;
@@ -54,9 +54,6 @@ public class JSONImporter {
 
                 }
             }
-            //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.
-            return data;
-
         } catch (IOException e) {
             Logger.getLogger(JSONImporter.class.getName()).log(Level.SEVERE, null, e);
 
@@ -64,6 +61,7 @@ public class JSONImporter {
             Logger.getLogger(JSONImporter.class.getName()).log(Level.SEVERE, null, e);
 
         }
+        //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.
         return data;
     }
 }

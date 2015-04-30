@@ -5,8 +5,6 @@ package de.gt.core.input;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-import de.gt.api.input.data.DataUnit;
 import de.gt.core.input.logging.JSONLogger;
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +18,6 @@ import org.junit.Test;
  */
 public class JSONDataloggerTest {
 
-    public JSONDataloggerTest() {
-    }
-
     /**
      * Test of receive method, of class Datalogger.
      */
@@ -31,16 +26,10 @@ public class JSONDataloggerTest {
 //        JSONLogger logger = new JSONLogger();
         File file = new File(System.getProperty("user.home") + "\\JSONLoggingTest.json");
         JSONLogger logger = new JSONLogger(file);
-        DataUnit unit = new DataUnit("12354");
-        Map data = new HashMap<String, DataUnit>();
-        data.put("temp", unit);
+        Map data = new HashMap<String, Double>();
+        data.put("temp", 35345.43645);
         logger.receive(data);
-        
-        
-        
-        
-        
-        
+
     }
 
 }
