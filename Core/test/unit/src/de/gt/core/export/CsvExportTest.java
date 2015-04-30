@@ -1,7 +1,6 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
-import de.gt.api.input.data.DataUnit;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,20 +21,29 @@ public class CsvExportTest {
     @Test
     public void testExportData() {
         Exporter exporter = new CsvExport();
-        Map<String, List<DataUnit>> data = new HashMap<String, List<DataUnit>>();
-        ArrayList<DataUnit> values = new ArrayList<DataUnit>();
-        values.add(new DataUnit(2432L));
-        values.add(new DataUnit(4647.235D));
-        values.add(new DataUnit("3sdafsdg34"));
-        data.put("time", (List<DataUnit>) values.clone());
+        Map<String, List<Double>> data = new HashMap<String, List<Double>>();
+        ArrayList<Double> values = new ArrayList<Double>();
+        values.add(19D);
+        values.add(2D);
+        values.add(3D);
+        values.add(4D);
+        values.add(5D);
+        values.add(6D);
+        data.put("time", (List<Double>) values.clone());
         values.clear();
-        values.add(new DataUnit(435346L));
-        values.add(new DataUnit("dwsdfe4"));
-        values.add(new DataUnit(43534.646));
-        values.add(new DataUnit(423534L));
-        data.put("temp", values);
-        
-        File file = new File(System.getProperty("user.home") + "\\TG-Csv_Exporttest.csv");
+        values.add(346D);
+        values.add(346345D);
+        values.add(899922D);
+        values.add(8299922D);
+        values.add(829D);
+        data.put("temp", (List<Double>) values.clone());
+        values.clear();
+        values.add(6D);
+        values.add(5D);
+        values.add(2D);
+        values.add(92D);
+        data.put("co2", (List<Double>) values.clone());
+        File file = new File(System.getProperty("user.home") + "\\CSVEXPORTTEST.csv");
         Assert.assertTrue(exporter.exportData(data, file));
         Assert.assertFalse(exporter.exportData(null, null));
         Assert.assertFalse(exporter.exportData(data, null));

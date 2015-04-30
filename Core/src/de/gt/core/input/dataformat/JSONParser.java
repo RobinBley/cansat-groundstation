@@ -36,6 +36,7 @@ public class JSONParser implements DataFormat {
                 .filter(jData::has)
                 .collect(Collectors.toMap(k -> k, jData::getDouble));
         relay.relay(units);
+
     }
 
 }

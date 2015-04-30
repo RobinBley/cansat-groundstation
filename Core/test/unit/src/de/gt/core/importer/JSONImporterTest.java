@@ -21,11 +21,11 @@ public class JSONImporterTest {
 
         File file = new File(System.getProperty("user.home") + "\\TG-JSON-Exporttest.json");
         JSONImporter importer = new JSONImporter();
-        Map<String, List<DataUnit>> data = importer.importData(file);
+        Map<String, List<Double>> data = importer.importData(file);
 
         for (String key : data.keySet()) {
             for (int i = 0; i < data.get(key).size(); i++) {
-                System.out.println(key + data.get(key).get(i).getType() + ":" +data.get(key).get(i).getObjectValue());
+                System.out.println(key + data.get(key).get(i));
 
             }
         }
