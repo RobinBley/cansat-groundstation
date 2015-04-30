@@ -1,6 +1,5 @@
 package de.gt.core.importer;
 
-import de.gt.api.input.data.DataUnit;
 import de.gt.importer.JSONImporter;
 import java.io.File;
 import java.util.List;

@@ -1,6 +1,5 @@
 package de.gt.core.transmission;
 
-import de.gt.api.input.data.DataUnit;
 import de.gt.api.relay.Receiver;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -80,11 +79,11 @@ public class SocketServer implements Receiver, Runnable {
     }
 
     @Override
-    public void receive(Map<String, DataUnit> data) {
+    public void receive(Map<String, Double> data) {
         //Die uebergebenen Daten werden zu einem JSONObject geparsed.
         JSONObject jsonData = new JSONObject();
         for (String key : data.keySet()) {
-            jsonData.put(key, data.get(key).getObjectValue());
+            jsonData.put(key, data.get(key));
         }
         //Das JSONObject wird als String den Clients gesendet.
         broadcast(jsonData.toString());
