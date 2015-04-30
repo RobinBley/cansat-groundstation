@@ -39,7 +39,7 @@ public final class OpenMapVisualizationWindowAction implements ActionListener {
 
         //Datenkomponent an Relay anschließen
         relay.addReceiver(mapVisualizationWindow);
-
+        
         //Visualisierungsfenster anzeigen
         mapVisualizationWindow.open();
     }

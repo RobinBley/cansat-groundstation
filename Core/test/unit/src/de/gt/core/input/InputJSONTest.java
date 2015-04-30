@@ -5,21 +5,18 @@
  */
 package de.gt.core.input;
 
-import de.gt.api.input.data.DataType;
 import de.gt.api.relay.Receiver;
 
-import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import de.gt.core.config.Config;
-import de.gt.core.config.ValueConfig;
 import de.gt.core.data.ConsoleOutput;
 import de.gt.core.input.dataformat.JSONParser;
 import de.gt.core.relay.DataProvider;
-import de.gt.core.sources.DebugJSON;
+import java.util.ArrayList;
 import org.netbeans.junit.NbTestCase;
 
 /**
@@ -36,9 +33,9 @@ public class InputJSONTest extends NbTestCase implements Receiver {
 
     @Before
     public void setUp() {
-        HashMap valueConfigs = new HashMap<String, ValueConfig>();
-        valueConfigs.put("temp", new ValueConfig(DataType.LONG, "temp"));
-//        valueConfigs.put("test", new ValueConfig(DataType.LONG, "test"));
+        ArrayList<String> valueConfigs = new ArrayList<>();
+        valueConfigs.add("temp");
+        valueConfigs.add("test");
 
         Config config = new Config("config", "identifier", "json", valueConfigs);
 
