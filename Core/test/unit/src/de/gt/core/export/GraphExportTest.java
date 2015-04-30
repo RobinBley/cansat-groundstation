@@ -16,7 +16,7 @@ public class GraphExportTest {
     public void testExportData() {
         GraphExport exporter = new GraphExport();
         BufferedImage data = new BufferedImage(222, 2222, BufferedImage.TYPE_INT_ARGB);
-        File file = new File(System.getProperty("user.home") + "\\GraphEXPORTTEST.png");
+        File file = new File(System.getProperty("user.home") + "\\TG-GRAPH-Exporttest.json");
         Assert.assertTrue(exporter.exportData(data, file, "png"));
     }
 }

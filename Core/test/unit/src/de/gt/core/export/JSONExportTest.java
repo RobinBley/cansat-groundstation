@@ -31,7 +31,7 @@ public class JSONExportTest {
         values.add(222D);
         values.add(34D);
         data.put("temp", (List<Double>) values.clone());
-        File file = new File(System.getProperty("user.home") + "\\JSONEXPORTTEST.json");
+        File file = new File(System.getProperty("user.home") + "\\TG-JSON-Exporttest.json");
         Assert.assertTrue(exporter.exportData(data, file));
         Assert.assertFalse(exporter.exportData(null, null));
         Assert.assertFalse(exporter.exportData(data, null));

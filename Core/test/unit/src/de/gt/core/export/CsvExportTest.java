@@ -43,8 +43,7 @@ public class CsvExportTest {
         values.add(2D);
         values.add(92D);
         data.put("co2", (List<Double>) values.clone());
-        File file = new File(System.getProperty("user.home") + "\\CSVEXPORTTEST.csv");
-        Assert.assertTrue(exporter.exportData(data, file));
+        File file = new File(System.getProperty("user.home") + "\\TG-CSV-Exporttest.json");
         Assert.assertFalse(exporter.exportData(null, null));
         Assert.assertFalse(exporter.exportData(data, null));
         Assert.assertFalse(exporter.exportData(null, file));

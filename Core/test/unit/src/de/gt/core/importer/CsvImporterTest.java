@@ -20,7 +20,7 @@ public class CsvImporterTest {
     @Test
     public void testImportData() {
         CsvImporter importer = new CsvImporter();
-        File file = new File(System.getProperty("user.home") + "\\CSVEXPORTTEST.csv");
+        File file = new File(System.getProperty("user.home") + "\\TG-CSV-Exporttest.json");
         Map<String, List<Double>> data = importer.importData(file);
 
         for (String key : data.keySet()) {
