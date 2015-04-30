@@ -4,15 +4,18 @@
     "format": "JSON",
     "values": {
         "temperature": {
-            "type": "DOUBLE",
             "identifier": "temperature"
         },
         "gps": {
-            "type": "STRING",
-            "identifier": "position"
+            "identifier": "position",
+            "parser" : "GPSParser",
+            "children" : [
+                "long",
+                "lat",
+                "alt"
+            ]
         },
         "time": {
-            "type": "LONG",
             "identifier": "time"
         }
     }
