@@ -35,7 +35,7 @@ public final class OpenMapVisualizationWindowAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         //Neues Fenster für Graphenvisualisierung erzeugen
-        EarthTopComponent mapVisualizationWindow = new EarthTopComponent();
+        EarthTopComponent mapVisualizationWindow = new EarthTopComponent(null);
 
         //Datenkomponent an Relay anschließen
         relay.addReceiver(mapVisualizationWindow);

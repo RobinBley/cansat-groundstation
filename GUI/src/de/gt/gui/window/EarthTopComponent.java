@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package de.gt.gui.window;
 
 import de.gt.api.gps.GPSKey;
@@ -13,12 +18,19 @@ import gov.nasa.worldwind.render.Polyline;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.netbeans.api.settings.ConvertAsProperties;
+import org.openide.awt.ActionID;
+import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 
+/**
+ * Top component which displays something.
+ */
 @TopComponent.Description(
         preferredID = "LivePathEarthTopComponent",
-        persistenceType = TopComponent.PERSISTENCE_NEVER
+        //iconBase="SET/PATH/TO/ICON/HERE", 
+        persistenceType = TopComponent.PERSISTENCE_ALWAYS
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
 @Messages({
@@ -27,21 +39,23 @@ import org.openide.util.NbBundle.Messages;
     "HINT_LivePathEarthTopComponent=This is a LivePathEarth window"
 })
 public final class EarthTopComponent extends TopComponent implements Receiver {
-
-    private static final String GPS_KEY = "gps";
+    
     private static final AnnotationAttributes ATTRIBS = new AnnotationAttributes();
-
     static {
         ATTRIBS.setAdjustWidthToText(AVKey.SIZE_FIT_TEXT);
     }
-
+    
     private final List<Position> positions = new ArrayList<>();
-
+    
+    private final GPSKey k;
+    
     private final WorldWindowGLCanvas wwd;
     private final RenderableLayer layer;
     private final Polyline path;
-
-    public EarthTopComponent() {
+    
+    public EarthTopComponent(GPSKey k) {
+        this.k = k;
+        
         initComponents();
         setName(Bundle.CTL_LivePathEarthTopComponent());
         setToolTipText(Bundle.HINT_LivePathEarthTopComponent());
@@ -52,7 +66,6 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
         path = new Polyline();
         layer.addRenderable(path);
         bm.getLayers().add(layer);
-        add(wwd);
     }
 
     private void add(Position p, GlobeAnnotation a) {
@@ -61,7 +74,7 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
         layer.addRenderable(a);
         wwd.redraw();
     }
-
+    
     @Override
     public void receive(Map<String, Double> datum) {
         double latitude = datum.get(k.getLatitudeKey());
@@ -75,7 +88,7 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
         GlobeAnnotation a = new GlobeAnnotation(b.toString(), p, ATTRIBS);
         add(p, a);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,5 +119,17 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
     @Override
     public void componentClosed() {
         // TODO add custom code on component closing
+    }
+
+    void writeProperties(java.util.Properties p) {
+        // better to version settings since initial version as advocated at
+        // http://wiki.apidesign.org/wiki/PropertyFiles
+        p.setProperty("version", "1.0");
+        // TODO store your settings
+    }
+
+    void readProperties(java.util.Properties p) {
+        String version = p.getProperty("version");
+        // TODO read your settings according to their version
     }
 }

@@ -1,15 +1,10 @@
 package de.gt.gui.window;
 
+import de.gt.api.config.Config;
 import de.gt.api.relay.Receiver;
-import de.gt.api.relay.Relay;
 import de.gt.api.streamutils.MapCollector;
 import info.monitorenter.gui.chart.IAxis;
-import java.util.Collection;
 import java.util.Map;
-import org.netbeans.api.settings.ConvertAsProperties;
-import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
-import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 import org.openide.util.NbBundle.Messages;
@@ -159,5 +154,10 @@ public class VisualizationTopComponent extends TopComponent implements Receiver,
                 .collect(MapCollector.create());
         // TODO: Daten zum Graphen hinzufügen
         
+    }
+
+    @Override
+    public void resultChanged(LookupEvent le) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
