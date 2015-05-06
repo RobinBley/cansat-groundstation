@@ -8,6 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -41,8 +44,17 @@ public class KMLExport implements Exporter {
         "        <coordinates>%s</coordinates>\n" +
         "      </LineString>\n" +
         "    </Placemark>\n" +
+        "    %s" +
         "  </Document>\n" +
-        "</kml>";
+        "</kml>\n";
+    private static final String ANNOTATION_TEMPLATE = "<Placemark>\n" +
+        "    <name>Satellite datum</name>\n" +
+        "    <description>%s</description>\n" +
+        "    <Point>\n" +
+        "      <extrude>1</extrude>\n" +
+        "      <coordinates>%f,%f,%f</coordinates>\n" +
+        "    </Point>\n" +
+        "  </Placemark>\n";
     
     private final GPSKey k;
     
@@ -56,16 +68,28 @@ public class KMLExport implements Exporter {
         List<Double> longitudes = data.get(k.getLongitudeKey());
         List<Double> altitudes = data.get(k.getAltitudeKey());
         int latitudesSize = latitudes.size();
-        if (latitudesSize != longitudes.size() || latitudesSize != altitudes.size()) {
+        boolean missingData = data.values().stream()
+                .mapToInt(List::size)
+                .anyMatch(s -> s != latitudesSize);
+        if (missingData) {
             return false;
         }
-        StringBuilder b = new StringBuilder();
-        IntStream.range(0, latitudesSize)
+        String pathCoords = IntStream.range(0, latitudesSize)
                 .mapToObj(i -> String.format("%f,%f,%f\n", 
                         latitudes.get(i), longitudes.get(i), altitudes.get(i)))
-                .forEach(b::append);
+                .collect(Collectors.joining());
+        Set<Entry<String, List<Double>>> entries = data.entrySet();
+        String annotations = IntStream.range(0, latitudesSize)
+                .mapToObj(i -> { 
+                    String formattedData = entries.stream()
+                                .map(e -> String.format("%s: %s\n", 
+                                        e.getKey(), e.getValue().get(i)))
+                                .collect(Collectors.joining());
+                    return String.format(ANNOTATION_TEMPLATE, formattedData, 
+                            latitudes.get(i), longitudes.get(i), altitudes.get(i));
+                }).collect(Collectors.joining());
         try (BufferedWriter w = new BufferedWriter(new FileWriter(output))) {
-            w.write(String.format(KML_TEMPLATE, b.toString()));
+            w.write(String.format(KML_TEMPLATE, pathCoords, annotations));
             return true;
         } catch (IOException e) {
             return false;
