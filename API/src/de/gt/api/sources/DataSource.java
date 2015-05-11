@@ -4,8 +4,8 @@ import de.gt.api.input.dataformat.DataFormat;
 import java.io.Closeable;
 
 /**
- * Interface for all sources of data,
- * for instance USB
+ * Interface for all sources of data, for instance USB
+ *
  * @author mhuisi
  */
 public interface DataSource extends Closeable {
@@ -14,19 +14,12 @@ public interface DataSource extends Closeable {
      * Opens this source.
      */
     void open();
-    
+
     /**
-     * Gets the formatter that this source
-     * relays the data to.
-     * @return formatter
-     */
-    DataFormat getFormatter();
-    
-    /**
-     * Sets the formatter that this source 
-     * relays the data to.
+     * Linkt einen Parser als Zwischenstück 
+     * für die Weiterverarbeitung in die Pipeline
+     *
      * @param f - formatter
      */
-    void setFormatter(DataFormat f);
-    
+    void linkParser(DataFormat f);
 }
