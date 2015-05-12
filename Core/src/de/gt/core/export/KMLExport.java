@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -44,14 +45,23 @@ public class KMLExport implements Exporter {
         "        <coordinates>%s</coordinates>\n" +
         "      </LineString>\n" +
         "    </Placemark>\n" +
+        "    <Style id=\"downArrowIcon\">\n" +
+        "      <IconStyle>\n" +
+        "        <Icon>\n" +
+        "          <href>http://maps.google.com/mapfiles/dir_60.png</href>\n" +
+        "        </Icon>\n" +
+        "      </IconStyle>\n" +
+        "    </Style>\n" +
         "    %s" +
         "  </Document>\n" +
         "</kml>\n";
     private static final String ANNOTATION_TEMPLATE = "<Placemark>\n" +
-        "    <name>Satellite datum</name>\n" +
+        "    <name></name>\n" +
         "    <description>%s</description>\n" +
+        "    <styleUrl>#downArrowIcon</styleUrl>\n" +
         "    <Point>\n" +
         "      <extrude>1</extrude>\n" +
+        "      <altitudeMode>relativeToGround</altitudeMode>\n" +
         "      <coordinates>%f,%f,%f</coordinates>\n" +
         "    </Point>\n" +
         "  </Placemark>\n";
@@ -75,7 +85,7 @@ public class KMLExport implements Exporter {
             return false;
         }
         String pathCoords = IntStream.range(0, latitudesSize)
-                .mapToObj(i -> String.format("%f,%f,%f\n", 
+                .mapToObj(i -> String.format(Locale.US, "%f,%f,%f\n", 
                         latitudes.get(i), longitudes.get(i), altitudes.get(i)))
                 .collect(Collectors.joining());
         Set<Entry<String, List<Double>>> entries = data.entrySet();
@@ -85,7 +95,7 @@ public class KMLExport implements Exporter {
                                 .map(e -> String.format("%s: %s\n", 
                                         e.getKey(), e.getValue().get(i)))
                                 .collect(Collectors.joining());
-                    return String.format(ANNOTATION_TEMPLATE, formattedData, 
+                    return String.format(Locale.US, ANNOTATION_TEMPLATE, formattedData, 
                             latitudes.get(i), longitudes.get(i), altitudes.get(i));
                 }).collect(Collectors.joining());
         try (BufferedWriter w = new BufferedWriter(new FileWriter(output))) {

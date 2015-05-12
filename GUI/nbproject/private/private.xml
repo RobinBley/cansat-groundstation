@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/GUI/src/de/gt/gui/window/Bundle.properties</file>
             <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/GUI/src/de/gt/gui/window/TableDisplayTopComponent.java</file>
+            <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/GUI/src/de/gt/gui/window/VisualizationTopComponent.java</file>
             <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/GUI/src/de/gt/gui/window/EarthTopComponent.java</file>
             <file>file:/C:/Users/laze/Workspaces/Netbeans/cansat-groundstation/GUI/src/de/gt/gui/window/TextDisplayTopComponent.java</file>
         </group>
