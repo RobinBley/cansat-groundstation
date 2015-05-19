@@ -5,6 +5,7 @@
  */
 package de.gt.api.config;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -12,11 +13,12 @@ import java.util.Map;
  * @author Kevin
  */
 public interface Config {
+
     public String getName();
 
     public String getIdentifier();
 
     public String getFormat();
 
-    public Map<String, Double> getValueConfigs();
+    public Collection<String> getValueConfigs();
 }
