@@ -2,10 +2,12 @@ package de.gt.core.input.dataformat;
 
 import de.gt.api.input.dataformat.DataFormat;
 import de.gt.api.relay.Relay;
+import de.gt.api.streamutils.MapCollector;
 import de.gt.core.config.Config;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Collection;
 import java.util.Map;
-import java.util.stream.Collectors;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -19,16 +21,24 @@ public class JSONFormat implements DataFormat {
 
     @Override
     public void parseData(String data) {
-        JSONObject jsonData = new JSONObject(data);
+        try {
+            JSONObject jsonData = new JSONObject(data);
+            Collection<String> keys = config.getValueConfigs();
+            Map<String, Double> units = keys.stream()
+                    .map(k -> {
+                        if (jsonData.has(k)) {
+                            return new SimpleEntry<String, Double>(k, null);
+                        }
+                        return new SimpleEntry<>(k, jsonData.getDouble(k));
+                    }).collect(MapCollector.create());
 
-        Collection<String> keys = config.getValueConfigs();
-        Map<String, Double> units = keys.stream()
-                .filter(jsonData::has)
-                .collect(Collectors.toMap(k -> k, jsonData::getDouble));
-
-        if (relay != null) {
-            relay.relay(units);
+            if (relay != null) {
+                relay.relay(units);
+            }
+        } catch (JSONException e) {
+            //TODO: Log invalid data
         }
+        
     }
 
     @Override
