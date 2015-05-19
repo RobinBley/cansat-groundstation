@@ -5,6 +5,7 @@ import de.gt.api.relay.Receiver;
 import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
 import java.util.Set;
+import org.openide.util.lookup.ServiceProvider;
 
 /**
  * @author Kevin
@@ -15,7 +16,8 @@ import java.util.Set;
  * DataSource | DataFormat | Relay -> Push an die Receiver
  *
  */
-public class DataPipeline {
+@ServiceProvider(service = de.gt.api.datapipeline.DataPipeline.class)
+public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
 
     private DataSource pipeSource;
     private DataFormat pipeParser;
