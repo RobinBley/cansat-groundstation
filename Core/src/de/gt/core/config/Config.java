@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author Kevin
  */
-public class Config {
+public class Config implements de.gt.api.config.Config{
     private String name;
     private String identifier;
     private String format;
@@ -37,7 +37,8 @@ public class Config {
         return format;
     }
 
-    public Collection<String> getValueConfigs() {
-        return valueConfigs;
+    @Override
+    public Map<String, Double> getValueConfigs() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
