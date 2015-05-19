@@ -38,7 +38,7 @@ public class Config implements de.gt.api.config.Config{
     }
 
     @Override
-    public Map<String, Double> getValueConfigs() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Collection<String> getValueConfigs() {
+        return valueConfigs;
     }
 }
