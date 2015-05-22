@@ -9,11 +9,13 @@ import java.util.Collection;
 import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.openide.util.lookup.ServiceProvider;
 
 /**
  *
  * @author Robin
  */
+@ServiceProvider(service = DataFormat.class)
 public class JSONFormat implements DataFormat {
 
     private Relay relay;
@@ -38,7 +40,7 @@ public class JSONFormat implements DataFormat {
         } catch (JSONException e) {
             //TODO: Log invalid data
         }
-        
+
     }
 
     @Override
