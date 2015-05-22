@@ -3,7 +3,7 @@ package de.gt.api.config;
 import java.util.Collection;
 
 /**
- * Represents a config
+ * Stellt eine Config dar
  * @author Kevin
  */
 public interface Config {

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Represents an import parser
+ * Stellt einen Import-Parser dar
  * @author Robin
  */
 public interface Importer {

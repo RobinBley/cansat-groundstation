@@ -3,7 +3,7 @@ package de.gt.api.relay;
 import de.gt.api.config.Config;
 
 /**
- * Interface für Konfigurierbare
+ * Interface für konfigurierbare
  * Component (Die Components die auf
  * Config-Veränderungen reagieren müssen).
  * 
@@ -12,7 +12,8 @@ import de.gt.api.config.Config;
 public interface Configurable {
     
     /**
-     * Triggered when the config has changed
+     * Getriggert wenn die Konfigurationsdatei
+     * verändert wird
      * @param newConfig 
      */
     void configChanged(Config newConfig);

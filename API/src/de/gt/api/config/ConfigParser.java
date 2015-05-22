@@ -1,7 +1,7 @@
 package de.gt.api.config;
 
 /**
- * Represents a config parser
+ * Parst Konfigurationsdateien
  * @author Kevin
  */
 public interface ConfigParser {

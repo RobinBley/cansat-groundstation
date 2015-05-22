@@ -1,7 +1,7 @@
 package de.gt.api.config;
 
 /**
- * Represents a config loader
+ * Stellt einen Konfigurationslader dar
  * @author Kevin
  */
 public interface ConfigLoader {
