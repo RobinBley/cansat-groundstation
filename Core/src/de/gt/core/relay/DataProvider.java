@@ -26,6 +26,7 @@ public class DataProvider implements Relay{
      *
      * @param datum
      */
+    @Override
     public void relay(Map<String, Double> datum) {
         Map<String, Double> cleaned = datum.entrySet().stream()
                 .map(e -> {
@@ -41,10 +42,12 @@ public class DataProvider implements Relay{
         receivers.stream().forEach(d -> d.receive(cleaned));
     }
 
+    @Override
     public void addReceiver(Receiver receiver) {
         receivers.add(receiver);
     }
 
+    @Override
     public boolean removeReceiver(Receiver receiver) {
         return receivers.remove(receiver);
     }

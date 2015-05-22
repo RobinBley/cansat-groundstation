@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.importer;
 
 import de.gt.api.importer.Importer;
@@ -20,7 +15,7 @@ import java.util.logging.Logger;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- *
+ * Imports data from csv format
  * @author Robin
  */
 @ServiceProvider(service = Importer.class)
@@ -29,7 +24,7 @@ public class CsvImporter implements Importer {
     @Override
     public Map<String, List<Double>> importData(File input) {
         //Eine HashMap wird erzeugt, welche spaeter die Daten des uebergebenen Files enthaelt.
-        Map<String, List<Double>> data = new HashMap<String, List<Double>>();
+        Map<String, List<Double>> data = new HashMap<>();
 
         //Ein BufferedReader wird erzeugt um die uebergebene Datei zu lesen.
         try (BufferedReader reader = new BufferedReader(new FileReader(input));) {
@@ -40,7 +35,7 @@ public class CsvImporter implements Importer {
             String[] dataSet;
             //Fuer jeden Key der Datei wird eine ArrayList in der Map erzeugt.
             for (String key : keys) {
-                data.put(key, new ArrayList<Double>());
+                data.put(key, new ArrayList<>());
             }
             //Die Daten der Datei werden der jeweiligen ArrayList in der Map hinzugefuegt.
             while ((line = reader.readLine()) != null) {

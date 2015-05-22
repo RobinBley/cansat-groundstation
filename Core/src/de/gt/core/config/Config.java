@@ -1,23 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.core.config;
 
 import java.util.Collection;
-import java.util.Map;
 
 /**
- *
+ * Represents the data read from a config
  * @author Kevin
  */
 public class Config implements de.gt.api.config.Config{
-    private String name;
-    private String identifier;
-    private String format;
-    private Collection<String> valueConfigs;
+    private final String name;
+    private final String identifier;
+    private final String format;
+    private final Collection<String> valueConfigs;
 
+    /**
+     * Constructor
+     * @param name - name of the satellite
+     * @param identifier - identifier of the satellite
+     * @param format - transmission format
+     * @param valueConfigs - keys
+     */
     public Config(String name, String identifier, String format, Collection<String> valueConfigs) {
         this.name = name;
         this.identifier = identifier;
@@ -25,20 +26,23 @@ public class Config implements de.gt.api.config.Config{
         this.valueConfigs = valueConfigs;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getIdentifier() {
         return identifier;
     }
 
+    @Override
     public String getFormat() {
         return format;
     }
 
     @Override
-    public Collection<String> getValueConfigs() {
+    public Collection<String> getKeys() {
         return valueConfigs;
     }
 }

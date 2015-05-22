@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- *
+ * Exporter for graphs
  * @author Robin
  */
 @ServiceProvider(service = de.gt.api.export.Exporter.class)

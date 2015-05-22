@@ -66,7 +66,7 @@ public class SocketServer implements Receiver, Runnable {
      */
     public void start() {
         flag = true;
-        writers = new ArrayList<PrintWriter>();
+        writers = new ArrayList<>();
         try {
             //Ein ServerSocket wird erstellt und ihm wird ein Port zugewiesen.
             ServerSocket serverSock = new ServerSocket(5000);

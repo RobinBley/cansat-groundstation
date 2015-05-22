@@ -16,16 +16,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.openide.util.lookup.ServiceProvider;
 
+/**
+ * Imports data from JSON
+ * @author mhuisi
+ */
 @ServiceProvider(service = Importer.class)
 public class JSONImporter implements Importer {
 
+    @Override
     public Map<String, List<Double>> importData(File input) {
         //Es wird geprueft ob eine Datei uebergeben wurde.
         if (input == null) {
             return null;
         }
         //Eine HashMap wird erzeugt, welche spaeter die Daten des uebergebenen Files enthaelt.
-        HashMap<String, List<Double>> data = new HashMap<String, List<Double>>();
+        HashMap<String, List<Double>> data = new HashMap<>();
         //Ein BufferedReader wird erzeugt um die uebergebene Datei zu lesen.
         try (BufferedReader reader = new BufferedReader(new FileReader(input));) {
             //Die Daten Der uebergebenen Datei werden als JSONObject gespeichert.
@@ -37,7 +42,7 @@ public class JSONImporter implements Importer {
                 //Es wird versucht ein JSONArray aus der Zeile zuerzeugen.
                 for (String key : jsonData.keySet()) {
                     if(!data.containsKey(key)){
-                        data.put(key, new ArrayList<Double>());
+                        data.put(key, new ArrayList<>());
                     }
                     try {
                         //Es wird druch das jeweilige JSONArray iteriert und die Werte in die Map geschrieben.

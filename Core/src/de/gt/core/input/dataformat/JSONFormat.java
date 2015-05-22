@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- *
+ * Parses JSON data
  * @author Robin
  */
 @ServiceProvider(service = DataFormat.class)
@@ -23,22 +23,26 @@ public class JSONFormat implements DataFormat {
 
     @Override
     public void parseData(String data) {
+        if (relay != null) {
+            System.out.println("Cannot parse JSON because relay is not set.");
+        }
         try {
             JSONObject jsonData = new JSONObject(data);
-            Collection<String> keys = config.getValueConfigs();
+            Collection<String> keys = config.getKeys();
             Map<String, Double> units = keys.stream()
                     .map(k -> {
-                        if (jsonData.has(k)) {
+                        if (!jsonData.has(k)) {
                             return new SimpleEntry<String, Double>(k, null);
                         }
-                        return new SimpleEntry<>(k, jsonData.getDouble(k));
+                        try {
+                            return new SimpleEntry<>(k, jsonData.getDouble(k));
+                        } catch (JSONException e) {
+                            return new SimpleEntry<String, Double>(k, null);
+                        }
                     }).collect(MapCollector.create());
-
-            if (relay != null) {
-                relay.relay(units);
-            }
+            relay.relay(units);
         } catch (JSONException e) {
-            //TODO: Log invalid data
+            System.out.println("Data set cannot be parsed from JSON.");
         }
 
     }

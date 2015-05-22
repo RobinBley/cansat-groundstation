@@ -10,5 +10,10 @@ import de.gt.api.config.Config;
  * @author Kevin
  */
 public interface Configurable {
+    
+    /**
+     * Triggered when the config has changed
+     * @param newConfig 
+     */
     void configChanged(Config newConfig);
 }

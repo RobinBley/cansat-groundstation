@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  * Creates entry stream collectors
  * @author mhuisi
  */
-public class MapCollector<K, V> {
+public class MapCollector {
 
     /**
      * Creates a new collector

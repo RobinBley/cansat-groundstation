@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.api.datapipeline;
 
 import de.gt.api.input.dataformat.DataFormat;
@@ -11,7 +6,8 @@ import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
 
 /**
- *
+ * Represents the pipeline wrapper that allows
+ * for interacting with the pipeline
  * @author Kevin
  */
 public interface DataPipeline {

@@ -9,6 +9,12 @@ import java.util.Map;
  */
 public interface Receiver {
     
+    /**
+     * Receives a datum (triggered
+     * when a datum was fully processed
+     * in the input pipeline)
+     * @param datum 
+     */
     void receive(Map<String, Double> datum);
     
 }

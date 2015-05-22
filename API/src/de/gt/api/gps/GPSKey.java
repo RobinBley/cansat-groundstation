@@ -16,6 +16,12 @@ public final class GPSKey {
     private final String longitudeKey;
     private final String altitudeKey;
     
+    /**
+     * Constructor
+     * @param latitudeKey
+     * @param longitudeKey
+     * @param altitudeKey 
+     */
     public GPSKey(String latitudeKey, String longitudeKey, String altitudeKey) {
         this.latitudeKey = latitudeKey;
         this.longitudeKey = longitudeKey;
