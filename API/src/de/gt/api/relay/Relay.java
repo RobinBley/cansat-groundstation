@@ -4,7 +4,7 @@ import de.gt.api.config.Config;
 import java.util.Map;
 
 /**
- * Relay das Daten an mehrere Komponenten weiterleiten
+ * Relay, das Daten an mehrere Komponenten weiterleiten
  * und fehlende Daten filtert
  * @author Kevin
  */

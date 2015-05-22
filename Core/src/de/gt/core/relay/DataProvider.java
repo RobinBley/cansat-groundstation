@@ -13,8 +13,8 @@ import java.util.Set;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Relay zum bewegen von Daten von einem Formatter zu mehreren
- * Receiver
+ * Relay zum Bewegen von Daten von einem Formatter zu mehreren
+ * Receivern
  * @author mhuisi
  */
 @ServiceProvider(service = Relay.class)

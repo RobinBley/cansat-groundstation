@@ -3,8 +3,6 @@ package de.gt.api.relay;
 import java.util.Map;
 
 /**
- * Represents components that are able to 
- * receive data and process them.
  * Stellt Komponenten dar, welche Enddaten empfangen
  * und verarbeiten können.
  * @author mhuisi

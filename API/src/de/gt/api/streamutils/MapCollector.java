@@ -6,7 +6,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
- * Erstellt Entry stream collectors
+ * Erstellt Entry-Stream-Collectors
  * @author mhuisi
  */
 public class MapCollector {

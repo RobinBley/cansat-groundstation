@@ -53,7 +53,7 @@ public class CsvExport implements Exporter {
                 index++;
             }
         } catch (Exception e) {
-            Out.log("Fehler beim exportieren der Daten");
+            Out.log("Fehler beim Exportieren der Daten");
         }
         return true;
     }

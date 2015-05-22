@@ -23,7 +23,6 @@ public class DebugJSON implements DataSource {
     }
 
     /**
-     * Creates a debug json source with a default initialized DebugGenerator.
      * Erstellt eine Debug-JSON-Quelle mit einem default-initialisierten DebugGenerator
      * @param formatter - formatter, zu dem Daten gepusht werden
      * @param keys - Keys, für welche Debug-Daten generiert werden sollen

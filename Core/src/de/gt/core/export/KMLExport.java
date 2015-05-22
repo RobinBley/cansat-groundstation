@@ -83,7 +83,7 @@ public class KMLExport implements Exporter {
                 .mapToInt(List::size)
                 .anyMatch(s -> s != latitudesSize);
         if (missingData) {
-            Out.log("Kann nicht exportieren da latitudes, longitudes und altitudes nicht die gleiche Länge haben.");
+            Out.log("Kann nicht exportieren, da nicht jede Latitude eine Altitude und eine Longitude hat.");
             return false;
         }
         String pathCoords = IntStream.range(0, latitudesSize)
