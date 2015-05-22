@@ -44,8 +44,6 @@ public class CsvImporter implements Importer {
                     try {
                         data.get(String.valueOf(keys[i])).add(Double.valueOf(dataSet[i]));
                     } catch (Exception e) {
-                        Out.log("Fehlerhafte Werte in der zulesenden CSV-Datei");
-                        return null;
                     }
 
                 }

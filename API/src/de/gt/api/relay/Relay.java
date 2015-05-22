@@ -1,5 +1,6 @@
 package de.gt.api.relay;
 
+import de.gt.api.config.Config;
 import java.util.Map;
 
 /**
@@ -18,4 +19,6 @@ public interface Relay {
     public void addReceiver(Receiver receiver);
 
     public boolean removeReceiver(Receiver receiver);
+
+    public void relayConfigChange(Config c);
 }

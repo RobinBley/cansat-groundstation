@@ -1,5 +1,6 @@
 package de.gt.api.datapipeline;
 
+import de.gt.api.config.Config;
 import de.gt.api.input.dataformat.DataFormat;
 import de.gt.api.relay.Receiver;
 import de.gt.api.relay.Relay;
@@ -12,6 +13,27 @@ import de.gt.api.sources.DataSource;
  * @author Kevin
  */
 public interface DataPipeline {
+
+    /**
+     * Tauscht eine Config aus
+     *
+     * @param c
+     */
+    public void exchangeConfig(Config c);
+
+    /**
+     * Gibt an ob der Stream gerade läuft oder nicht.
+     *
+     * @return boolean
+     */
+    public boolean isStreamRunning();
+
+    /**
+     * Gibt ein Boolean zurück, ob die Config geladen ist.
+     *
+     * @return boolean
+     */
+    public boolean isConfigLoaded();
 
     /**
      * Tauscht den Parser aus und bindet den neuen Parser an die Pipeline an.
