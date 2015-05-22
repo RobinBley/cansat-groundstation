@@ -2,10 +2,9 @@ package de.gt.core.sources;
 
 import de.gt.api.streamutils.MapCollector;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -29,6 +28,7 @@ public class DebugGenerator {
 
     /**
      * Creates a debug generator with default initialized debug keys and values.
+     *
      * @return generator
      */
     public static DebugGenerator createWithKeys(Collection<String> keys) {

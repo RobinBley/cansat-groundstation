@@ -10,17 +10,18 @@ import java.util.Deque;
 
 /**
  * Stream data source
+ *
  * @author mhuisi
  */
-public class Stream implements DataSource {
-    
+public class Stream {
+
     private DataFormat formatter;
     private final InputStream stream;
     private final byte delimiter;
     private final Charset charset;
-    
+
     /**
-     * 
+     *
      * @param f - formatter to push data to
      * @param s - stream to read data from
      * @param delimiter - byte delimiter to delimit each datum
@@ -33,7 +34,6 @@ public class Stream implements DataSource {
         this.charset = c;
     }
     
-    @Override
     public void open() {
         try {
             Deque<Byte> segmentBuffer = new ArrayDeque<>();
@@ -56,17 +56,14 @@ public class Stream implements DataSource {
         }
     }
 
-    @Override
     public void close() throws IOException {
         stream.close();
     }
 
-    @Override
     public DataFormat getFormatter() {
         return formatter;
     }
 
-    @Override
     public void setFormatter(DataFormat f) {
         this.formatter = f;
     }

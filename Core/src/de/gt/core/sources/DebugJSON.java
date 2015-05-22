@@ -5,20 +5,23 @@ import de.gt.api.input.dataformat.DataFormat;
 import java.io.IOException;
 import java.util.Collection;
 import org.json.JSONObject;
+import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Debug source generating JSON
  *
  * @author mhuisi
  */
+@ServiceProvider(service = DataSource.class)
 public class DebugJSON implements DataSource {
 
     private DataFormat formatter;
     private final DebugGenerator gen;
     private boolean closed = true;
 
-    public DebugJSON(DataFormat formatter, DebugGenerator gen) {
-        this.gen = gen;
+    public DebugJSON() {
+        //TODO: Generator
+
         this.formatter = formatter;
     }
 
@@ -50,12 +53,7 @@ public class DebugJSON implements DataSource {
     }
 
     @Override
-    public DataFormat getFormatter() {
-        return formatter;
-    }
-
-    @Override
-    public void setFormatter(DataFormat f) {
+    public void linkParser(DataFormat f) {
         this.formatter = f;
     }
 
