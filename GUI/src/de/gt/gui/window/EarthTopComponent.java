@@ -5,6 +5,7 @@
  */
 package de.gt.gui.window;
 
+import de.gt.api.config.Config;
 import de.gt.api.gps.GPSKey;
 import de.gt.api.relay.Receiver;
 import gov.nasa.worldwind.BasicModel;
@@ -38,24 +39,25 @@ import org.openide.util.NbBundle.Messages;
     "CTL_LivePathEarthTopComponent=LivePathEarth Window",
     "HINT_LivePathEarthTopComponent=This is a LivePathEarth window"
 })
-public final class EarthTopComponent extends TopComponent implements Receiver {
-    
+public final class EarthTopComponent extends DataReceiverComponent {
+
     private static final AnnotationAttributes ATTRIBS = new AnnotationAttributes();
+
     static {
         ATTRIBS.setAdjustWidthToText(AVKey.SIZE_FIT_TEXT);
     }
-    
+
     private final List<Position> positions = new ArrayList<>();
-    
+
     private final GPSKey k;
-    
+
     private final WorldWindowGLCanvas wwd;
     private final RenderableLayer layer;
     private final Polyline path;
-    
+
     public EarthTopComponent(GPSKey k) {
         this.k = k;
-        
+
         initComponents();
         setName(Bundle.CTL_LivePathEarthTopComponent());
         setToolTipText(Bundle.HINT_LivePathEarthTopComponent());
@@ -74,7 +76,7 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
         layer.addRenderable(a);
         wwd.redraw();
     }
-    
+
     @Override
     public void receive(Map<String, Double> datum) {
         double latitude = datum.get(k.getLatitudeKey());
@@ -88,7 +90,7 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
         GlobeAnnotation a = new GlobeAnnotation(b.toString(), p, ATTRIBS);
         add(p, a);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,24 +114,7 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
     @Override
-    public void componentOpened() {
-        // TODO add custom code on component opening
-    }
-
-    @Override
-    public void componentClosed() {
-        // TODO add custom code on component closing
-    }
-
-    void writeProperties(java.util.Properties p) {
-        // better to version settings since initial version as advocated at
-        // http://wiki.apidesign.org/wiki/PropertyFiles
-        p.setProperty("version", "1.0");
-        // TODO store your settings
-    }
-
-    void readProperties(java.util.Properties p) {
-        String version = p.getProperty("version");
-        // TODO read your settings according to their version
+    public void configChanged(Config newConfig) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

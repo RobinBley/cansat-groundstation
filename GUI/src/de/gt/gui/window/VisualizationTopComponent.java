@@ -23,7 +23,7 @@ import org.openide.windows.TopComponent;
     "CTL_VisualizationTopComponent=Visualization Window",
     "HINT_VisualizationTopComponent=This is a Visualization window"
 })
-public class VisualizationTopComponent extends TopComponent implements Receiver, LookupListener {
+public class VisualizationTopComponent extends DataReceiverComponent {
 
     private Config config;
 
@@ -31,8 +31,9 @@ public class VisualizationTopComponent extends TopComponent implements Receiver,
      * Creates new form VizualizationTopComponent
      */
     public VisualizationTopComponent(Config currentConfig) {
+        super();
         initComponents();
-        
+
         this.config = currentConfig;
     }
 
@@ -149,15 +150,11 @@ public class VisualizationTopComponent extends TopComponent implements Receiver,
 
     @Override
     public void receive(Map<String, Double> datum) {
-        //String typen aus der Map im Stream style filtern
-        Map<String, Double> filtered = datum.entrySet().stream()
-                .collect(MapCollector.create());
-        // TODO: Daten zum Graphen hinzufügen
-        
+        //TODO: Graph visualization loop
     }
 
     @Override
-    public void resultChanged(LookupEvent le) {
+    public void configChanged(Config newConfig) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

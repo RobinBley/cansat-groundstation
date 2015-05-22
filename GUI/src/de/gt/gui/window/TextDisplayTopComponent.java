@@ -5,6 +5,7 @@
  */
 package de.gt.gui.window;
 
+import de.gt.api.config.Config;
 import de.gt.api.relay.Receiver;
 import java.util.Map;
 import javax.swing.text.BadLocationException;
@@ -39,14 +40,14 @@ import org.openide.util.NbBundle.Messages;
     "CTL_TextDisplayTopComponent=TextDisplay Window",
     "HINT_TextDisplayTopComponent=This is a TextDisplay window"
 })
-public final class TextDisplayTopComponent extends TopComponent implements Receiver {
+public final class TextDisplayTopComponent extends DataReceiverComponent {
 
     public TextDisplayTopComponent() {
         initComponents();
         setName(Bundle.CTL_TextDisplayTopComponent());
         setToolTipText(Bundle.HINT_TextDisplayTopComponent());
     }
-    
+
     @Override
     public void receive(Map<String, Double> datum) {
         StringBuilder sb = new StringBuilder();
@@ -61,7 +62,7 @@ public final class TextDisplayTopComponent extends TopComponent implements Recei
             System.err.println(ex);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,5 +113,10 @@ public final class TextDisplayTopComponent extends TopComponent implements Recei
     void readProperties(java.util.Properties p) {
         String version = p.getProperty("version");
         // TODO read your settings according to their version
+    }
+
+    @Override
+    public void configChanged(Config newConfig) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
