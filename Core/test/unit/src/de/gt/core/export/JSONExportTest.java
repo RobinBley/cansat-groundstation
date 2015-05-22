@@ -22,7 +22,6 @@ public class JSONExportTest {
         ArrayList<Double> values = new ArrayList<Double>();
         values.add(1D);
         values.add(234D);
-        values.add(null);
         data.put("time", (List<Double>) values.clone());
         values.clear();
         values.add(2D);

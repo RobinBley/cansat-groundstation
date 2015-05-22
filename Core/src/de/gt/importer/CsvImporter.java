@@ -1,6 +1,7 @@
 package de.gt.importer;
 
 import de.gt.api.importer.Importer;
+import de.gt.api.log.Out;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +15,7 @@ import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Imports data from csv format
+ *
  * @author Robin
  */
 @ServiceProvider(service = Importer.class)
@@ -52,7 +54,8 @@ public class CsvImporter implements Importer {
             Out.log("CSV-Datei wurde nicht gefunden");
             return null;
         } catch (IOException ex) {
-            Out.log("Fehlerhafte Datei");
+            ex.printStackTrace();
+            System.out.println("Fehlerhafte Datei");
             return null;
         }
         //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.

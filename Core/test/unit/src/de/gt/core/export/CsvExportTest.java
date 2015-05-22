@@ -28,7 +28,6 @@ public class CsvExportTest {
         values.add(3D);
         values.add(4D);
         values.add(5D);
-        values.add(null);
         data.put("time", (List<Double>) values.clone());
         values.clear();
         values.add(346D);
