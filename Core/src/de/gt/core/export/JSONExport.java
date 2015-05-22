@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.openide.util.lookup.ServiceProvider;
@@ -19,7 +17,7 @@ import org.openide.util.lookup.ServiceProvider;
  *
  * @author Robin
  */
-@ServiceProvider(service=de.gt.api.export.Exporter.class)
+@ServiceProvider(service = de.gt.api.export.Exporter.class)
 public class JSONExport implements Exporter {
 
     @Override
@@ -41,24 +39,15 @@ public class JSONExport implements Exporter {
             }
             jsonData.put(key, jarray);
         }
-        //Die Daten des JSONObjects werden in eine Datei geschrieben.
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()));) {
-            jsonData.write(writer);
-            writer.flush();
-        } catch (IOException ex) {
-            Logger.getLogger(JSONExport.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
 
-        }
-        try {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()))) {
             //Die Daten des JSONObjects werden in eine Datei geschrieben.
-            BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()));
             jsonData.write(writer);
             writer.flush();
             writer.close();
 
         } catch (IOException ex) {
-            Logger.getLogger(JSONExport.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("IOException: Daten konnten nicht im JSONFormat exportiert werden.");
             return false;
 
         }

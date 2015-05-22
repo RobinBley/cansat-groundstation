@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
@@ -44,18 +42,18 @@ public class CsvExport implements Exporter {
             while (index < maxSize) {
                 buffer = new StringBuffer();
                 for (String key : data.keySet()) {
-                    buffer.append(data.get(key).get(index));
+                    try {
+                        buffer.append(data.get(key).get(index));
+                    } catch(Exception e)  {
+                    }
                     buffer.append(";");
                 }
                 writer.write(buffer.toString() + System.getProperty("line.separator"));
                 index++;
             }
-            writer.flush();
-            writer.close();
-            return true;
         } catch (Exception e) {
             System.out.println("Fehler beim exportieren der Daten");
-            return false;
         }
+        return true;
     }
 }

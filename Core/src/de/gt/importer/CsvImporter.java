@@ -10,12 +10,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Imports data from csv format
+ *
  * @author Robin
  */
 @ServiceProvider(service = Importer.class)
@@ -44,8 +43,6 @@ public class CsvImporter implements Importer {
                     try {
                         data.get(String.valueOf(keys[i])).add(Double.valueOf(dataSet[i]));
                     } catch (Exception e) {
-                        System.out.println("Fehlerhafte Werte in der zulesenden CSV-Datei");
-                        return null;
                     }
 
                 }
@@ -54,6 +51,7 @@ public class CsvImporter implements Importer {
             System.out.println("CSV-Datei wurde nicht gefunden");
             return null;
         } catch (IOException ex) {
+            ex.printStackTrace();
             System.out.println("Fehlerhafte Datei");
             return null;
         }
