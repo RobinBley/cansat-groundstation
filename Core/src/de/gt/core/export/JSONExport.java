@@ -50,17 +50,13 @@ public class JSONExport implements Exporter {
             return false;
 
         }
-        try {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()))) {
             //Die Daten des JSONObjects werden in eine Datei geschrieben.
-            BufferedWriter writer = new BufferedWriter(new FileWriter(output.getPath()));
             jsonData.write(writer);
             writer.flush();
-            writer.close();
-
         } catch (IOException ex) {
             Logger.getLogger(JSONExport.class.getName()).log(Level.SEVERE, null, ex);
             return false;
-
         }
 
         return true;

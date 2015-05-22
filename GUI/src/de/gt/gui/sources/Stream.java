@@ -32,6 +32,7 @@ public class Stream {
         this.charset = c;
     }
 
+    @Override
     public void open() {
         if (this.formatter == null) {
             System.out.println("No Parser available for datasource");
@@ -58,6 +59,7 @@ public class Stream {
         }
     }
 
+    @Override
     public void close() throws IOException {
         stream.close();
     }

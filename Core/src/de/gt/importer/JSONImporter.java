@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +34,7 @@ public class JSONImporter implements Importer {
         try (BufferedReader reader = new BufferedReader(new FileReader(input));) {
             //Die Daten Der uebergebenen Datei werden als JSONObject gespeichert.
             JSONArray jArray;
-            String line = null;
+            String line;
             JSONObject jsonData;
             while ((line = reader.readLine()) != null) {
                 jsonData = new JSONObject(line);
