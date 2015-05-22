@@ -43,12 +43,14 @@ public class CsvImporter implements Importer {
                     try {
                         data.get(String.valueOf(keys[i])).add(Double.valueOf(dataSet[i]));
                     } catch (Exception e) {
+                        Out.log("Fehlerhafte Werte in der zulesenden CSV-Datei");
+                        return null;
                     }
 
                 }
             }
         } catch (FileNotFoundException ex) {
-            System.out.println("CSV-Datei wurde nicht gefunden");
+            Out.log("CSV-Datei wurde nicht gefunden");
             return null;
         } catch (IOException ex) {
             ex.printStackTrace();

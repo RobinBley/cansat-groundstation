@@ -1,6 +1,7 @@
 package de.gt.core.input.dataformat;
 
 import de.gt.api.input.dataformat.DataFormat;
+import de.gt.api.log.Out;
 import de.gt.api.relay.Relay;
 import de.gt.api.streamutils.MapCollector;
 import de.gt.core.config.Config;
@@ -24,7 +25,7 @@ public class JSONFormat implements DataFormat {
     @Override
     public void parseData(String data) {
         if (relay != null) {
-            System.out.println("Cannot parse JSON because relay is not set.");
+            Out.log("Cannot parse JSON because relay is not set.");
         }
         try {
             JSONObject jsonData = new JSONObject(data);
@@ -42,7 +43,7 @@ public class JSONFormat implements DataFormat {
                     }).collect(MapCollector.create());
             relay.relay(units);
         } catch (JSONException e) {
-            System.out.println("Data set cannot be parsed from JSON.");
+            Out.log("Received data is not valid JSON.");
         }
 
     }

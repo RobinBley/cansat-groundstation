@@ -44,12 +44,9 @@ public class JSONExport implements Exporter {
             //Die Daten des JSONObjects werden in eine Datei geschrieben.
             jsonData.write(writer);
             writer.flush();
-            writer.close();
-
         } catch (IOException ex) {
             System.out.println("IOException: Daten konnten nicht im JSONFormat exportiert werden.");
             return false;
-
         }
 
         return true;
