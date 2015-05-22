@@ -1,11 +1,10 @@
-/*
+/*//GEN-LINE:variables
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package de.gt.gui.window;
 
-import de.gt.api.config.Config;
 import de.gt.api.gps.GPSKey;
 import de.gt.api.relay.Receiver;
 import gov.nasa.worldwind.BasicModel;
@@ -36,16 +35,15 @@ import org.openide.util.NbBundle.Messages;
     "CTL_LivePathEarthTopComponent=LivePathEarth Window",
     "HINT_LivePathEarthTopComponent=This is a LivePathEarth window"
 })
-public final class EarthTopComponent extends DataReceiverComponent {
-
+public final class EarthTopComponent extends TopComponent implements Receiver {
+    
     private static final AnnotationAttributes ATTRIBS = new AnnotationAttributes();
-
     static {
         ATTRIBS.setAdjustWidthToText(AVKey.SIZE_FIT_TEXT);
     }
-
+    
     private final List<Position> positions = new ArrayList<>();
-
+    
     private final GPSKey k;
     
     private WorldWindowGLCanvas wwd;
@@ -54,7 +52,6 @@ public final class EarthTopComponent extends DataReceiverComponent {
     
     public EarthTopComponent(GPSKey k) {
         this.k = k;
-
         initComponents();
         setName(Bundle.CTL_LivePathEarthTopComponent());
         setToolTipText(Bundle.HINT_LivePathEarthTopComponent());
@@ -66,7 +63,7 @@ public final class EarthTopComponent extends DataReceiverComponent {
         layer.addRenderable(a);
         wwd.redraw();
     }
-
+    
     @Override
     public void receive(Map<String, Double> datum) {
         double latitude = datum.get(k.getLatitudeKey());
@@ -80,7 +77,7 @@ public final class EarthTopComponent extends DataReceiverComponent {
         GlobeAnnotation a = new GlobeAnnotation(b.toString(), p, ATTRIBS);
         add(p, a);
     }
-
+    
     /**
      * DO NOT TOUCH 
      * DO NOT OPEN WITH EDITOR!
@@ -109,11 +106,4 @@ public final class EarthTopComponent extends DataReceiverComponent {
             .addComponent(wwd, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
-    @Override
-    public void configChanged(Config newConfig) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
