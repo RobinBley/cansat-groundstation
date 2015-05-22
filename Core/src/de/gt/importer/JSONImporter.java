@@ -1,5 +1,6 @@
 package de.gt.importer;
 
+import de.gt.api.importer.Importer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -12,8 +13,10 @@ import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.openide.util.lookup.ServiceProvider;
 
-public class JSONImporter {
+@ServiceProvider(service = Importer.class)
+public class JSONImporter implements Importer {
 
     public Map<String, List<Double>> importData(File input) {
         //Es wird geprueft ob eine Datei uebergeben wurde.
