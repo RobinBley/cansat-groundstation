@@ -1,5 +1,6 @@
 package de.gt.core.relay;
 
+import de.gt.api.config.Config;
 import de.gt.api.relay.Receiver;
 import de.gt.api.relay.Relay;
 import de.gt.api.streamutils.MapCollector;
@@ -16,7 +17,7 @@ import org.openide.util.lookup.ServiceProvider;
  * @author mhuisi
  */
 @ServiceProvider(service = Relay.class)
-public class DataProvider implements Relay{
+public class DataProvider implements Relay {
 
     private final Set<Receiver> receivers = new HashSet<>();
     private final Map<String, Double> latest = new HashMap<>();
@@ -50,5 +51,10 @@ public class DataProvider implements Relay{
     @Override
     public boolean removeReceiver(Receiver receiver) {
         return receivers.remove(receiver);
+    }
+
+    @Override
+    public void relayConfigChange(Config c) {
+        receivers.stream().forEach(r -> r.configChanged(c));
     }
 }

@@ -1,9 +1,11 @@
 package de.gt.core.pipeline;
 
+import de.gt.api.config.Config;
 import de.gt.api.input.dataformat.DataFormat;
 import de.gt.api.relay.Receiver;
 import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
+import de.gt.core.relay.DataProvider;
 import java.util.Set;
 import org.openide.util.lookup.ServiceProvider;
 
@@ -21,7 +23,8 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
 
     private DataSource pipeSource;
     private DataFormat pipeParser;
-    private Relay pipeRelay;
+    private Config config;
+    private Relay pipeRelay = new DataProvider();
 
     private Set<Receiver> receivingComponents;
 
@@ -39,6 +42,11 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
 
         //Parser an Source koppeln
         pipeSource.linkParser(newParser);
+    }
+
+    @Override
+    public void exchangeConfig(Config c) {
+        this.config = c;
     }
 
     /**
@@ -97,5 +105,15 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
     public void unregisterDataReceiver(Receiver receiver) {
         //Receiver aus Set entfernen
         receivingComponents.remove(receiver);
+    }
+
+    @Override
+    public boolean isStreamRunning() {
+        return true;
+    }
+
+    @Override
+    public boolean isConfigLoaded() {
+        return this.config != null;
     }
 }
