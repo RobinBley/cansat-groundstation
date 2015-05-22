@@ -1,19 +1,17 @@
-package de.gt.core.sources;
+package de.gt.gui.sources;
 
 import de.gt.api.input.dataformat.DataFormat;
-import j.extensions.comm.SerialComm;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import de.gt.api.sources.DataSource;
-import org.openide.util.lookup.ServiceProvider;
+import j.extensions.comm.SerialComm;
 
 /**
  * Data source for serial ports
  *
  * @author mhuisi
  */
-@ServiceProvider(service = DataSource.class)
 public class Serial implements DataSource {
 
     private DataFormat formatter;
@@ -27,14 +25,9 @@ public class Serial implements DataSource {
      * @param delimiter - delimiter value between every datum in the stream
      * @param c - charset the data is streamed in
      */
-    public Serial(DataFormat f, SerialComm p, byte delimiter, Charset c) {
-        this.formatter = f;
+    private Serial(SerialComm p, byte delimiter, Charset c) {
         this.port = p;
-        this.stream = new Stream(f, p.getInputStream(), delimiter, c);
-    }
-
-    public Serial() {
-        //TODO: Serial source allocation
+        this.stream = new Stream(p.getInputStream(), delimiter, c);
     }
 
     /**
@@ -46,10 +39,10 @@ public class Serial implements DataSource {
      * @param c - charset the data is streamed in
      * @return serial source
      */
-    public static Serial createFromName(DataFormat f, String portName, byte delimiter, Charset c) {
+    public static Serial createFromName(String portName, byte delimiter, Charset c) {
         return Arrays.stream(SerialComm.getCommPorts())
                 .filter(p -> p.getDescriptivePortName().equals(portName))
-                .map(p -> new Serial(f, p, delimiter, c))
+                .map(p -> new Serial(p, delimiter, c))
                 .findAny().orElse(null);
     }
 
@@ -67,7 +60,7 @@ public class Serial implements DataSource {
 
     @Override
     public void linkParser(DataFormat f) {
-        this.formatter = f;
+        
     }
 
 }

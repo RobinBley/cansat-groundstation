@@ -1,9 +1,8 @@
-package de.gt.core.sources;
+package de.gt.gui.sources;
 
 import de.gt.api.streamutils.MapCollector;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;

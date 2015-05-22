@@ -1,28 +1,25 @@
-package de.gt.core.sources;
+package de.gt.gui.sources;
 
 import de.gt.api.sources.DataSource;
 import de.gt.api.input.dataformat.DataFormat;
 import java.io.IOException;
 import java.util.Collection;
 import org.json.JSONObject;
-import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Debug source generating JSON
  *
  * @author mhuisi
  */
-@ServiceProvider(service = DataSource.class)
 public class DebugJSON implements DataSource {
 
     private DataFormat formatter;
     private final DebugGenerator gen;
     private boolean closed = true;
 
-    public DebugJSON() {
-        //TODO: Generator
-
+    public DebugJSON(DataFormat formatter, DebugGenerator gen) {
         this.formatter = formatter;
+        this.gen = gen;
     }
 
     /**

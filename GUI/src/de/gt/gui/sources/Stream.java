@@ -1,7 +1,7 @@
-package de.gt.core.sources;
+package de.gt.gui.sources;
 
-import de.gt.api.sources.DataSource;
 import de.gt.api.input.dataformat.DataFormat;
+import de.gt.api.sources.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
@@ -13,7 +13,7 @@ import java.util.Deque;
  *
  * @author mhuisi
  */
-public class Stream {
+public class Stream implements DataSource{
 
     private DataFormat formatter;
     private final InputStream stream;
@@ -27,13 +27,12 @@ public class Stream {
      * @param delimiter - byte delimiter to delimit each datum
      * @param c - charset the data in the stream is streamed in
      */
-    public Stream(DataFormat f, InputStream s, byte delimiter, Charset c) {
-        this.formatter = f;
+    public Stream(InputStream s, byte delimiter, Charset c) {
         this.stream = s;
         this.delimiter = delimiter;
         this.charset = c;
     }
-    
+
     public void open() {
         try {
             Deque<Byte> segmentBuffer = new ArrayDeque<>();
@@ -60,12 +59,8 @@ public class Stream {
         stream.close();
     }
 
-    public DataFormat getFormatter() {
-        return formatter;
-    }
-
-    public void setFormatter(DataFormat f) {
+    @Override
+    public void linkParser(DataFormat f) {
         this.formatter = f;
     }
-
 }

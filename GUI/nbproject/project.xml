@@ -94,6 +94,10 @@
                 <binary-origin>release/modules/ext/jchart2d-3.2.2.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/SerialComm.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/SerialComm.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/gluegen-rt-natives-macosx-universal.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gluegen-rt-natives-macosx-universal.jar</binary-origin>
             </class-path-extension>
@@ -132,6 +136,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/jogl-all-natives-macosx-universal.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/jogl-all-natives-macosx-universal.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/json-20141113.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/json-20141113.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/gdal.jar</runtime-relative-path>
