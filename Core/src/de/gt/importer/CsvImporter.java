@@ -41,17 +41,21 @@ public class CsvImporter implements Importer {
             while ((line = reader.readLine()) != null) {
                 dataSet = line.split(";");
                 for (int i = 0; i < dataSet.length; i++) {
-                    if (!dataSet[i].toLowerCase().equals("null")) {
+                    try {
                         data.get(String.valueOf(keys[i])).add(Double.valueOf(dataSet[i]));
-                    } else if(!dataSet[i].toLowerCase().equals("")){
-                        data.get(String.valueOf(keys[i])).add(null);
+                    } catch (Exception e) {
+                        System.out.println("Fehlerhafte Werte in der zulesenden CSV-Datei");
+                        return null;
                     }
+
                 }
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CsvImporter.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("CSV-Datei wurde nicht gefunden");
+            return null;
         } catch (IOException ex) {
-            Logger.getLogger(CsvImporter.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Fehlerhafte Datei");
+            return null;
         }
         //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.
         return data;

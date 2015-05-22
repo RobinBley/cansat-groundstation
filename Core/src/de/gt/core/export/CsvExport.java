@@ -44,13 +44,7 @@ public class CsvExport implements Exporter {
             while (index < maxSize) {
                 buffer = new StringBuffer();
                 for (String key : data.keySet()) {
-                    if (data.get(key).size() <= index) {
-                        buffer.append("null");
-                    } else if (data.get(key).get(index) == null) {
-                        buffer.append("null");
-                    } else {
-                        buffer.append(data.get(key).get(index));
-                    }
+                    buffer.append(data.get(key).get(index));
                     buffer.append(";");
                 }
                 writer.write(buffer.toString() + System.getProperty("line.separator"));
@@ -60,7 +54,7 @@ public class CsvExport implements Exporter {
             writer.close();
             return true;
         } catch (Exception e) {
-            Logger.getLogger(CsvExport.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("Fehler beim exportieren der Daten");
             return false;
         }
     }

@@ -21,6 +21,11 @@ public class SocketServer implements Receiver, Runnable {
 
     private ArrayList<PrintWriter> writers;
     private boolean flag;
+    private int port = 5000;
+
+    public void setPort(int port) {
+        this.port = port;
+    }
 
     /**
      * Eine Nachricht wird an alle verbundenen Clients gesendet.
@@ -35,7 +40,6 @@ public class SocketServer implements Receiver, Runnable {
                 if (client.checkError()) {
                     client.close();
                     writers.remove(client);
-                    Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, "client removed");
                 } else {
                     //Es wird versucht den Clients die Nachricht zu uebermitteln.
                     try {
@@ -45,12 +49,12 @@ public class SocketServer implements Receiver, Runnable {
                     } catch (Exception exc) {
                         writers.remove(client);
                         client.close();
-                        Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, "client removed");
+                        System.out.println("Fehler beim Senden von Daten an Client");
                     }
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Fehler bei einem brodcast des Servers");
         }
     }
 
@@ -69,7 +73,7 @@ public class SocketServer implements Receiver, Runnable {
         writers = new ArrayList<>();
         try {
             //Ein ServerSocket wird erstellt und ihm wird ein Port zugewiesen.
-            ServerSocket serverSock = new ServerSocket(5000);
+            ServerSocket serverSock = new ServerSocket(port);
             while (flag) {
                 //Ein Socket zu einem Client wird erstellt.
                 Socket clientSocket = serverSock.accept();
@@ -81,7 +85,7 @@ public class SocketServer implements Receiver, Runnable {
                 t.start();
             }
         } catch (Exception ex) {
-            Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Fehler beim verbinden eines Clients");
         }
     }
 
@@ -119,7 +123,7 @@ public class SocketServer implements Receiver, Runnable {
                 reader = new BufferedReader(isReader);
 
             } catch (Exception ex) {
-                Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Fehler beim erstellen des Sockets");
             }
         }
 
@@ -130,7 +134,6 @@ public class SocketServer implements Receiver, Runnable {
                 //Wenn Ein Client Daten schickt, werden sie geloggt.
                 while ((message = reader.readLine()) != null) {
                     Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, null, "client: " + message);
-                    System.out.println(message);
                 }
             } catch (Exception e) {
                 Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, null, e);
