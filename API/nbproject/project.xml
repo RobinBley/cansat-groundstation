@@ -8,6 +8,7 @@
             <module-dependencies/>
             <public-packages>
                 <package>de.gt.api.config</package>
+                <package>de.gt.api.datapipeline</package>
                 <package>de.gt.api.export</package>
                 <package>de.gt.api.gps</package>
                 <package>de.gt.api.importer</package>

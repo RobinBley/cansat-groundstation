@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.gt.gui.action;
+package de.gt.gui.action.visualization;
 
 import de.gt.api.relay.Relay;
 import de.gt.gui.window.VisualizationTopComponent;
@@ -41,11 +41,6 @@ public final class OpenVisualizationWindowAction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //Neues Fenster für Graphenvisualisierung erzeugen
         VisualizationTopComponent visualizationWindow = new VisualizationTopComponent(null);
-        
-        //Datenkomponent an Relay anschließen
-        relay.addReceiver(visualizationWindow);
-        
-        //Visualisierungsfenster anzeigen
         visualizationWindow.open();
     }
 }

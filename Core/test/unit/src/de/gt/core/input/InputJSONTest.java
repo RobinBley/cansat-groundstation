@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import de.gt.core.config.Config;
 import de.gt.core.data.ConsoleOutput;
-import de.gt.core.input.dataformat.JSONParser;
+import de.gt.core.input.dataformat.JSONFormat;
 import de.gt.core.relay.DataProvider;
 import java.util.ArrayList;
 import org.netbeans.junit.NbTestCase;
@@ -45,8 +45,9 @@ public class InputJSONTest extends NbTestCase implements Receiver {
         relay.addReceiver(out);
         relay.addReceiver(this);
 
-        JSONParser dataFormat = new JSONParser(relay, config);
-
+        JSONFormat dataFormat = new JSONFormat();
+        dataFormat.linkRelay(relay);
+        
         //Daten selber generieren um beim testen ueberpruefen zu koennen.
         JSONObject jdata = new JSONObject();
 

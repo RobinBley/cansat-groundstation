@@ -2,21 +2,7 @@
     "name": "Debug NASA Satellite",
     "identifier": 2234783246432502347324,
     "format": "JSON",
-    "values": {
-        "temperature": {
-            "identifier": "temperature"
-        },
-        "gps": {
-            "identifier": "position",
-            "parser" : "GPSParser",
-            "children" : [
-                "long",
-                "lat",
-                "alt"
-            ]
-        },
-        "time": {
-            "identifier": "time"
-        }
-    }
+    "values": [
+        "temperature"
+    ]
 }

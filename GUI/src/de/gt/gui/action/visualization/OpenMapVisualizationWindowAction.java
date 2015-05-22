@@ -1,4 +1,4 @@
-package de.gt.gui.action;
+package de.gt.gui.action.visualization;
 
 import de.gt.api.relay.Relay;
 import de.gt.gui.window.EarthTopComponent;

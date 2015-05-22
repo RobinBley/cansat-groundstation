@@ -10,5 +10,5 @@ import de.gt.api.config.Config;
  * @author Kevin
  */
 public interface Configurable {
-    void configurableChanged(Config newConfig);
+    void configChanged(Config newConfig);
 }

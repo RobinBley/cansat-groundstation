@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.gt.gui.action;
+package de.gt.gui.action.satellites;
 
+import de.gt.gui.action.DialogAction;
 import de.gt.gui.dialog.SatelliteAddDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
