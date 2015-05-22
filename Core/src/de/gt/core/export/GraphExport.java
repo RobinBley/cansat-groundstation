@@ -1,18 +1,23 @@
 package de.gt.core.export;
 
+import de.gt.api.export.Exporter;
 import java.awt.Image;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import org.openide.util.lookup.ServiceProvider;
 
 /**
  *
  * @author Robin
  */
-public class GraphExport {
+@ServiceProvider(service = de.gt.api.export.Exporter.class)
+public class GraphExport implements Exporter{
 
     /**
      * Diese Funktion sorgt fuer das Exportieren eines Images in eine Datei.
@@ -44,6 +49,11 @@ public class GraphExport {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean exportData(Map<String, List<Double>> data, File output) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

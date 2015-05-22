@@ -12,12 +12,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Diese Klasse regelt das exportieren von Daten ins JSON-Format.
  *
  * @author Robin
  */
+@ServiceProvider(service=de.gt.api.export.Exporter.class)
 public class JSONExport implements Exporter {
 
     @Override

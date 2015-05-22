@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Diese Klasse regelt das exportieren von Daten in eine CSV Datei.
  *
  * @author Robin
  */
+@ServiceProvider(service = de.gt.api.export.Exporter.class)
 public class CsvExport implements Exporter {
 
     @Override
