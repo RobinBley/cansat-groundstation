@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 import org.json.JSONObject;
 
 /**
- *
- * @author Robin Ein Sever, welcher als Datenempfaenger dient und diese an alle
+ * Ein Sever, welcher als Datenempfaenger dient und diese an alle
  * zu diesem Server verbundenen Clients convertiert weiterleitet.
+ * @author Robin
  */
 public class SocketServer implements Receiver, Runnable {
 
@@ -55,7 +55,7 @@ public class SocketServer implements Receiver, Runnable {
                 }
             }
         } catch (Exception ex) {
-            Out.log("Fehler bei einem brodcast des Servers");
+            Out.log("Fehler bei einem Broadcast des Servers");
         }
     }
 
@@ -86,7 +86,7 @@ public class SocketServer implements Receiver, Runnable {
                 t.start();
             }
         } catch (Exception ex) {
-            Out.log("Fehler beim verbinden eines Clients");
+            Out.log("Fehler beim Verbinden eines Clients");
         }
     }
 
@@ -124,7 +124,7 @@ public class SocketServer implements Receiver, Runnable {
                 reader = new BufferedReader(isReader);
 
             } catch (Exception ex) {
-                Out.log("Fehler beim erstellen des Sockets");
+                Out.log("Fehler beim Erstellen des Sockets");
             }
         }
 

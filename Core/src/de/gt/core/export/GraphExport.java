@@ -8,13 +8,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Exporter for graphs
+ * Exporter für Graphen
  * @author Robin
  */
 @ServiceProvider(service = de.gt.api.export.Exporter.class)
@@ -45,7 +43,7 @@ public class GraphExport implements Exporter{
             //Die Daten werden in die Datei gesschrieben.
             ImageIO.write((RenderedImage) image, extension, output);
         } catch (IOException ex) {
-            Out.log("Cannot write image to disc.");
+            Out.log("Daten können nicht zur Disk geschrieben werden");
             return false;
         }
 

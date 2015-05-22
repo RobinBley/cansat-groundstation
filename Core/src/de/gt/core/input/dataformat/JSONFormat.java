@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Parses JSON data
+ * Parst JSON-Daten
  * @author Robin
  */
 @ServiceProvider(service = DataFormat.class)
@@ -25,7 +25,7 @@ public class JSONFormat implements DataFormat {
     @Override
     public void parseData(String data) {
         if (relay != null) {
-            Out.log("Cannot parse JSON because relay is not set.");
+            Out.log("Kann JSON nicht parsen weil kein Relay gesetzt ist.");
         }
         try {
             JSONObject jsonData = new JSONObject(data);
@@ -43,7 +43,7 @@ public class JSONFormat implements DataFormat {
                     }).collect(MapCollector.create());
             relay.relay(units);
         } catch (JSONException e) {
-            Out.log("Received data is not valid JSON.");
+            Out.log("Erhaltene Daten sind kein valides JSON.");
         }
 
     }

@@ -11,7 +11,7 @@ import java.io.Closeable;
 public interface DataSource extends Closeable {
     
     /**
-     * Opens this source.
+     * Öffnet diese Quelle
      */
     void open();
 

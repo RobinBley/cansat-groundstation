@@ -1,7 +1,7 @@
 package de.gt.core.config;
 
 /**
- * Config thrown when a config cannot be parsed
+ * Wird geworfen wenn eine Config nicht geparst werden kann
  * @author Kevin
  */
 public class InvalidConfigException extends Exception{}

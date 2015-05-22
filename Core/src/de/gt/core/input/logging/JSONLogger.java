@@ -10,7 +10,7 @@ import java.util.Map;
 import org.json.JSONObject;
 
 /**
- * Logs data in the JSON format
+ * Loggt Daten im JSON-Format
  * @author mhuisi
  */
 public class JSONLogger implements Receiver {
@@ -18,9 +18,9 @@ public class JSONLogger implements Receiver {
     private final File output;
 
     /**
-     * Constructor
-     * @param file - file to log to
-     * @throws IOException thrown when file cannot be opened
+     * Konstructor
+     * @param file - Datei zum loggen
+     * @throws IOException geworfen wenn Datei nicht geöffnet werden kann
      */
     public JSONLogger(File file) throws IOException {
         if (!file.exists()) {
@@ -37,7 +37,7 @@ public class JSONLogger implements Receiver {
             writer.write(jData.toString() + System.getProperty("line.separator"));
             writer.flush();
         } catch (IOException ex) {
-            Out.log("Cannot log to JSON.");
+            Out.log("Kann nicht JSON auf Disk loggen.");
         }
     }
 

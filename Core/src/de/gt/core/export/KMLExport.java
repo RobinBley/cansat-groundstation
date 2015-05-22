@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * Exports to KML
+ * Exportiert in KML
  * @author mhuisi
  */
 public class KMLExport implements Exporter {
@@ -83,7 +83,7 @@ public class KMLExport implements Exporter {
                 .mapToInt(List::size)
                 .anyMatch(s -> s != latitudesSize);
         if (missingData) {
-            Out.log("Cannot export because latitudes, longitudes and altitudes do not have the same size.");
+            Out.log("Kann nicht exportieren da latitudes, longitudes und altitudes nicht die gleiche Länge haben.");
             return false;
         }
         String pathCoords = IntStream.range(0, latitudesSize)
@@ -104,7 +104,7 @@ public class KMLExport implements Exporter {
             w.write(String.format(KML_TEMPLATE, pathCoords, annotations));
             return true;
         } catch (IOException e) {
-            Out.log("Cannot export KML to disc.");
+            Out.log("Kann KML nicht zur Disk exportieren.");
             return false;
         }
     }

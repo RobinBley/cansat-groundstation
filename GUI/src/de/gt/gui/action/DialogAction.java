@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import org.openide.windows.WindowManager;
 
 /**
- * Base for all dialog actions
+ * Basis für alle dialog actions
  * @author Kevin
  */
 public abstract class DialogAction implements ActionListener{

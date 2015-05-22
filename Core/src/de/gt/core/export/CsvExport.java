@@ -1,6 +1,7 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
+import de.gt.api.log.Out;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -9,7 +10,7 @@ import java.util.Map;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Diese Klasse regelt das exportieren von Daten in eine CSV Datei.
+ * Diese Klasse regelt das Exportieren von Daten in eine CSV Datei.
  *
  * @author Robin
  */
@@ -52,7 +53,7 @@ public class CsvExport implements Exporter {
                 index++;
             }
         } catch (Exception e) {
-            System.out.println("Fehler beim exportieren der Daten");
+            Out.log("Fehler beim exportieren der Daten");
         }
         return true;
     }

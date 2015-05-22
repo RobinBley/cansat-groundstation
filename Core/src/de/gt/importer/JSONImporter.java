@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Imports data from JSON
+ * Importiert Daten aus JSON
  * @author mhuisi
  */
 @ServiceProvider(service = Importer.class)
@@ -26,7 +26,7 @@ public class JSONImporter implements Importer {
     public Map<String, List<Double>> importData(File input) {
         //Es wird geprueft ob eine Datei uebergeben wurde.
         if (input == null) {
-            Out.log("Zulesende Datei exestiert nicht");
+            Out.log("Zu lesende Datei exestiert nicht");
             return null;
         }
         //Eine HashMap wird erzeugt, welche spaeter die Daten des uebergebenen Files enthaelt.
@@ -51,7 +51,7 @@ public class JSONImporter implements Importer {
                             try {
                                 data.get(key).add(jArray.getDouble(i));
                             } catch (Exception e) {
-                                Out.log("IOException: Fehler beim lesen von JSONObjekten");
+                                Out.log("IOException: Fehler beim Lesen von JSONObjekten");
                                 return null;
                             }
                             //mit den einzelnen werten arbeiten!!
@@ -61,14 +61,14 @@ public class JSONImporter implements Importer {
                         try {
                             data.get(key).add(jsonData.getDouble(key));
                         } catch (Exception e) {
-                            Out.log("IOException: Fehler beim lesen von JSONObjekten");
+                            Out.log("IOException: Fehler beim Lesen von JSONObjekten");
                             return null;
                         }
                     }
                 }
             }
         } catch (IOException | JSONException e) {
-            Out.log("IOException: Fehler beim lesen von JSONObjekten");
+            Out.log("IOException: Fehler beim Lesen von JSONObjekten");
             return null;
         }
         //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.

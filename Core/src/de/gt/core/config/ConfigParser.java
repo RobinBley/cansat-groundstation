@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- * Parses a config
+ * Parst eine Config
  * @author Kevin
  */
 public class ConfigParser {
@@ -17,10 +17,10 @@ public class ConfigParser {
     private static final String VALUES_KEY = "values";
 
     /**
-     * Parses the config
-     * @param configStr - data to parse
-     * @return parsed Config
-     * @throws InvalidConfigException - config cannot be parsed 
+     * Parst eine Config
+     * @param configStr - zu parsende Daten
+     * @return geparste Config
+     * @throws InvalidConfigException - Config kann nicht geparst werden
      */
     public static Config parse(String configStr) throws InvalidConfigException {
         JSONObject parsedConfig = new JSONObject(configStr);

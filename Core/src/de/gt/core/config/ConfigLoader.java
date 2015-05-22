@@ -7,16 +7,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * Loads configs
+ * Lädt Configs
  * @author Kevin
  */
 public class ConfigLoader {
 
     /**
-     * Loads a config
+     * Lädt eine Config
      * @param fileName
-     * @return loaded config data
-     * @throws IOException thrown when the config cannot be loaded
+     * @return Geladene Configdaten
+     * @throws IOException wird geworfen wenn die Config nicht geladen werden kann
      */
     public static String load(String fileName) throws IOException {
         return readFile(fileName, StandardCharsets.UTF_8);

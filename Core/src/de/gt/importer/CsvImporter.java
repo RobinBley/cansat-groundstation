@@ -14,7 +14,7 @@ import java.util.Map;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Imports data from csv format
+ * Importiert Daten aus CSV
  *
  * @author Robin
  */
@@ -54,8 +54,7 @@ public class CsvImporter implements Importer {
             Out.log("CSV-Datei wurde nicht gefunden");
             return null;
         } catch (IOException ex) {
-            ex.printStackTrace();
-            System.out.println("Fehlerhafte Datei");
+            Out.log("Fehlerhafte Datei");
             return null;
         }
         //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.

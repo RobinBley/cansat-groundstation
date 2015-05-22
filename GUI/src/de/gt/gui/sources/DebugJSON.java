@@ -7,7 +7,7 @@ import java.util.Collection;
 import org.json.JSONObject;
 
 /**
- * Debug source generating JSON
+ * Debugquelle, welche JSON generiert
  *
  * @author mhuisi
  */
@@ -24,9 +24,9 @@ public class DebugJSON implements DataSource {
 
     /**
      * Creates a debug json source with a default initialized DebugGenerator.
-     *
-     * @param formatter - formatter to push data to
-     * @param keys - keys to generate debug data for
+     * Erstellt eine Debug-JSON-Quelle mit einem default-initialisierten DebugGenerator
+     * @param formatter - formatter, zu dem Daten gepusht werden
+     * @param keys - Keys, für welche Debug-Daten generiert werden sollen
      * @return source
      */
     public static DebugJSON createWithDebugGenerator(DataFormat formatter, Collection<String> keys) {

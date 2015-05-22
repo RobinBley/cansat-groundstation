@@ -3,27 +3,27 @@ package de.gt.core.config;
 import java.util.Collection;
 
 /**
- * Represents the data read from a config
+ * Stellt Daten dar, welche aus der Config gelesen werden
  * @author Kevin
  */
 public class Config implements de.gt.api.config.Config{
     private final String name;
     private final String identifier;
     private final String format;
-    private final Collection<String> valueConfigs;
+    private final Collection<String> keys;
 
     /**
-     * Constructor
-     * @param name - name of the satellite
-     * @param identifier - identifier of the satellite
-     * @param format - transmission format
-     * @param valueConfigs - keys
+     * Konstructor
+     * @param name - Satellitenname
+     * @param identifier - Satellitenidentifier
+     * @param format - Übertragungsformat
+     * @param keys - Schlüssel
      */
-    public Config(String name, String identifier, String format, Collection<String> valueConfigs) {
+    public Config(String name, String identifier, String format, Collection<String> keys) {
         this.name = name;
         this.identifier = identifier;
         this.format = format;
-        this.valueConfigs = valueConfigs;
+        this.keys = keys;
     }
 
     @Override
@@ -43,6 +43,6 @@ public class Config implements de.gt.api.config.Config{
 
     @Override
     public Collection<String> getKeys() {
-        return valueConfigs;
+        return keys;
     }
 }

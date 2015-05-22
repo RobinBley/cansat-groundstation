@@ -1,6 +1,7 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
+import de.gt.api.log.Out;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -45,7 +46,7 @@ public class JSONExport implements Exporter {
             jsonData.write(writer);
             writer.flush();
         } catch (IOException ex) {
-            System.out.println("IOException: Daten konnten nicht im JSONFormat exportiert werden.");
+            Out.log("IOException: Daten konnten nicht im JSONFormat exportiert werden.");
             return false;
         }
 

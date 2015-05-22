@@ -65,7 +65,7 @@ public class TxtExport implements Exporter {
             writer.flush();
 
         } catch (Exception e) {
-            Out.log("Cannot write TXT export to disc.");
+            Out.log("Kann TXT nicht zur Disk exportieren");
             return false;
         }
 

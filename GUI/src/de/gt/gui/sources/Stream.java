@@ -9,7 +9,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * Stream data source
+ * Stream-Datenquelle
  *
  * @author mhuisi
  */
