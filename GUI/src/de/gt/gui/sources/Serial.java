@@ -13,8 +13,6 @@ import j.extensions.comm.SerialComm;
  * @author mhuisi
  */
 public class Serial implements DataSource {
-
-    private DataFormat formatter;
     private final SerialComm port;
     private final Stream stream;
 
@@ -60,7 +58,7 @@ public class Serial implements DataSource {
 
     @Override
     public void linkParser(DataFormat f) {
-        
+        stream.linkParser(f);
     }
 
 }
