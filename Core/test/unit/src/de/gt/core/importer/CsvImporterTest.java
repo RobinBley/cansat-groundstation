@@ -26,12 +26,12 @@ public class CsvImporterTest {
         Map<String, List<Double>> data = importer.importData(file);
         Assert.assertNotSame(data, new HashMap<String, List<Double>>());
 
-//        for (String key : data.keySet()) {
-//            System.out.println(key);
-//            for (Object datum : data.get(key)) {
-//                System.out.println(datum);
-//            }
-//        }
+        for (String key : data.keySet()) {
+            System.out.println(key);
+            for (Object datum : data.get(key)) {
+                System.out.println(datum);
+            }
+        }
 
     }
 

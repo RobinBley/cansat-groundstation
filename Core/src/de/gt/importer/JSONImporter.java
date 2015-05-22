@@ -1,6 +1,7 @@
 package de.gt.importer;
 
 import de.gt.api.importer.Importer;
+import de.gt.api.log.Out;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -25,7 +26,7 @@ public class JSONImporter implements Importer {
     public Map<String, List<Double>> importData(File input) {
         //Es wird geprueft ob eine Datei uebergeben wurde.
         if (input == null) {
-            System.out.println("Zulesende Datei exestiert nicht");
+            Out.log("Zulesende Datei exestiert nicht");
             return null;
         }
         //Eine HashMap wird erzeugt, welche spaeter die Daten des uebergebenen Files enthaelt.
@@ -50,7 +51,7 @@ public class JSONImporter implements Importer {
                             try {
                                 data.get(key).add(jArray.getDouble(i));
                             } catch (Exception e) {
-                                System.out.println("IOException: Fehler beim lesen von JSONObjekten");
+                                Out.log("IOException: Fehler beim lesen von JSONObjekten");
                                 return null;
                             }
                             //mit den einzelnen werten arbeiten!!
@@ -60,14 +61,14 @@ public class JSONImporter implements Importer {
                         try {
                             data.get(key).add(jsonData.getDouble(key));
                         } catch (Exception e) {
-                            System.out.println("IOException: Fehler beim lesen von JSONObjekten");
+                            Out.log("IOException: Fehler beim lesen von JSONObjekten");
                             return null;
                         }
                     }
                 }
             }
         } catch (IOException | JSONException e) {
-            System.out.println("IOException: Fehler beim lesen von JSONObjekten");
+            Out.log("IOException: Fehler beim lesen von JSONObjekten");
             return null;
         }
         //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.

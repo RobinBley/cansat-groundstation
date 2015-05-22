@@ -1,6 +1,7 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
+import de.gt.api.log.Out;
 import java.awt.Image;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -44,7 +45,7 @@ public class GraphExport implements Exporter{
             //Die Daten werden in die Datei gesschrieben.
             ImageIO.write((RenderedImage) image, extension, output);
         } catch (IOException ex) {
-            Logger.getLogger(GraphExport.class.getName()).log(Level.SEVERE, null, ex);
+            Out.log("Cannot write image to disc.");
             return false;
         }
 

@@ -41,7 +41,6 @@ public class CsvImportExportTest {
         ArrayList<Double> values = new ArrayList<Double>();
         values.add(1D);
         values.add(32.4324D);
-        values.add(null);
         data.put("time", (List<Double>) values.clone());
         
         

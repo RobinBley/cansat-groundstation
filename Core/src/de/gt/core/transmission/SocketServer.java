@@ -1,5 +1,6 @@
 package de.gt.core.transmission;
 
+import de.gt.api.log.Out;
 import de.gt.api.relay.Receiver;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -49,12 +50,12 @@ public class SocketServer implements Receiver, Runnable {
                     } catch (Exception exc) {
                         writers.remove(client);
                         client.close();
-                        System.out.println("Fehler beim Senden von Daten an Client");
+                        Out.log("Fehler beim Senden von Daten an Client");
                     }
                 }
             }
         } catch (Exception ex) {
-            System.out.println("Fehler bei einem brodcast des Servers");
+            Out.log("Fehler bei einem brodcast des Servers");
         }
     }
 
@@ -85,7 +86,7 @@ public class SocketServer implements Receiver, Runnable {
                 t.start();
             }
         } catch (Exception ex) {
-            System.out.println("Fehler beim verbinden eines Clients");
+            Out.log("Fehler beim verbinden eines Clients");
         }
     }
 
@@ -123,7 +124,7 @@ public class SocketServer implements Receiver, Runnable {
                 reader = new BufferedReader(isReader);
 
             } catch (Exception ex) {
-                System.out.println("Fehler beim erstellen des Sockets");
+                Out.log("Fehler beim erstellen des Sockets");
             }
         }
 

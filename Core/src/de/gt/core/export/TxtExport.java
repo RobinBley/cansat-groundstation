@@ -1,13 +1,12 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
+import de.gt.api.log.Out;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
@@ -66,7 +65,7 @@ public class TxtExport implements Exporter {
             writer.flush();
 
         } catch (Exception e) {
-            Logger.getLogger(TxtExport.class.getName()).log(Level.SEVERE, null, e);
+            Out.log("Cannot write TXT export to disc.");
             return false;
         }
 

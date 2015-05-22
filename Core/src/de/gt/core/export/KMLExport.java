@@ -2,6 +2,7 @@ package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
 import de.gt.api.gps.GPSKey;
+import de.gt.api.log.Out;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -82,6 +83,7 @@ public class KMLExport implements Exporter {
                 .mapToInt(List::size)
                 .anyMatch(s -> s != latitudesSize);
         if (missingData) {
+            Out.log("Cannot export because latitudes, longitudes and altitudes do not have the same size.");
             return false;
         }
         String pathCoords = IntStream.range(0, latitudesSize)
@@ -102,6 +104,7 @@ public class KMLExport implements Exporter {
             w.write(String.format(KML_TEMPLATE, pathCoords, annotations));
             return true;
         } catch (IOException e) {
+            Out.log("Cannot export KML to disc.");
             return false;
         }
     }
