@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.api.config;
 
 import java.util.Collection;
-import java.util.Map;
 
 /**
- *
+ * Represents a config
  * @author Kevin
  */
 public interface Config {
@@ -20,5 +14,5 @@ public interface Config {
 
     public String getFormat();
 
-    public Collection<String> getValueConfigs();
+    public Collection<String> getKeys();
 }

@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.core.data;
 
 import de.gt.api.relay.Receiver;
 import java.util.Map;
 
 /**
- *
+ * Prints the received data to the console
  * @author Robin
  */
 public class ConsoleOutput implements Receiver {

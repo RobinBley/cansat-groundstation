@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- *
+ * Parses a config
  * @author Kevin
  */
 public class ConfigParser {
@@ -16,6 +16,12 @@ public class ConfigParser {
     private static final String FORMAT_KEY = "format";
     private static final String VALUES_KEY = "values";
 
+    /**
+     * Parses the config
+     * @param configStr - data to parse
+     * @return parsed Config
+     * @throws InvalidConfigException - config cannot be parsed 
+     */
     public static Config parse(String configStr) throws InvalidConfigException {
         JSONObject parsedConfig = new JSONObject(configStr);
 
@@ -37,14 +43,14 @@ public class ConfigParser {
             //Name des Satelliten bestimmen
             String name = parsedConfig.getString(NAME_KEY);
 
-            return new Config(name, identifier, format, JsonArrayToList(values));
+            return new Config(name, identifier, format, jsonArrayToList(values));
         } else {
             throw new InvalidConfigException();
         }
 
     }
 
-    private static List<String> JsonArrayToList(JSONArray jsonArr) {
+    private static List<String> jsonArrayToList(JSONArray jsonArr) {
         //Länge des JSON Arrays bestimmen
         int len = jsonArr.length();
 

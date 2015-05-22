@@ -30,6 +30,7 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
      *
      * @param newParser
      */
+    @Override
     public void exchangeParser(DataFormat newParser) {
         pipeParser = newParser;
 
@@ -45,6 +46,7 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
      *
      * @param newRelay
      */
+    @Override
     public void exchangeRelay(Relay newRelay) {
         //Relay austauschen
         pipeRelay = newRelay;
@@ -64,6 +66,7 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
      *
      * @param newSource
      */
+    @Override
     public void exchangeSource(DataSource newSource) {
         //Alte Quelle austauschen
         pipeSource = newSource;
@@ -78,6 +81,7 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
      *
      * @param receiver
      */
+    @Override
     public void registerDataReceiver(Receiver receiver) {
         //Receiver in Set speichern
         receivingComponents.add(receiver);
@@ -89,6 +93,7 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
      *
      * @param receiver
      */
+    @Override
     public void unregisterDataReceiver(Receiver receiver) {
         //Receiver aus Set entfernen
         receivingComponents.remove(receiver);

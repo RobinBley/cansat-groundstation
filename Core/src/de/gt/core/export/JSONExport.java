@@ -15,7 +15,7 @@ import org.json.JSONObject;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Diese Klasse regelt das exportieren von Daten ins JSON-Format.
+ * Diese Klasse regelt das Exportieren von Daten ins JSON-Format.
  *
  * @author Robin
  */

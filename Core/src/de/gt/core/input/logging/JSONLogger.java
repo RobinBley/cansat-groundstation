@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.gt.core.input.logging;
 
 import de.gt.api.relay.Receiver;
@@ -11,14 +6,21 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.JSONObject;
 
+/**
+ * Logs data in the JSON format
+ * @author mhuisi
+ */
 public class JSONLogger implements Receiver {
 
     private final File output;
 
+    /**
+     * Constructor
+     * @param file - file to log to
+     * @throws IOException thrown when file cannot be opened
+     */
     public JSONLogger(File file) throws IOException {
         if (!file.exists()) {
             file.createNewFile();
@@ -34,7 +36,7 @@ public class JSONLogger implements Receiver {
             writer.write(jData.toString() + System.getProperty("line.separator"));
             writer.flush();
         } catch (IOException ex) {
-            Logger.getLogger(JSONLogger.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Cannot log to JSON.");
         }
     }
 

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * 
+ * Exports to KML
  * @author mhuisi
  */
 public class KMLExport implements Exporter {
