@@ -57,10 +57,11 @@ public class CsvExport implements Exporter {
                 index++;
             }
             writer.flush();
+            writer.close();
+            return true;
         } catch (Exception e) {
             Logger.getLogger(CsvExport.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }
-        return true;
     }
 }

@@ -20,6 +20,7 @@ import org.json.JSONObject;
 public class SocketServer implements Receiver, Runnable {
 
     private ArrayList<PrintWriter> writers;
+    private boolean flag;
 
     /**
      * Eine Nachricht wird an alle verbundenen Clients gesendet.
@@ -53,16 +54,23 @@ public class SocketServer implements Receiver, Runnable {
         }
     }
 
+    public void stop() {
+        flag = false;
+        for (PrintWriter writer : writers) {
+            writer.close();
+        }
+    }
+
     /**
      * Der Server wird gestartet.
      */
     public void start() {
+        flag = true;
         writers = new ArrayList<PrintWriter>();
         try {
             //Ein ServerSocket wird erstellt und ihm wird ein Port zugewiesen.
             ServerSocket serverSock = new ServerSocket(5000);
-
-            while (true) {
+            while (flag) {
                 //Ein Socket zu einem Client wird erstellt.
                 Socket clientSocket = serverSock.accept();
                 //Dem Socket wird ein timeout hinzugefuegt.
@@ -72,7 +80,6 @@ public class SocketServer implements Receiver, Runnable {
                 //Der Thread wird gestartet.
                 t.start();
             }
-
         } catch (Exception ex) {
             Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -100,7 +107,6 @@ public class SocketServer implements Receiver, Runnable {
     public class ClientHandler implements Runnable {
 
         BufferedReader reader;
-
         Socket sock;
 
         public ClientHandler(Socket clientSocket) {
@@ -128,7 +134,6 @@ public class SocketServer implements Receiver, Runnable {
                 }
             } catch (Exception e) {
                 Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, null, e);
-
             }
         }
     }

@@ -23,8 +23,8 @@ public class JSONDataloggerTest {
      */
     @Test
     public void testReceive() throws IOException {
-//        JSONLogger logger = new JSONLogger();
-        File file = new File(System.getProperty("user.home") + "\\JSONLoggingTest.json");
+        File file = new File(System.getProperty("user.home") + "\\TG-JSON-Loggingtest.json");
+
         JSONLogger logger = new JSONLogger(file);
         Map data = new HashMap<String, Double>();
         data.put("temp", 35345.43645);

@@ -31,7 +31,7 @@ public class TxtExportTest {
         values.add(2D);
         values.add(34D);
         data.put("temp", (List<Double>) values.clone());
-        File file = new File(System.getProperty("user.home") + "\\TXTEXPORTTEST.txt");
+        File file = new File(System.getProperty("user.home") + "\\TG-TXT-Exporttest.txt");
         Assert.assertTrue(exporter.exportData(data, file));
         Assert.assertFalse(exporter.exportData(null, null));
         Assert.assertFalse(exporter.exportData(data, null));

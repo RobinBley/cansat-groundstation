@@ -28,7 +28,7 @@ public class CsvExportTest {
         values.add(3D);
         values.add(4D);
         values.add(5D);
-        values.add(6D);
+        values.add(null);
         data.put("time", (List<Double>) values.clone());
         values.clear();
         values.add(346D);
@@ -43,7 +43,7 @@ public class CsvExportTest {
         values.add(2D);
         values.add(92D);
         data.put("co2", (List<Double>) values.clone());
-        File file = new File(System.getProperty("user.home") + "\\CSVEXPORTTEST.csv");
+        File file = new File(System.getProperty("user.home") + "\\TG-CSV-Exporttest.csv");
         Assert.assertTrue(exporter.exportData(data, file));
         Assert.assertFalse(exporter.exportData(null, null));
         Assert.assertFalse(exporter.exportData(data, null));
