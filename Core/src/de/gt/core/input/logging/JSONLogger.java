@@ -1,5 +1,6 @@
 package de.gt.core.input.logging;
 
+import de.gt.api.log.Out;
 import de.gt.api.relay.Receiver;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -36,7 +37,7 @@ public class JSONLogger implements Receiver {
             writer.write(jData.toString() + System.getProperty("line.separator"));
             writer.flush();
         } catch (IOException ex) {
-            System.out.println("Cannot log to JSON.");
+            Out.log("Cannot log to JSON.");
         }
     }
 
