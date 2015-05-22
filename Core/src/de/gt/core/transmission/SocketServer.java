@@ -129,8 +129,8 @@ public class SocketServer implements Receiver, Runnable {
 
         @Override
         public void run() {
-            String message;
             try {
+                String message;
                 //Wenn Ein Client Daten schickt, werden sie geloggt.
                 while ((message = reader.readLine()) != null) {
                     Logger.getLogger(SocketServer.class.getName()).log(Level.SEVERE, null, "client: " + message);

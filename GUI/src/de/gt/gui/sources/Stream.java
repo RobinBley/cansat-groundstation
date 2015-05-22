@@ -33,6 +33,7 @@ public class Stream implements DataSource{
         this.charset = c;
     }
 
+    @Override
     public void open() {
         try {
             Deque<Byte> segmentBuffer = new ArrayDeque<>();
@@ -55,6 +56,7 @@ public class Stream implements DataSource{
         }
     }
 
+    @Override
     public void close() throws IOException {
         stream.close();
     }
