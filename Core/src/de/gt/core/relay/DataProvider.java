@@ -1,6 +1,7 @@
 package de.gt.core.relay;
 
 import de.gt.api.config.Config;
+import de.gt.api.relay.Configurable;
 import de.gt.api.relay.Receiver;
 import de.gt.api.relay.Relay;
 import de.gt.api.streamutils.MapCollector;
@@ -55,6 +56,8 @@ public class DataProvider implements Relay {
 
     @Override
     public void relayConfigChange(Config c) {
-        receivers.stream().forEach(r -> r.configChanged(c));
+        receivers.stream()
+                .filter(r -> r instanceof Configurable)
+                .forEach(r -> ((Configurable) r).configChanged(c));
     }
 }

@@ -7,34 +7,33 @@ import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
 
 /**
- * Represents the pipeline wrapper that allows
- * for interacting with the pipeline
+ * Represents the pipeline wrapper that allows for interacting with the pipeline
+ *
  * @author Kevin
  */
 public interface DataPipeline {
 
     /**
      * Tauscht eine Config aus
-     * 
+     *
      * @param c
      */
     public void exchangeConfig(Config c);
-    
+
     /**
-     * Gibt an ob der Stream gerade 
-     * läuft oder nicht.
-     * 
+     * Gibt an ob der Stream gerade läuft oder nicht.
+     *
      * @return boolean
      */
     public boolean isStreamRunning();
-    
+
     /**
      * Gibt ein Boolean zurück, ob die Config geladen ist.
-     * 
+     *
      * @return boolean
      */
     public boolean isConfigLoaded();
-    
+
     /**
      * Tauscht den Parser aus und bindet den neuen Parser an die Pipeline an.
      *
