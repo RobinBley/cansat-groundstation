@@ -23,6 +23,7 @@
                 <package>de.gt.api.importer</package>
                 <package>de.gt.api.input.data</package>
                 <package>de.gt.api.input.dataformat</package>
+                <package>de.gt.api.log</package>
                 <package>de.gt.api.relay</package>
                 <package>de.gt.api.sources</package>
                 <package>de.gt.api.streamutils</package>

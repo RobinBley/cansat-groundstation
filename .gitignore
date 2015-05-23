@@ -1,9 +1,9 @@
 /nbproject/private/
-/build/
-/Data/nbproject/private/
 /API/nbproject/private/
 /Core/nbproject/private/
-/Data/build/
+/GUI/nbproject/private/
 /API/build/
 /Core/build/
 /GUI/build/
+/build/
+/dist/
