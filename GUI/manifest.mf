@@ -4,4 +4,4 @@ OpenIDE-Module: de.gt.gui
 OpenIDE-Module-Localizing-Bundle: de/gt/gui/Bundle.properties
 OpenIDE-Module-Requires: org.openide.windows.WindowManager
 OpenIDE-Module-Specification-Version: 1.0
-
+OpenIDE-Module-Install: de/gt/gui/init/Main.class
