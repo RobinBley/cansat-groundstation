@@ -1,15 +1,19 @@
 package de.gt.core.config;
 
+import de.gt.api.config.InvalidConfigException;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Parses a config
+ *
  * @author Kevin
  */
-public class ConfigParser {
+@ServiceProvider(service = de.gt.api.config.ConfigParser.class)
+public class ConfigParser implements de.gt.api.config.ConfigParser {
 
     private static final String NAME_KEY = "name";
     private static final String IDENTIFIER_KEY = "identifier";
@@ -18,11 +22,13 @@ public class ConfigParser {
 
     /**
      * Parses the config
+     *
      * @param configStr - data to parse
      * @return parsed Config
-     * @throws InvalidConfigException - config cannot be parsed 
+     * @throws InvalidConfigException - config cannot be parsed
      */
-    public static Config parse(String configStr) throws InvalidConfigException {
+    @Override
+    public Config parse(String configStr) throws InvalidConfigException {
         JSONObject parsedConfig = new JSONObject(configStr);
 
         if (isValidConfig(parsedConfig)) {
@@ -50,7 +56,7 @@ public class ConfigParser {
 
     }
 
-    private static List<String> jsonArrayToList(JSONArray jsonArr) {
+    private List<String> jsonArrayToList(JSONArray jsonArr) {
         //Länge des JSON Arrays bestimmen
         int len = jsonArr.length();
 
@@ -65,14 +71,14 @@ public class ConfigParser {
         return list;
     }
 
-    private static boolean isValidConfig(JSONObject parsedConfig) {
+    private boolean isValidConfig(JSONObject parsedConfig) {
         return !(parsedConfig.isNull(NAME_KEY)
                 || parsedConfig.isNull(IDENTIFIER_KEY)
                 || parsedConfig.isNull(FORMAT_KEY)
                 || parsedConfig.isNull(VALUES_KEY));
     }
 
-    private static boolean isSupportedFormat(String format) {
+    private boolean isSupportedFormat(String format) {
         switch (format.toUpperCase()) {
             case "JSON":
                 return true;

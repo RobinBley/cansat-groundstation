@@ -1,4 +1,4 @@
-package de.gt.core.config;
+package de.gt.api.config;
 
 /**
  * Config thrown when a config cannot be parsed
