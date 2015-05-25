@@ -4,9 +4,11 @@ import java.util.Collection;
 
 /**
  * Represents the data read from a config
+ *
  * @author Kevin
  */
-public class Config implements de.gt.api.config.Config{
+public class Config implements de.gt.api.config.Config {
+
     private final String name;
     private final String identifier;
     private final String format;
@@ -14,6 +16,7 @@ public class Config implements de.gt.api.config.Config{
 
     /**
      * Constructor
+     *
      * @param name - name of the satellite
      * @param identifier - identifier of the satellite
      * @param format - transmission format
@@ -44,5 +47,10 @@ public class Config implements de.gt.api.config.Config{
     @Override
     public Collection<String> getKeys() {
         return valueConfigs;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
