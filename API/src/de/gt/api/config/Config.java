@@ -4,6 +4,7 @@ import java.util.Collection;
 
 /**
  * Represents a config
+ *
  * @author Kevin
  */
 public interface Config {
@@ -15,4 +16,6 @@ public interface Config {
     public String getFormat();
 
     public Collection<String> getKeys();
+
+    public String toString();
 }
