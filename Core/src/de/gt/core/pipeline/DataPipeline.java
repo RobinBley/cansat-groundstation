@@ -116,4 +116,12 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
     public boolean isConfigLoaded() {
         return this.config != null;
     }
+
+    /**
+     * Gibt die aktuelle Pipeline Konfiguration zurück
+     */
+    @Override
+    public Config getConfig() {
+        return this.config;
+    }
 }

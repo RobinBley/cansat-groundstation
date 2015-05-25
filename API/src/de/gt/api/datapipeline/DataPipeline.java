@@ -7,9 +7,9 @@ import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
 
 /**
- * Stellt den Pipeline-Wrapper dar, welche
- * die Interaktion mit der Input-Pipeline
- * erlaubt.
+ * Stellt den Pipeline-Wrapper dar, welche die Interaktion mit der
+ * Input-Pipeline erlaubt.
+ *
  * @author Kevin
  */
 public interface DataPipeline {
@@ -20,6 +20,11 @@ public interface DataPipeline {
      * @param c
      */
     public void exchangeConfig(Config c);
+
+    /**
+     * Gibt die aktuelle Pipeline Konfiguration zurück
+     */
+    public Config getConfig();
 
     /**
      * Gibt an ob der Stream gerade läuft oder nicht.
