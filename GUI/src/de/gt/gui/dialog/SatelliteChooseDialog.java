@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import org.openide.util.Lookup;
+import de.gt.api.log.Out;
 
 /**
  *
@@ -42,6 +43,9 @@ public class SatelliteChooseDialog extends javax.swing.JDialog {
     @Override
     public void setVisible(boolean b) {
         try {
+            //Alle Elemente entfernen
+            configChooser.removeAllElements();
+
             //Aktualisieren der Config auswahl
             getAvailableConfigs().stream().forEach(c -> configChooser.addElement(c));
         } catch (IOException ex) {
@@ -56,14 +60,14 @@ public class SatelliteChooseDialog extends javax.swing.JDialog {
         List<Config> availableConfigs = new ArrayList<>();
 
         //Alle verfügbaren Konfigurationen durchlaufen
-        for (int i = 0; i < configFiles.length; i++) {
+        for (File configFile : configFiles) {
             try {
-                if (configFiles[i].isFile()) {
+                if (configFile.isFile()) {
                     //Config laden, parsen und in Liste speichern
-                    availableConfigs.add(parser.parse(loader.load(configFiles[i].getPath())));
+                    availableConfigs.add(parser.parse(loader.load(configFile.getPath())));
                 }
             } catch (InvalidConfigException ex) {
-                //TODO: Log
+                Out.log("Fehler beim parsen einer Konfigurationsdatei!");
             }
         }
 
@@ -127,6 +131,7 @@ public class SatelliteChooseDialog extends javax.swing.JDialog {
     private void btnChooseConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseConfigActionPerformed
         //Config kann über getter geholt werden, darum aktuelles Item setzen
         config = (Config) configChooser.getSelectedItem();
+        dispose();
     }//GEN-LAST:event_btnChooseConfigActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
