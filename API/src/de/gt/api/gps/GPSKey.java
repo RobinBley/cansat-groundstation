@@ -1,8 +1,7 @@
 package de.gt.api.gps;
 
 /**
- * Represents the sub keys
- * of GPS data
+ * Stellt die GPS-Schlüssel dar
  * @author mhuisi
  */
 public final class GPSKey {
@@ -12,7 +11,7 @@ public final class GPSKey {
     private final String altitudeKey;
     
     /**
-     * Constructor
+     * Konstructor
      * @param latitudeKey
      * @param longitudeKey
      * @param altitudeKey 

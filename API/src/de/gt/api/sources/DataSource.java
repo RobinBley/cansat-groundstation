@@ -4,14 +4,14 @@ import de.gt.api.input.dataformat.DataFormat;
 import java.io.Closeable;
 
 /**
- * Interface for all sources of data, for instance USB
+ * Interface für alle Datenquellen
  *
  * @author mhuisi
  */
 public interface DataSource extends Closeable {
     
     /**
-     * Opens this source.
+     * Öffnet diese Quelle
      */
     void open();
 

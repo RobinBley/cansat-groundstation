@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
- * Generator for random debug data
+ * Generator für zufällige Debugdaten
  *
  * @author mhuisi
  */
@@ -18,16 +18,14 @@ public class DebugGenerator {
 
     /**
      *
-     * @param values - default values for the debug generation in a
-     * key:start_value mapping.
+     * @param values - Default werte für die debug generation im key:start_value mapping
      */
     private DebugGenerator(Map<String, Double> values) {
         this.values = values;
     }
 
     /**
-     * Creates a debug generator with default initialized debug keys and values.
-     *
+     * Erstellt einen Debuggenerator mit default Debugkeys und -werten.
      * @return generator
      */
     public static DebugGenerator createWithKeys(Collection<String> keys) {
@@ -37,8 +35,7 @@ public class DebugGenerator {
     }
 
     /**
-     * Generates a linear set of data.
-     *
+     * Erstellt einen linearen Satz an Daten.
      * @return set of data
      */
     public Map<String, Double> generate() {

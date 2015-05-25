@@ -8,8 +8,8 @@ import de.gt.api.sources.DataSource;
 import j.extensions.comm.SerialComm;
 
 /**
- * Data source for serial ports
- *
+ * Datenquelle für serielle Ports
+ * 
  * @author mhuisi
  */
 public class Serial implements DataSource {
@@ -17,11 +17,11 @@ public class Serial implements DataSource {
     private final Stream stream;
 
     /**
-     *
-     * @param f - formatter to push data to
-     * @param p - port to stream data from
-     * @param delimiter - delimiter value between every datum in the stream
-     * @param c - charset the data is streamed in
+     * Konstruktor
+     * @param f - Formatter, zu dem Daten gepusht werden
+     * @param p - Port, von dem Daten bezogen werden sollen
+     * @param delimiter - Trenncharacter zwischen Datensätzen
+     * @param c - Zeichensatz der gestreamten Daten
      */
     private Serial(SerialComm p, byte delimiter, Charset c) {
         this.port = p;
@@ -29,13 +29,14 @@ public class Serial implements DataSource {
     }
 
     /**
-     * Creates a serial source from a port name.
+     * Erstellt eine serielle Quelle von einem
+     * Port-Namen
      *
-     * @param f - formatter to push data to
-     * @param portName
-     * @param delimiter - delimiter value between every datum in the stream
-     * @param c - charset the data is streamed in
-     * @return serial source
+     * @param f - Formatter, zu dem Daten gepusht werden
+     * @param portName - Portname
+     * @param delimiter - Trenncharacter zwischen Datensätzen
+     * @param c - Zeichensatz der gestreamten Daten
+     * @return serielle Quelle
      */
     public static Serial createFromName(String portName, byte delimiter, Charset c) {
         return Arrays.stream(SerialComm.getCommPorts())

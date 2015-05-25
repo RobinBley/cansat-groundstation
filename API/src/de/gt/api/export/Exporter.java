@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Represents a data exporter
+ * Stellt einen Datenexporter dar
  * @author Robin
  */
 public interface Exporter {

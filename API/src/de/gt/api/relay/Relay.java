@@ -4,16 +4,15 @@ import de.gt.api.config.Config;
 import java.util.Map;
 
 /**
- * Relay that remotes data to multiple components and filters missing data
- *
+ * Relay, das Daten an mehrere Komponenten weiterleiten
+ * und fehlende Daten filtert
  * @author Kevin
  */
 public interface Relay {
 
     /**
-     * Relays a datum to all receivers
-     *
-     * @param datum
+     * Leitet eine Nachricht an alle Receiver weiter.
+     * @param datum 
      */
     public void relay(Map<String, Double> datum);
 

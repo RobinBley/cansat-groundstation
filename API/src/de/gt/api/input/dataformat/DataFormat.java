@@ -3,10 +3,10 @@ package de.gt.api.input.dataformat;
 import de.gt.api.relay.Relay;
 
 /**
- * Represents a data parser within
- * the input pipeline.
- * Missing data should be replaced
- * with key:null!
+ * Stellt einen Datenparser in der
+ * Input-Pipeline dar.
+ * Fehlende Daten sollten mit key:null
+ * ersetzt werden!
  * @author Robin
  */
 public interface DataFormat {

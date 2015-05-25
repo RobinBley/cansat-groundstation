@@ -11,9 +11,9 @@ import de.gt.api.config.Config;
 public interface Configurable {
 
     /**
-     * Triggered when the config has changed
-     *
-     * @param newConfig
+     * Getriggert wenn die Konfigurationsdatei
+     * verändert wird
+     * @param newConfig 
      */
     void configChanged(Config newConfig);
 }

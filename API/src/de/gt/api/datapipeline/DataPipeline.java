@@ -7,8 +7,9 @@ import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
 
 /**
- * Represents the pipeline wrapper that allows for interacting with the pipeline
- *
+ * Stellt den Pipeline-Wrapper dar, welche
+ * die Interaktion mit der Input-Pipeline
+ * erlaubt.
  * @author Kevin
  */
 public interface DataPipeline {

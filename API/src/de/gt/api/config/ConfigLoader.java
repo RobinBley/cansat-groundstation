@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Represents a config loader
+ * Stellt einen Konfigurationslader dar
  * @author Kevin
  */
 public interface ConfigLoader {

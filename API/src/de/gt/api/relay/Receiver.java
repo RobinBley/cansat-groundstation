@@ -3,16 +3,16 @@ package de.gt.api.relay;
 import java.util.Map;
 
 /**
- * Represents components that are able to 
- * receive data and process them.
+ * Stellt Komponenten dar, welche Enddaten empfangen
+ * und verarbeiten können.
  * @author mhuisi
  */
 public interface Receiver {
     
     /**
-     * Receives a datum (triggered
-     * when a datum was fully processed
-     * in the input pipeline)
+     * Erhaelt ein Datum (getriggert
+     * wenn ein Datum komplett in der Input-Pipeline
+     * verarbeitet hat)
      * @param datum 
      */
     void receive(Map<String, Double> datum);

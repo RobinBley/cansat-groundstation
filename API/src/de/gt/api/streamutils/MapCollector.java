@@ -6,16 +6,16 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
- * Creates entry stream collectors
+ * Erstellt Entry-Stream-Collectors
  * @author mhuisi
  */
 public class MapCollector {
 
     /**
-     * Creates a new collector
-     * which allows to collect 
-     * a stream of Entries<K, V> into
-     * a a Map<K, V>.
+     * Erstellt einen neuen Collector
+     * welcher es erlaubt, einen Stream aus
+     * Entries<K, V> in eine Map<K, V> zu
+     * collecten.
      * @param <K>
      * @param <V>
      * @return 
