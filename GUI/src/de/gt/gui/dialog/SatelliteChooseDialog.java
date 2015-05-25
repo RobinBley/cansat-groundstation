@@ -1,7 +1,15 @@
 package de.gt.gui.dialog;
 
 import de.gt.api.config.Config;
+import de.gt.api.config.ConfigLoader;
+import de.gt.api.config.ConfigParser;
+import de.gt.api.config.InvalidConfigException;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import org.openide.util.Lookup;
 
 /**
  *
@@ -10,6 +18,11 @@ import java.util.List;
 public class SatelliteChooseDialog extends javax.swing.JDialog {
 
     private Config config;
+    private ConfigParser parser;
+    private ConfigLoader loader;
+
+    //Auswahlfeld für die Satelliten
+    DefaultComboBoxModel<Config> configChooser = new DefaultComboBoxModel<>();
 
     /**
      * Creates new form SatelliteChooseDialog
@@ -17,14 +30,51 @@ public class SatelliteChooseDialog extends javax.swing.JDialog {
     public SatelliteChooseDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        this.parser = Lookup.getDefault().lookup(ConfigParser.class);
+        this.loader = Lookup.getDefault().lookup(ConfigLoader.class);
     }
 
     public Config getConfig() {
         return this.config;
     }
 
-    private List<Config> getAvailableConfigs() {
-        return null;
+    @Override
+    public void setVisible(boolean b) {
+        try {
+            //Aktualisieren der Config auswahl
+            getAvailableConfigs().stream().forEach(c -> configChooser.addElement(c));
+        } catch (IOException ex) {
+            //TODO: Show Error to user
+        }
+
+        super.setVisible(b);
+    }
+
+    private List<Config> getAvailableConfigs() throws IOException {
+        File[] configFiles = getAvailableConfigFiles();
+        List<Config> availableConfigs = new ArrayList<>();
+
+        //Alle verfügbaren Konfigurationen durchlaufen
+        for (int i = 0; i < configFiles.length; i++) {
+            try {
+                if (configFiles[i].isFile()) {
+                    //Config laden, parsen und in Liste speichern
+                    availableConfigs.add(parser.parse(loader.load(configFiles[i].getPath())));
+                }
+            } catch (InvalidConfigException ex) {
+                //TODO: Log
+            }
+        }
+
+        return availableConfigs;
+    }
+
+    private File[] getAvailableConfigFiles() {
+        File configDir = new File("config");
+
+        //Alle verfügbaren Config Dateien zurückgeben
+        return configDir.listFiles();
     }
 
     /**
@@ -41,7 +91,7 @@ public class SatelliteChooseDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cmbAvailableSatellites.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbAvailableSatellites.setModel(configChooser);
 
         org.openide.awt.Mnemonics.setLocalizedText(btnChooseConfig, org.openide.util.NbBundle.getMessage(SatelliteChooseDialog.class, "SatelliteChooseDialog.btnChooseConfig.text")); // NOI18N
         btnChooseConfig.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +125,8 @@ public class SatelliteChooseDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChooseConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseConfigActionPerformed
-        //TODO: Load Config object from config
+        //Config kann über getter geholt werden, darum aktuelles Item setzen
+        config = (Config) configChooser.getSelectedItem();
     }//GEN-LAST:event_btnChooseConfigActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
