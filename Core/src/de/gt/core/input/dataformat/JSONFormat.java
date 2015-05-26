@@ -7,7 +7,9 @@ import de.gt.api.streamutils.MapCollector;
 import de.gt.api.config.Config;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openide.util.lookup.ServiceProvider;
@@ -31,17 +33,19 @@ public class JSONFormat implements DataFormat {
         try {
             JSONObject jsonData = new JSONObject(data);
             Collection<String> keys = config.getKeys();
-            Map<String, Double> units = keys.stream()
-                    .map(k -> {
-                        if (!jsonData.has(k)) {
-                            return new SimpleEntry<String, Double>(k, null);
-                        }
-                        try {
-                            return new SimpleEntry<>(k, jsonData.getDouble(k));
-                        } catch (JSONException e) {
-                            return new SimpleEntry<String, Double>(k, null);
-                        }
-                    }).collect(MapCollector.create());
+            Map<String, Double> units = new HashMap<>();
+
+            keys.stream().map(k -> {
+                if (!jsonData.has(k)) {
+                    return new SimpleEntry<String, Double>(k, null);
+                }
+                try {
+                    return new SimpleEntry<>(k, jsonData.getDouble(k));
+                } catch (JSONException e) {
+                    return new SimpleEntry<String, Double>(k, null);
+                }
+            }).forEach(e -> units.entrySet().add(e));
+
             relay.relay(units);
         } catch (JSONException e) {
             Out.log("Received data is not valid JSON.");
