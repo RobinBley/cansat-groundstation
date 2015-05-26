@@ -55,8 +55,14 @@ public final class ManageSatellitesAction extends DialogAction {
         this.pipeline.exchangeConfig(config);
 
         try {
+            //Parser Object bauen
+            DataFormat parser = this.buildParser(config.getFormat());
+
+            //Parser konfigurieren
+            parser.configure(config);
+
             //Parser austauschen
-            this.pipeline.exchangeParser(this.buildParser(config.getFormat()));
+            this.pipeline.exchangeParser(parser);
 
             //Eine neue Datenquelle in der Pipeline installieren (Geht nicht direkt, da ein Auswahldialog erforderlich sein kann)
             this.installDataSource(config.getSource());

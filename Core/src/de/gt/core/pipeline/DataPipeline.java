@@ -52,6 +52,10 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
     @Override
     public void exchangeConfig(Config c) {
         this.config = c;
+        
+        if(this.pipeParser != null){
+            this.pipeParser.configure(c);
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
 package de.gt.api.input.dataformat;
 
+import de.gt.api.config.Config;
 import de.gt.api.relay.Relay;
 
 /**
@@ -24,6 +25,14 @@ public interface DataFormat {
      * @param data - daten die geparst werden sollen
      */
     public void parseData(String data);
+    
+    /**
+     * Setzt die Konfiguration 
+     * für den Parser
+     * 
+     * @param c 
+     */
+    public void configure(Config c);
     
     /**
      * Gibt den Namen des Parsers zum Abgleich 

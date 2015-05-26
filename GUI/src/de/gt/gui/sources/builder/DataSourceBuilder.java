@@ -1,5 +1,6 @@
 package de.gt.gui.sources.builder;
 
+import de.gt.api.datapipeline.DataPipeline;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import de.gt.api.sources.DataSource;
@@ -10,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Set;
-import org.openide.util.Exceptions;
+import org.openide.util.Lookup;
 
 /**
  *
@@ -20,6 +21,12 @@ public class DataSourceBuilder extends WindowAdapter {
 
     private DataSourceConfigurationDialog dialog;
     private Class dataSourceClass;
+    
+    private DataPipeline pipeline;
+    
+    public DataSourceBuilder(){
+        pipeline = Lookup.getDefault().lookup(DataPipeline.class);
+    }
 
     public <T extends DataSource> void buildSource(Class<T> dataSourceClass) {
         try {
@@ -58,7 +65,7 @@ public class DataSourceBuilder extends WindowAdapter {
     }
 
     private void installSource(DataSource source) {
-        //TODO: Install source in Pipeline
+        this.pipeline.exchangeSource(source);
     }
 
     @Override

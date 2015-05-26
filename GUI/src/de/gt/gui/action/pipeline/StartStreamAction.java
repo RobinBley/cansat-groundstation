@@ -8,6 +8,7 @@ package de.gt.gui.action.pipeline;
 import de.gt.api.datapipeline.DataPipeline;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import org.openide.loaders.DataObject;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -35,5 +36,10 @@ public final class StartStreamAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ev) {
+        this.pipeline.startStream();
+
+        if (!this.pipeline.isStreamRunning()) {
+            JOptionPane.showMessageDialog(null, "Fehler beim Starten des Streams");
+        }
     }
 }

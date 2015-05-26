@@ -4,7 +4,7 @@ import de.gt.api.input.dataformat.DataFormat;
 import de.gt.api.log.Out;
 import de.gt.api.relay.Relay;
 import de.gt.api.streamutils.MapCollector;
-import de.gt.core.config.Config;
+import de.gt.api.config.Config;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Collection;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class JSONFormat implements DataFormat {
 
     @Override
     public void parseData(String data) {
-        if (relay != null) {
+        if (relay == null) {
             Out.log("Cannot parse JSON because relay is not set.");
         }
         try {
@@ -59,4 +59,8 @@ public class JSONFormat implements DataFormat {
         return "JSON";
     }
 
+    @Override
+    public void configure(Config c) {
+        config = c;
+    }
 }
