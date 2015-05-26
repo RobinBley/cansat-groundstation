@@ -20,7 +20,7 @@ public abstract class DataReceiverComponent extends TopComponent implements Conf
 
     public DataReceiverComponent() {
         //Datapipeline Service über Lookup laden
-        DataPipeline pipeline = Lookup.getDefault().lookup(DataPipeline.class);
+        pipeline = Lookup.getDefault().lookup(DataPipeline.class);
     }
 
     @Override
