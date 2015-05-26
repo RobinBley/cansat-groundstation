@@ -3,15 +3,17 @@ package de.gt.gui.action.satellites;
 import de.gt.api.config.Config;
 import de.gt.api.datapipeline.DataPipeline;
 import de.gt.api.input.dataformat.DataFormat;
-import de.gt.api.sources.DataSource;
+import de.gt.api.input.dataformat.UnknownFormatException;
 import de.gt.gui.action.DialogAction;
 import de.gt.gui.dialog.SatelliteChooseDialog;
 import de.gt.gui.sources.DebugJSON;
 import de.gt.gui.sources.Serial;
+import de.gt.gui.sources.UnknownDataSourceException;
 import de.gt.gui.sources.builder.DataSourceBuilder;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Collection;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionRegistration;
@@ -52,13 +54,24 @@ public final class ManageSatellitesAction extends DialogAction {
         //Konfiguration in der Pipeline austauschen
         this.pipeline.exchangeConfig(config);
 
-        //Eine neue Datenquelle in der Pipeline installieren (Geht nicht direkt, da ein Auswahldialog erforderlich sein kann)
-        this.installDataSource(config.getSource());
+        try {
+            //Parser austauschen
+            this.pipeline.exchangeParser(this.buildParser(config.getFormat()));
+
+            //Eine neue Datenquelle in der Pipeline installieren (Geht nicht direkt, da ein Auswahldialog erforderlich sein kann)
+            this.installDataSource(config.getSource());
+        } catch (UnknownDataSourceException sEx) {
+            //TODO: Show User Error, unknown source exception
+        } catch (UnknownFormatException pEx) {
+            //TODO: Show user Error, unknown parser
+        } finally {
+            //TODO: Pipeline zurücksetzen
+        }
     }
 
-    private void installDataSource(String sourceName) {
+    private void installDataSource(String sourceName) throws UnknownDataSourceException {
         DataSourceBuilder builder = new DataSourceBuilder();
-        
+
         Class dataSourceTemplate;
 
         switch (sourceName) {
@@ -69,15 +82,24 @@ public final class ManageSatellitesAction extends DialogAction {
                 dataSourceTemplate = DebugJSON.class;
                 break;
             default:
-                dataSourceTemplate = null;
-            //TODO: Exception weil Config mist ist
+                throw new UnknownDataSourceException();
         }
 
         builder.buildSource(dataSourceTemplate);
     }
 
-    private DataFormat buildParser(String parserName) {
-        return null;
+    private DataFormat buildParser(String parserName) throws UnknownFormatException {
+        Collection<? extends DataFormat> availableParsers = Lookup.getDefault().lookupAll(DataFormat.class);
+
+        //Alle Parser durchlaufen und prüfen ob ein passender Parser dabei ist
+        for (DataFormat parser : availableParsers) {
+            if (parser.getName().equals(parserName)) {
+                return parser;
+            }
+        }
+
+        //Kein Passender Parser gefunden
+        throw new UnknownFormatException();
     }
 
     @Override

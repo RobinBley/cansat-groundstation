@@ -25,4 +25,10 @@ public interface DataFormat {
      */
     public void parseData(String data);
     
+    /**
+     * Gibt den Namen des Parsers zum Abgleich 
+     * mit der Config zurück
+     */
+    public String getName();
+    
 }

@@ -14,6 +14,7 @@ import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Parses JSON data
+ *
  * @author Robin
  */
 @ServiceProvider(service = DataFormat.class)
@@ -51,6 +52,11 @@ public class JSONFormat implements DataFormat {
     @Override
     public void linkRelay(Relay relay) {
         this.relay = relay;
+    }
+
+    @Override
+    public String getName() {
+        return "JSON";
     }
 
 }
