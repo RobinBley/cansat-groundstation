@@ -16,14 +16,15 @@ import org.openide.util.Lookup;
  *
  * @author Kevin
  */
-public class DebugConfigurationForm extends DataSourceConfigurationDialog {
+public class DebugConfigurationDialog extends DataSourceConfigurationDialog {
 
     DataSourceConfiguration configuration;
 
     /**
      * Creates new form DebugConfigurationForm
      */
-    public DebugConfigurationForm() {
+    public DebugConfigurationDialog() {
+        configuration = new DataSourceConfiguration();
         initComponents();
     }
 
@@ -41,7 +42,7 @@ public class DebugConfigurationForm extends DataSourceConfigurationDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        org.openide.awt.Mnemonics.setLocalizedText(btnSetupCompleted, org.openide.util.NbBundle.getMessage(DebugConfigurationForm.class, "DebugConfigurationForm.btnSetupCompleted.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(btnSetupCompleted, org.openide.util.NbBundle.getMessage(DebugConfigurationDialog.class, "DebugConfigurationDialog.btnSetupCompleted.text")); // NOI18N
         btnSetupCompleted.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSetupCompletedActionPerformed(evt);
@@ -49,7 +50,7 @@ public class DebugConfigurationForm extends DataSourceConfigurationDialog {
         });
 
         txtDummyGenerator.setEditable(false);
-        txtDummyGenerator.setText(org.openide.util.NbBundle.getMessage(DebugConfigurationForm.class, "DebugConfigurationForm.txtDummyGenerator.text")); // NOI18N
+        txtDummyGenerator.setText(org.openide.util.NbBundle.getMessage(DebugConfigurationDialog.class, "DebugConfigurationDialog.txtDummyGenerator.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,7 +60,7 @@ public class DebugConfigurationForm extends DataSourceConfigurationDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDummyGenerator)
-                    .addComponent(btnSetupCompleted, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
+                    .addComponent(btnSetupCompleted, javax.swing.GroupLayout.PREFERRED_SIZE, 370, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -83,7 +84,7 @@ public class DebugConfigurationForm extends DataSourceConfigurationDialog {
 
         //DebugGenerator auf Basis der aktuellen Satellitenkonfiguration initialisieren
         configuration.setConfigurationItem(DebugGenerator.class, DebugGenerator.createWithKeys(actualConfig.getKeys()));
-        
+
         dispose();
     }//GEN-LAST:event_btnSetupCompletedActionPerformed
 

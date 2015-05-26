@@ -16,5 +16,7 @@ public interface Config {
 
     public Collection<String> getKeys();
 
+    public String getSource();
+    
     public String toString();
 }

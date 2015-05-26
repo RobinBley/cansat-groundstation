@@ -23,9 +23,4 @@ public interface DataSource extends Closeable {
      * @param f - formatter
      */
     void linkParser(DataFormat f);
-
-    default DataSourceConfigurationDialog getConfigurationDialog() {
-        //Null meint hier es ist keine Konfiguration der Datenquelle über einen Dialog erforderlich
-        return null;
-    }
 }

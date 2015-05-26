@@ -6,6 +6,9 @@ import de.gt.api.input.dataformat.DataFormat;
 import de.gt.api.sources.DataSource;
 import de.gt.gui.action.DialogAction;
 import de.gt.gui.dialog.SatelliteChooseDialog;
+import de.gt.gui.sources.DebugJSON;
+import de.gt.gui.sources.Serial;
+import de.gt.gui.sources.builder.DataSourceBuilder;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -49,23 +52,28 @@ public final class ManageSatellitesAction extends DialogAction {
         //Konfiguration in der Pipeline austauschen
         this.pipeline.exchangeConfig(config);
 
-        //
-        this.pipeline.exchangeSource(null);
+        //Eine neue Datenquelle in der Pipeline installieren (Geht nicht direkt, da ein Auswahldialog erforderlich sein kann)
+        this.installDataSource(config.getSource());
     }
 
-    private DataSource buildDataSource(String sourceName) {
-        DataSource source = null;
+    private void installDataSource(String sourceName) {
+        DataSourceBuilder builder = new DataSourceBuilder();
+        
+        Class dataSourceTemplate;
 
         switch (sourceName) {
             case "Serial":
+                dataSourceTemplate = Serial.class;
                 break;
             case "Debug":
+                dataSourceTemplate = DebugJSON.class;
                 break;
             default:
-                //TODO: Exception weil Config mist ist
+                dataSourceTemplate = null;
+            //TODO: Exception weil Config mist ist
         }
 
-        return source;
+        builder.buildSource(dataSourceTemplate);
     }
 
     private DataFormat buildParser(String parserName) {

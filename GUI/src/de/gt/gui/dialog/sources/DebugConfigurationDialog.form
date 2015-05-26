@@ -49,7 +49,7 @@
     <Component class="javax.swing.JToggleButton" name="btnSetupCompleted">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/gt/gui/dialog/sources/Bundle.properties" key="DebugConfigurationForm.btnSetupCompleted.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="de/gt/gui/dialog/sources/Bundle.properties" key="DebugConfigurationDialog.btnSetupCompleted.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Events>
@@ -60,7 +60,7 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/gt/gui/dialog/sources/Bundle.properties" key="DebugConfigurationForm.txtDummyGenerator.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="de/gt/gui/dialog/sources/Bundle.properties" key="DebugConfigurationDialog.txtDummyGenerator.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>

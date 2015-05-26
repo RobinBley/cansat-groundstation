@@ -19,6 +19,7 @@ public class ConfigParser implements de.gt.api.config.ConfigParser {
     private static final String IDENTIFIER_KEY = "identifier";
     private static final String FORMAT_KEY = "format";
     private static final String VALUES_KEY = "values";
+    private static final String SOURCE_KEY = "source";
 
     /**
      * Parses the config
@@ -49,11 +50,13 @@ public class ConfigParser implements de.gt.api.config.ConfigParser {
             //Name des Satelliten bestimmen
             String name = parsedConfig.getString(NAME_KEY);
 
-            return new Config(name, identifier, format, jsonArrayToList(values));
+            //Datenquelle bestimmen
+            String source = parsedConfig.getString(SOURCE_KEY);
+
+            return new Config(name, identifier, format, source, jsonArrayToList(values));
         } else {
             throw new InvalidConfigException();
         }
-
     }
 
     private List<String> jsonArrayToList(JSONArray jsonArr) {

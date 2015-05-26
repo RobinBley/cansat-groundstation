@@ -34,25 +34,26 @@ public class DataSourceBuilder extends WindowAdapter {
                 ((DataSourceConfigurationDialog) configurationDialog).addWindowListener(this);
 
                 //Dialog merken um später Informationen auszulesen
-                dialog = (DataSourceConfigurationDialog) configurationDialog;
+                this.dialog = (DataSourceConfigurationDialog) configurationDialog;
 
                 //Klasse der Datenquelle merken
                 this.dataSourceClass = dataSourceClass;
+
+                //Konfigurationsdialog anzeigen
+                this.dialog.setVisible(true);
             } else {
-                //Keine Konfiguration der Datenquelle benötigt
-                try {
-                    //Datenquelle erzeugen
-                    DataSource source = dataSourceClass.getConstructor().newInstance();
-
-                    //Quelle in der Pipeline installieren
-                    installSource(source);
-                } catch (InstantiationException ex) {
-                    //TODO: Fehler
-                }
+                throw new NoSuchMethodException();
             }
-
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ex) {
-            //TODO: Fehler (Rethrow), weil alles mit DataSource interface die Konfigurationsmethode per default interface method implementiert
+            try {
+                //Datenquelle erzeugen
+                DataSource source = dataSourceClass.getConstructor().newInstance();
+
+                //Quelle in der Pipeline installieren
+                installSource(source);
+            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException ex2) {
+                //Kein Öffentlicher Konstruktor ohne Argumente
+            }
         }
     }
 
@@ -71,11 +72,17 @@ public class DataSourceBuilder extends WindowAdapter {
         //Konstruktor suchen der auf die Konfigurationssignatur passt
         Constructor c = findConstructor(dataSourceClass, paramSignature);
 
+        //Referenz für die zu bauende Datenquelle
+        DataSource source = null;
+
         if (c == null) {
             //TODO: Kein Konstruktor für die Datenquelle gefunden, Fehlerhafte Programmierung des DataSourceConfigurationDialog
         } else {
             try {
-                c.newInstance(config.getParams());
+                source = (DataSource) c.newInstance(config.getParams());
+
+                //Datenquelle installieren
+                installSource(source);
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                 //TODO: Show error to user
             }

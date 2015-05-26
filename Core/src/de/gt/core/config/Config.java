@@ -13,6 +13,7 @@ public class Config implements de.gt.api.config.Config {
     private final String identifier;
     private final String format;
     private final Collection<String> valueConfigs;
+    private final String source;
 
     /**
      * Constructor
@@ -22,11 +23,12 @@ public class Config implements de.gt.api.config.Config {
      * @param format - transmission format
      * @param valueConfigs - keys
      */
-    public Config(String name, String identifier, String format, Collection<String> valueConfigs) {
+    public Config(String name, String identifier, String format, String source, Collection<String> valueConfigs) {
         this.name = name;
         this.identifier = identifier;
         this.format = format;
         this.valueConfigs = valueConfigs;
+        this.source = source;
     }
 
     @Override
@@ -52,5 +54,10 @@ public class Config implements de.gt.api.config.Config {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public String getSource() {
+        return source;
     }
 }
