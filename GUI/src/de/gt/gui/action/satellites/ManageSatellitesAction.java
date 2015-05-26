@@ -60,12 +60,9 @@ public final class ManageSatellitesAction extends DialogAction {
 
             //Eine neue Datenquelle in der Pipeline installieren (Geht nicht direkt, da ein Auswahldialog erforderlich sein kann)
             this.installDataSource(config.getSource());
-        } catch (UnknownDataSourceException sEx) {
+        } catch (UnknownDataSourceException | UnknownFormatException ex) {
             //TODO: Show User Error, unknown source exception
-        } catch (UnknownFormatException pEx) {
             //TODO: Show user Error, unknown parser
-        } finally {
-            //TODO: Pipeline zurücksetzen
         }
     }
 

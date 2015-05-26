@@ -1,12 +1,12 @@
 package de.gt.gui.window;
 
 import de.gt.api.config.Config;
-import de.gt.api.relay.Receiver;
-import de.gt.api.streamutils.MapCollector;
 import info.monitorenter.gui.chart.IAxis;
+import info.monitorenter.gui.chart.ITrace2D;
+import info.monitorenter.gui.chart.traces.Trace2DSimple;
+import java.util.Collection;
 import java.util.Map;
-import org.openide.util.LookupEvent;
-import org.openide.util.LookupListener;
+import javax.swing.DefaultComboBoxModel;
 import org.openide.util.NbBundle.Messages;
 import org.openide.windows.TopComponent;
 
@@ -27,14 +27,40 @@ public class VisualizationTopComponent extends DataReceiverComponent {
 
     private Config config;
 
+    private DefaultComboBoxModel<String> xAxisVal;
+    private DefaultComboBoxModel<String> yAxisVal;
+
+    private ITrace2D trace;
+
     /**
      * Creates new form VizualizationTopComponent
      */
     public VisualizationTopComponent(Config currentConfig) {
         super();
+        //Trace intialisieren
+        trace = new Trace2DSimple();
+
+        //Komboboxmodel für X Achsen-Wertauswahl
+        xAxisVal = new DefaultComboBoxModel<>();
+
+        //Komboboxmodel für Y Achsen-Wertauswahl
+        yAxisVal = new DefaultComboBoxModel<>();
+
+        //Config Keys auslesen
+        Collection<String> availableKeys = currentConfig.getKeys();
+
+        //Komboboxen mit Config initialisieren
+        initComboBoxModel(availableKeys, xAxisVal);
+        initComboBoxModel(availableKeys, yAxisVal);
+
+        //GUI Komponenten intialisieren
         initComponents();
 
+        //Tracer zum Chart hinzufügen
+        chart.addTrace(trace);
+
         this.config = currentConfig;
+
     }
 
     @Override
@@ -60,31 +86,18 @@ public class VisualizationTopComponent extends DataReceiverComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        chart = new info.monitorenter.gui.chart.Chart2D();
         cmbXAxis = new javax.swing.JComboBox();
         cmbYAxis = new javax.swing.JComboBox();
         lblXAxis = new javax.swing.JLabel();
         lblYAxis = new javax.swing.JLabel();
         btnUpdateView = new javax.swing.JButton();
+        chart = new info.monitorenter.gui.chart.ZoomableChart();
 
         setBackground(java.awt.Color.lightGray);
 
-        chart.setAutoscrolls(true);
+        cmbXAxis.setModel(xAxisVal);
 
-        javax.swing.GroupLayout chartLayout = new javax.swing.GroupLayout(chart);
-        chart.setLayout(chartLayout);
-        chartLayout.setHorizontalGroup(
-            chartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        chartLayout.setVerticalGroup(
-            chartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 267, Short.MAX_VALUE)
-        );
-
-        cmbXAxis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cmbYAxis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbYAxis.setModel(yAxisVal);
 
         org.openide.awt.Mnemonics.setLocalizedText(lblXAxis, org.openide.util.NbBundle.getMessage(VisualizationTopComponent.class, "VisualizationTopComponent.lblXAxis.text")); // NOI18N
 
@@ -96,6 +109,17 @@ public class VisualizationTopComponent extends DataReceiverComponent {
                 btnUpdateViewActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout chartLayout = new javax.swing.GroupLayout(chart);
+        chart.setLayout(chartLayout);
+        chartLayout.setHorizontalGroup(
+            chartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        chartLayout.setVerticalGroup(
+            chartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 282, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,7 +139,7 @@ public class VisualizationTopComponent extends DataReceiverComponent {
                         .addComponent(cmbYAxis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnUpdateView)
-                        .addGap(0, 197, Short.MAX_VALUE)))
+                        .addGap(0, 281, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -128,20 +152,20 @@ public class VisualizationTopComponent extends DataReceiverComponent {
                     .addComponent(lblXAxis)
                     .addComponent(lblYAxis)
                     .addComponent(btnUpdateView))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateViewActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnUpdateViewActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdateView;
-    private info.monitorenter.gui.chart.Chart2D chart;
+    private info.monitorenter.gui.chart.ZoomableChart chart;
     private javax.swing.JComboBox cmbXAxis;
     private javax.swing.JComboBox cmbYAxis;
     private javax.swing.JLabel lblXAxis;
@@ -150,11 +174,23 @@ public class VisualizationTopComponent extends DataReceiverComponent {
 
     @Override
     public void receive(Map<String, Double> datum) {
-        //TODO: Graph visualization loop
+        trace.addPoint(datum.get(xAxisVal.getSelectedItem()), datum.get(yAxisVal.getSelectedItem()));
+    }
+
+    private void initComboBoxModel(Collection<String> newVals, DefaultComboBoxModel<String> model) {
+        //Alle alten Elemente entfernen
+        model.removeAllElements();
+
+        //Alle neuen Elemente hinzufügen
+        newVals.stream().forEach(i -> model.addElement(i));
     }
 
     @Override
     public void configChanged(Config newConfig) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Collection<String> keys = newConfig.getKeys();
+
+        //Models neu intialisieren
+        initComboBoxModel(keys, xAxisVal);
+        initComboBoxModel(keys, yAxisVal);
     }
 }

@@ -26,14 +26,14 @@ import org.openide.util.NbBundle.Messages;
 @ActionReference(path = "Toolbars/Stream", position = 200)
 @Messages("CTL_StartStreamAction=Stream Starten")
 public final class StartStreamAction implements ActionListener {
+
     private final DataPipeline pipeline;
-    
+
     public StartStreamAction() {
         this.pipeline = Lookup.getDefault().lookup(DataPipeline.class);
     }
 
     @Override
     public void actionPerformed(ActionEvent ev) {
-        System.out.println("HURENSOHN");
     }
 }

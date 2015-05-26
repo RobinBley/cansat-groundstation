@@ -78,4 +78,20 @@ public interface DataPipeline {
      * @param receiver
      */
     public void unregisterDataReceiver(Receiver receiver);
+
+    /**
+     * Versucht den Stream zu starten, dies ist nur möglich wenn alle Teile der
+     * Pipeline miteinander verbunden sind.
+     *
+     * @return False beim erfolgreichen Stoppen des Streams, ansonsten False
+     */
+    public boolean startStream();
+
+    /**
+     * Versucht den Stream zu stoppen
+     *
+     * @return True beim erfolgreichen Stoppen des Streams, ansonsten False
+     */
+    public boolean stopStream();
+
 }

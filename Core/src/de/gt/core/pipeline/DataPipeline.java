@@ -6,6 +6,8 @@ import de.gt.api.relay.Receiver;
 import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
 import de.gt.core.relay.DataProvider;
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 import org.openide.util.lookup.ServiceProvider;
 
@@ -24,9 +26,10 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
     private DataSource pipeSource;
     private DataFormat pipeParser;
     private Config config;
+    private boolean streamRunning = false;
     private Relay pipeRelay = new DataProvider();
 
-    private Set<Receiver> receivingComponents;
+    private Set<Receiver> receivingComponents = new HashSet<>();
 
     /**
      * Tauscht den Parser aus und bindet den neuen Parser an die Pipeline an.
@@ -40,8 +43,10 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
         //Parser mit Relay linken
         pipeParser.linkRelay(pipeRelay);
 
-        //Parser an Source koppeln
-        pipeSource.linkParser(newParser);
+        if (pipeSource != null) {
+            //Parser an Source koppeln
+            pipeSource.linkParser(newParser);
+        }
     }
 
     @Override
@@ -59,8 +64,10 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
         //Relay austauschen
         pipeRelay = newRelay;
 
-        //Verbindung zwischen Parser und Relay wiederherstellen
-        pipeParser.linkRelay(pipeRelay);
+        if (pipeParser != null) {
+            //Verbindung zwischen Parser und Relay wiederherstellen
+            pipeParser.linkRelay(pipeRelay);
+        }
 
         //Komponenten beim neuen Relay registrieren
         receivingComponents.stream()
@@ -76,11 +83,16 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
      */
     @Override
     public void exchangeSource(DataSource newSource) {
+        //Stream status updaten
+        streamRunning = false;
+
         //Alte Quelle austauschen
         pipeSource = newSource;
 
-        //Neue Quelle an den Parser koppeln
-        pipeSource.linkParser(pipeParser);
+        if (pipeParser != null) {
+            //Neue Quelle an den Parser koppeln
+            pipeSource.linkParser(pipeParser);
+        }
     }
 
     /**
@@ -109,7 +121,7 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
 
     @Override
     public boolean isStreamRunning() {
-        return true;
+        return streamRunning;
     }
 
     @Override
@@ -123,5 +135,31 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
     @Override
     public Config getConfig() {
         return this.config;
+    }
+
+    @Override
+    public boolean startStream() {
+        if (pipeSource == null) {
+            return false;
+        }
+
+        pipeSource.open();
+        streamRunning = true;
+        return true;
+    }
+
+    @Override
+    public boolean stopStream() {
+        if (pipeSource == null) {
+            return false;
+        }
+
+        try {
+            pipeSource.close();
+            streamRunning = false;
+            return true;
+        } catch (IOException ex) {
+            return false;
+        }
     }
 }

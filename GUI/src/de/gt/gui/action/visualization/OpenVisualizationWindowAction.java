@@ -1,9 +1,11 @@
 package de.gt.gui.action.visualization;
 
-import de.gt.api.relay.Relay;
+import de.gt.api.config.Config;
+import de.gt.api.datapipeline.DataPipeline;
 import de.gt.gui.window.VisualizationTopComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionReferences;
@@ -25,17 +27,25 @@ import org.openide.util.NbBundle.Messages;
 @Messages("CTL_OpenVisualizationWindowAction=Vizualization")
 public final class OpenVisualizationWindowAction implements ActionListener {
 
-    private final Relay relay;
-    
-    public OpenVisualizationWindowAction(){
-        this.relay = Lookup.getDefault().lookup(Relay.class);
-        
+    private final DataPipeline pipeline;
+
+    public OpenVisualizationWindowAction() {
+        //Auf Pipeline zugreifen
+        pipeline = Lookup.getDefault().lookup(DataPipeline.class);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Neues Fenster für Graphenvisualisierung erzeugen
-        VisualizationTopComponent visualizationWindow = new VisualizationTopComponent(null);
-        visualizationWindow.open();
+
+        if (pipeline.isConfigLoaded()) {
+            //Config aus Pipeline auslesen
+            Config c = pipeline.getConfig();
+
+            //Neues Fenster für Graphenvisualisierung erzeugen
+            VisualizationTopComponent visualizationWindow = new VisualizationTopComponent(c);
+            visualizationWindow.open();
+        } else {
+            JOptionPane.showMessageDialog(null, "Das Visualisierungsfenster steht nur zur Verfügung, wenn eine Satelitenkonfiguration geladen wurde");
+        }
     }
 }

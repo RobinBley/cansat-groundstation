@@ -2,8 +2,9 @@ package de.gt.gui.sources;
 
 import de.gt.api.sources.DataSource;
 import de.gt.api.input.dataformat.DataFormat;
+import de.gt.api.sources.DataSourceConfigurationDialog;
+import de.gt.gui.dialog.sources.DebugConfigurationDialog;
 import java.io.IOException;
-import java.util.Collection;
 import org.json.JSONObject;
 
 /**
@@ -17,20 +18,12 @@ public class DebugJSON implements DataSource {
     private final DebugGenerator gen;
     private boolean closed = true;
 
-    public DebugJSON(DataFormat formatter, DebugGenerator gen) {
-        this.formatter = formatter;
+    public DebugJSON(DebugGenerator gen) {
         this.gen = gen;
     }
 
-    /**
-     * Erstellt eine Debug-JSON-Quelle mit einem default-initialisierten DebugGenerator
-     * @param formatter - formatter, zu dem Daten gepusht werden
-     * @param keys - Keys, für welche Debug-Daten generiert werden sollen
-     * @return source
-     */
-    public static DebugJSON createWithDebugGenerator(DataFormat formatter, Collection<String> keys) {
-        DebugGenerator gen = DebugGenerator.createWithKeys(keys);
-        return new DebugJSON(formatter, gen);
+    public static DataSourceConfigurationDialog getConfigurationDialog() {
+        return new DebugConfigurationDialog();
     }
 
     @Override
@@ -52,5 +45,4 @@ public class DebugJSON implements DataSource {
     public void linkParser(DataFormat f) {
         this.formatter = f;
     }
-
 }

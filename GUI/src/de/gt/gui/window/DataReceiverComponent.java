@@ -3,11 +3,7 @@ package de.gt.gui.window;
 import de.gt.api.datapipeline.DataPipeline;
 import de.gt.api.relay.Configurable;
 import de.gt.api.relay.Receiver;
-import javax.swing.Action;
 import org.openide.util.Lookup;
-import org.openide.util.Lookup.Item;
-import org.openide.util.Lookup.Template;
-import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
 
 /**

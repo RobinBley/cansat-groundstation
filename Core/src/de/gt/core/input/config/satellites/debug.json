@@ -2,6 +2,7 @@
     "name": "Debug NASA Satellite",
     "identifier": 2234783246432502347324,
     "format": "JSON",
+    "source": "Debug",
     "values": [
         "temperature"
     ]
