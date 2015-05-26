@@ -18,7 +18,8 @@ public class DebugGenerator {
 
     /**
      *
-     * @param values - Default werte für die debug generation im key:start_value mapping
+     * @param values - Default werte für die debug generation im key:start_value
+     * mapping
      */
     private DebugGenerator(Map<String, Double> values) {
         this.values = values;
@@ -26,6 +27,7 @@ public class DebugGenerator {
 
     /**
      * Erstellt einen Debuggenerator mit default Debugkeys und -werten.
+     *
      * @return generator
      */
     public static DebugGenerator createWithKeys(Collection<String> keys) {
@@ -36,6 +38,7 @@ public class DebugGenerator {
 
     /**
      * Erstellt einen linearen Satz an Daten.
+     *
      * @return set of data
      */
     public Map<String, Double> generate() {
