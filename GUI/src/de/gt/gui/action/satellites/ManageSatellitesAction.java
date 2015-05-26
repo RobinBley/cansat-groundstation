@@ -2,20 +2,18 @@ package de.gt.gui.action.satellites;
 
 import de.gt.api.config.Config;
 import de.gt.api.datapipeline.DataPipeline;
-import de.gt.api.relay.Configurable;
+import de.gt.api.input.dataformat.DataFormat;
+import de.gt.api.sources.DataSource;
 import de.gt.gui.action.DialogAction;
 import de.gt.gui.dialog.SatelliteChooseDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Set;
-import java.util.stream.Collectors;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionRegistration;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle.Messages;
-import org.openide.windows.TopComponent;
 
 @ActionID(
         category = "Manage",
@@ -36,7 +34,7 @@ public final class ManageSatellitesAction extends DialogAction {
         this.chooseSatelliteDialog = new SatelliteChooseDialog(mainWindow, true);
 
         this.pipeline = Lookup.getDefault().lookup(DataPipeline.class);
-        
+
         //Adapter für Dialog aufsetzen, der benachrichtigt, wenn der Dialog beendet wurde
         this.chooseSatelliteDialog.addWindowListener(new WindowAdapter() {
             @Override
@@ -48,7 +46,30 @@ public final class ManageSatellitesAction extends DialogAction {
     }
 
     public void onConfigChanged(Config config) {
+        //Konfiguration in der Pipeline austauschen
         this.pipeline.exchangeConfig(config);
+
+        //
+        this.pipeline.exchangeSource(null);
+    }
+
+    private DataSource buildDataSource(String sourceName) {
+        DataSource source = null;
+
+        switch (sourceName) {
+            case "Serial":
+                break;
+            case "Debug":
+                break;
+            default:
+                //TODO: Exception weil Config mist ist
+        }
+
+        return source;
+    }
+
+    private DataFormat buildParser(String parserName) {
+        return null;
     }
 
     @Override

@@ -22,6 +22,7 @@ public class Stream {
 
     /**
      * Konstruktor
+     *
      * @param s - stream, von dem Daten gelesen werden sollen
      * @param delimiter - Trennzeichen zwischen Datensätzen
      * @param c - Zeichensatz der gestreamten Daten

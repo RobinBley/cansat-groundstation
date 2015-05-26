@@ -9,15 +9,17 @@ import j.extensions.comm.SerialComm;
 
 /**
  * Datenquelle für serielle Ports
- * 
+ *
  * @author mhuisi
  */
 public class Serial implements DataSource {
+
     private final SerialComm port;
     private final Stream stream;
 
     /**
      * Konstruktor
+     *
      * @param f - Formatter, zu dem Daten gepusht werden
      * @param p - Port, von dem Daten bezogen werden sollen
      * @param delimiter - Trenncharacter zwischen Datensätzen
@@ -29,8 +31,7 @@ public class Serial implements DataSource {
     }
 
     /**
-     * Erstellt eine serielle Quelle von einem
-     * Port-Namen
+     * Erstellt eine serielle Quelle von einem Port-Namen
      *
      * @param f - Formatter, zu dem Daten gepusht werden
      * @param portName - Portname
@@ -42,7 +43,8 @@ public class Serial implements DataSource {
         return Arrays.stream(SerialComm.getCommPorts())
                 .filter(p -> p.getDescriptivePortName().equals(portName))
                 .map(p -> new Serial(p, delimiter, c))
-                .findAny().orElse(null);
+                .findAny()
+                .orElse(null);
     }
 
     @Override
