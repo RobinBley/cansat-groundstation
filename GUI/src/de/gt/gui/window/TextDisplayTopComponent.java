@@ -19,10 +19,6 @@ import org.openide.util.NbBundle.Messages;
 /**
  * Top component which displays something.
  */
-@ConvertAsProperties(
-        dtd = "-//de.gt.gui.window//TextDisplay//EN",
-        autostore = false
-)
 @TopComponent.Description(
         preferredID = "TextDisplayTopComponent",
         //iconBase="SET/PATH/TO/ICON/HERE", 
@@ -43,6 +39,7 @@ import org.openide.util.NbBundle.Messages;
 public final class TextDisplayTopComponent extends DataReceiverComponent {
 
     public TextDisplayTopComponent() {
+        super();
         initComponents();
         setName(Bundle.CTL_TextDisplayTopComponent());
         setToolTipText(Bundle.HINT_TextDisplayTopComponent());
@@ -93,30 +90,9 @@ public final class TextDisplayTopComponent extends DataReceiverComponent {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
-    @Override
-    public void componentOpened() {
-        // TODO add custom code on component opening
-    }
-
-    @Override
-    public void componentClosed() {
-        // TODO add custom code on component closing
-    }
-
-    void writeProperties(java.util.Properties p) {
-        // better to version settings since initial version as advocated at
-        // http://wiki.apidesign.org/wiki/PropertyFiles
-        p.setProperty("version", "1.0");
-        // TODO store your settings
-    }
-
-    void readProperties(java.util.Properties p) {
-        String version = p.getProperty("version");
-        // TODO read your settings according to their version
-    }
 
     @Override
     public void configChanged(Config newConfig) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO: Default method in Receiver
     }
 }
