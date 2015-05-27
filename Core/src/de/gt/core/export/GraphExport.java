@@ -1,6 +1,7 @@
 package de.gt.core.export;
 
 import de.gt.api.export.Exporter;
+import de.gt.api.export.ImageExporter;
 import de.gt.api.log.Out;
 import java.awt.Image;
 import java.awt.image.RenderedImage;
@@ -15,10 +16,11 @@ import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Exporter for graphs
+ *
  * @author Robin
  */
-@ServiceProvider(service = de.gt.api.export.Exporter.class)
-public class GraphExport implements Exporter{
+@ServiceProvider(service = de.gt.api.export.ImageExporter.class)
+public class GraphExport implements ImageExporter {
 
     /**
      * Diese Funktion sorgt fuer das Exportieren eines Images in eine Datei.
@@ -53,8 +55,8 @@ public class GraphExport implements Exporter{
     }
 
     @Override
-    public boolean exportData(Map<String, List<Double>> data, File output) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean exportData(Image image, File output) {
+        return exportData(image, output, "jpg");
     }
 
 }

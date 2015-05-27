@@ -19,12 +19,12 @@ import org.junit.Test;
  * @author mhuisi
  */
 public class KMLExportTest {
-    
+
     @Test
     public void testExportData() {
         Map<String, List<Double>> data = new HashMap<>();
         String latKey = "latitude";
-        data.put(latKey, Arrays.asList(8.944144665369445, 
+        data.put(latKey, Arrays.asList(8.944144665369445,
                 8.94634636573061,
                 8.948475878370516,
                 8.950429947867049,
@@ -62,18 +62,18 @@ public class KMLExportTest {
                 53.03564464985725,
                 53.0363239723987));
         String altKey = "altitude";
-        data.put(altKey, Arrays.asList(0.0, 10.0, 20.0, 30.0, 40.0, 50.0, 
-                60.0, 70.0, 80.0, 90.0, 100.0, 110.0, 120.0, 130.0, 140.0, 
+        data.put(altKey, Arrays.asList(0.0, 10.0, 20.0, 30.0, 40.0, 50.0,
+                60.0, 70.0, 80.0, 90.0, 100.0, 110.0, 120.0, 130.0, 140.0,
                 150.0, 160.0, 170.0));
-        data.put("temp", Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 
+        data.put("temp", Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0,
                 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0));
         data.put("co2", Arrays.asList(10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0,
-                80.0, 90.0, 100.0, 110.0, 120.0, 130.0, 140.0, 150.0, 160.0, 
+                80.0, 90.0, 100.0, 110.0, 120.0, 130.0, 140.0, 150.0, 160.0,
                 170.0, 180.0));
-        KMLExport x = new KMLExport(new GPSKey(latKey, longKey, altKey));
-        File output = new File(String.format("%s/TG-KML-Exporttest.kml", 
+        KMLExport x = new KMLExport();
+        File output = new File(String.format("%s/TG-KML-Exporttest.kml",
                 System.getProperty("user.home")));
-        Assert.assertTrue(x.exportData(data, output));
+        Assert.assertTrue(x.exportData(data, new GPSKey(latKey, longKey, altKey), output));
     }
-    
+
 }

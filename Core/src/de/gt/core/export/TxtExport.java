@@ -14,7 +14,7 @@ import org.openide.util.lookup.ServiceProvider;
  *
  * @author Robin
  */
-@ServiceProvider(service=de.gt.api.export.Exporter.class)
+@ServiceProvider(service = de.gt.api.export.Exporter.class)
 public class TxtExport implements Exporter {
 
     @Override

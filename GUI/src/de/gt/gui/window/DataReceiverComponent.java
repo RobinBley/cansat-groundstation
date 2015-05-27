@@ -3,6 +3,9 @@ package de.gt.gui.window;
 import de.gt.api.datapipeline.DataPipeline;
 import de.gt.api.relay.Configurable;
 import de.gt.api.relay.Receiver;
+import java.awt.Image;
+import java.util.List;
+import java.util.Map;
 import org.openide.util.Lookup;
 import org.openide.windows.TopComponent;
 
