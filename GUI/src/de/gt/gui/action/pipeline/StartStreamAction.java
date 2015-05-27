@@ -36,10 +36,14 @@ public final class StartStreamAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ev) {
-        this.pipeline.startStream();
+        if (this.pipeline.isConfigLoaded()) {
+            this.pipeline.startStream();
 
-        if (!this.pipeline.isStreamRunning()) {
-            JOptionPane.showMessageDialog(null, "Fehler beim Starten des Streams");
+            if (!this.pipeline.isStreamRunning()) {
+                JOptionPane.showMessageDialog(null, "Fehler beim starten des Streams");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Es muss eine Satellitenkonfiguration ausgewählt werden, bevor der Stream gestartet werden kann!");
         }
     }
 }
