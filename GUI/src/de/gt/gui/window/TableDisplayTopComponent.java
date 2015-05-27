@@ -6,7 +6,6 @@
 package de.gt.gui.window;
 
 import de.gt.api.config.Config;
-import java.util.Collections;
 import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 import org.openide.windows.TopComponent;
@@ -108,7 +107,7 @@ public final class TableDisplayTopComponent extends DataReceiverComponent {
     @Override
     public void configChanged(Config newConfig) {
         Object[] keys = newConfig.getKeys().toArray();
-        
+
         model = new DefaultTableModel(keys, 0) {
             private static final long serialVersionUID = 1L;
 
