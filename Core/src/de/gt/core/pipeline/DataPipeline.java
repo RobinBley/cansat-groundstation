@@ -119,11 +119,21 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
      */
     @Override
     public void registerDataReceiver(Receiver receiver) {
-        //Receiver in Set speichern
-        receivingComponents.add(receiver);
-        
+        boolean streamWasRunning = isStreamRunning();
+
+        if (streamWasRunning) {
+            stopStream();
+        }
+
         //Receiver an Relay hängen
         pipeRelay.addReceiver(receiver);
+
+        //Receiver in Set speichern
+        receivingComponents.add(receiver);
+
+        if (streamWasRunning) {
+            startStream();
+        }
     }
 
     /**
@@ -134,11 +144,21 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
      */
     @Override
     public void unregisterDataReceiver(Receiver receiver) {
-        //Receiver aus Set entfernen
-        receivingComponents.remove(receiver);
-        
+        boolean streamWasRunning = isStreamRunning();
+
+        if (streamWasRunning) {
+            stopStream();
+        }
+
         //Receiver aus Relay entfernen
         pipeRelay.removeReceiver(receiver);
+        
+        //Receiver aus Set entfernen
+        receivingComponents.remove(receiver);
+
+        if (streamWasRunning) {
+            startStream();
+        }
     }
 
     @Override
