@@ -5,47 +5,38 @@
  */
 package de.gt.gui.window;
 
-import de.gt.api.relay.Receiver;
+import de.gt.api.config.Config;
+import java.util.Collections;
 import java.util.Map;
-import java.util.stream.Collectors;
 import javax.swing.table.DefaultTableModel;
-import org.netbeans.api.settings.ConvertAsProperties;
-import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 
 /**
  * Top component which displays something.
  */
-@ConvertAsProperties(
-        dtd = "-//de.gt.gui.window//TableDisplay//EN",
-        autostore = false
-)
 @TopComponent.Description(
         preferredID = "TableDisplayTopComponent",
         //iconBase="SET/PATH/TO/ICON/HERE", 
         persistenceType = TopComponent.PERSISTENCE_ALWAYS
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
-@ActionID(category = "Window", id = "de.gt.gui.window.TableDisplayTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_TableDisplayAction",
-        preferredID = "TableDisplayTopComponent"
-)
 @Messages({
     "CTL_TableDisplayAction=TableDisplay",
     "CTL_TableDisplayTopComponent=TableDisplay Window",
     "HINT_TableDisplayTopComponent=This is a TableDisplay window"
 })
-public final class TableDisplayTopComponent extends TopComponent implements Receiver {
+public final class TableDisplayTopComponent extends DataReceiverComponent {
 
-    public TableDisplayTopComponent() {
+    public Config config;
+
+    public TableDisplayTopComponent(Config config) {
+        super();
         initComponents();
         setName(Bundle.CTL_TableDisplayTopComponent());
         setToolTipText(Bundle.HINT_TableDisplayTopComponent());
 
+        this.config = config;
     }
 
     /**
@@ -104,45 +95,28 @@ public final class TableDisplayTopComponent extends TopComponent implements Rece
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-    
+
     private DefaultTableModel model = null;
-    
+
     @Override
     public void receive(Map<String, Double> datum) {
-        if (model == null) {
-            Object[] keys = datum.keySet().stream().toArray();
-            model = new DefaultTableModel(keys, 0) {
-                private static final long serialVersionUID = 1L;
-                @Override
-                public boolean isCellEditable(int row, int column) {
-		    return false;
-		}
-            };
-            jTable1.setModel(model);
-        }
         Object[] rowData = datum.values().toArray();
         model.addRow(rowData);
     }
-    
-    @Override
-    public void componentOpened() {
-        // TODO add custom code on component opening
-    }
 
     @Override
-    public void componentClosed() {
-        // TODO add custom code on component closing
-    }
+    public void configChanged(Config newConfig) {
+        Object[] keys = newConfig.getKeys().toArray();
+        
+        model = new DefaultTableModel(keys, 0) {
+            private static final long serialVersionUID = 1L;
 
-    void writeProperties(java.util.Properties p) {
-        // better to version settings since initial version as advocated at
-        // http://wiki.apidesign.org/wiki/PropertyFiles
-        p.setProperty("version", "1.0");
-        // TODO store your settings
-    }
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
-    void readProperties(java.util.Properties p) {
-        String version = p.getProperty("version");
-        // TODO read your settings according to their version
+        jTable1.setModel(model);
     }
 }
