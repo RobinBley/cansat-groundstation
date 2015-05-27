@@ -1,9 +1,11 @@
 package de.gt.gui.action.visualization;
 
-import de.gt.api.relay.Relay;
+import de.gt.api.datapipeline.DataPipeline;
+import de.gt.api.gps.GPSKey;
 import de.gt.gui.window.EarthTopComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionReferences;
@@ -25,22 +27,28 @@ import org.openide.util.NbBundle.Messages;
 @Messages("CTL_OpenMapVisualizationWindowAction=Map Vizualization")
 public final class OpenMapVisualizationWindowAction implements ActionListener {
 
-    private final Relay relay;
+    private final DataPipeline pipeline;
 
     public OpenMapVisualizationWindowAction() {
-        this.relay = Lookup.getDefault().lookup(Relay.class);
-
+        this.pipeline = Lookup.getDefault().lookup(DataPipeline.class);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Neues Fenster für Graphenvisualisierung erzeugen
-        EarthTopComponent mapVisualizationWindow = new EarthTopComponent(null);
+        if (!this.pipeline.isConfigLoaded()) {
+            JOptionPane.showMessageDialog(null, "The map visualization is only available if a satellite configuration was loaded");
+        } else {
+            GPSKey gpsKey = this.pipeline.getConfig().getGpsKey();
 
-        //Datenkomponent an Relay anschließen
-        relay.addReceiver(mapVisualizationWindow);
-        
-        //Visualisierungsfenster anzeigen
-        mapVisualizationWindow.open();
+            if(gpsKey != null){
+                //Neues Fenster für Graphenvisualisierung erzeugen
+                EarthTopComponent mapVisualizationWindow = new EarthTopComponent(gpsKey);
+
+                //Visualisierungsfenster anzeigen
+                mapVisualizationWindow.open();
+            } else{
+                JOptionPane.showMessageDialog(null, "Map visualization is not available to this satellite because the application doesn't know how to fetch satellites position");
+            }
+        }
     }
 }

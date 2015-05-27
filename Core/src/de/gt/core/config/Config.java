@@ -1,5 +1,6 @@
 package de.gt.core.config;
 
+import de.gt.api.gps.GPSKey;
 import java.util.Collection;
 
 /**
@@ -14,6 +15,7 @@ public class Config implements de.gt.api.config.Config {
     private final String format;
     private final Collection<String> valueConfigs;
     private final String source;
+    private final GPSKey gps;
 
     /**
      * Constructor
@@ -23,12 +25,13 @@ public class Config implements de.gt.api.config.Config {
      * @param format - transmission format
      * @param valueConfigs - keys
      */
-    public Config(String name, String identifier, String format, String source, Collection<String> valueConfigs) {
+    public Config(String name, String identifier, String format, String source, Collection<String> valueConfigs, GPSKey gps) {
         this.name = name;
         this.identifier = identifier;
         this.format = format;
         this.valueConfigs = valueConfigs;
         this.source = source;
+        this.gps = gps;
     }
 
     @Override
@@ -59,5 +62,10 @@ public class Config implements de.gt.api.config.Config {
     @Override
     public String getSource() {
         return source;
+    }
+
+    @Override
+    public GPSKey getGpsKey() {
+        return gps;
     }
 }

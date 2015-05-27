@@ -4,6 +4,14 @@
     "format": "JSON",
     "source": "Debug",
     "values": [
-        "temperature"
+        "temperature",
+	"latitude",
+	"longitude",
+	"altitude"
     ]
+    "gps" :{
+        "latitude" : "latitude",
+        "longitude" : "longitude",
+        "altitude" : "altitude"
+    }
 }

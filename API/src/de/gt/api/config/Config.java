@@ -1,5 +1,6 @@
 package de.gt.api.config;
 
+import de.gt.api.gps.GPSKey;
 import java.util.Collection;
 
 /**
@@ -19,4 +20,6 @@ public interface Config {
     public String getSource();
     
     public String toString();
+    
+    public GPSKey getGpsKey();
 }
