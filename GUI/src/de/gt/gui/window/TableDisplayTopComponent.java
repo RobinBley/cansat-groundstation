@@ -37,6 +37,7 @@ public final class TableDisplayTopComponent extends DataReceiverComponent {
         setToolTipText(Bundle.HINT_TableDisplayTopComponent());
 
         this.config = config;
+        configChanged(config);
     }
 
     /**

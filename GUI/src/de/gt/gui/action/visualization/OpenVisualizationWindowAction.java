@@ -36,13 +36,14 @@ public final class OpenVisualizationWindowAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if (pipeline.isConfigLoaded()) {
             //Config aus Pipeline auslesen
             Config c = pipeline.getConfig();
 
             //Neues Fenster für Graphenvisualisierung erzeugen
             VisualizationTopComponent visualizationWindow = new VisualizationTopComponent(c);
+            
+            //Fenster öffnen
             visualizationWindow.open();
         } else {
             JOptionPane.showMessageDialog(null, "Das Visualisierungsfenster steht nur zur Verfügung, wenn eine Satelitenkonfiguration geladen wurde");
