@@ -44,7 +44,7 @@ public class JSONFormat implements DataFormat {
                 } catch (JSONException e) {
                     return new SimpleEntry<String, Double>(k, null);
                 }
-            }).forEach(e -> units.entrySet().add(e));
+            }).forEach(e -> units.put(e.getKey(), e.getValue()));
 
             relay.relay(units);
         } catch (JSONException e) {

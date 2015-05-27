@@ -7,6 +7,7 @@ import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
 import de.gt.core.relay.DataProvider;
 import java.io.IOException;
+import java.time.chrono.ThaiBuddhistChronology;
 import java.util.HashSet;
 import java.util.Set;
 import org.openide.util.lookup.ServiceProvider;
@@ -23,13 +24,23 @@ import org.openide.util.lookup.ServiceProvider;
 @ServiceProvider(service = de.gt.api.datapipeline.DataPipeline.class)
 public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
 
+    //Quellteil der Pipeline
     private DataSource pipeSource;
+
+    //Parser teil der Pipeline
     private DataFormat pipeParser;
+
+    //Konfiguration für die Pipelinekomponenten
     private Config config;
-    private boolean streamRunning = false;
+
+    //Relay ist standardmäßig da
     private Relay pipeRelay = new DataProvider();
 
+    //Speichert alle Receiver
     private Set<Receiver> receivingComponents = new HashSet<>();
+
+    //Speichert den Thread in dem der pull Stream läuft, damit ist die ganze Pipeline gethreadet
+    private Thread streamThread;
 
     /**
      * Tauscht den Parser aus und bindet den neuen Parser an die Pipeline an.
@@ -52,8 +63,8 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
     @Override
     public void exchangeConfig(Config c) {
         this.config = c;
-        
-        if(this.pipeParser != null){
+
+        if (this.pipeParser != null) {
             this.pipeParser.configure(c);
         }
     }
@@ -82,13 +93,14 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
      * Tauscht die Datenquelle aus und linkt die neue Quelle an den Rest der
      * Pipeline
      *
+     * Der Stream muss danach erneut gestartet werden.
      *
      * @param newSource
      */
     @Override
     public void exchangeSource(DataSource newSource) {
-        //Stream status updaten
-        streamRunning = false;
+        //Thread für den Stream stoppen, weil der sonst zerfliegt
+        stopStream();
 
         //Alte Quelle austauschen
         pipeSource = newSource;
@@ -109,6 +121,9 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
     public void registerDataReceiver(Receiver receiver) {
         //Receiver in Set speichern
         receivingComponents.add(receiver);
+        
+        //Receiver an Relay hängen
+        pipeRelay.addReceiver(receiver);
     }
 
     /**
@@ -121,11 +136,14 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
     public void unregisterDataReceiver(Receiver receiver) {
         //Receiver aus Set entfernen
         receivingComponents.remove(receiver);
+        
+        //Receiver aus Relay entfernen
+        pipeRelay.removeReceiver(receiver);
     }
 
     @Override
     public boolean isStreamRunning() {
-        return streamRunning;
+        return streamThread != null && streamThread.isAlive();
     }
 
     @Override
@@ -147,9 +165,11 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
             return false;
         }
 
-        pipeSource.open();
-        streamRunning = true;
-        return true;
+        //DataSource threaden
+        streamThread = new Thread(pipeSource::open);
+        streamThread.start();
+
+        return isStreamRunning();
     }
 
     @Override
@@ -159,8 +179,12 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
         }
 
         try {
+            //Stream beenden
             pipeSource.close();
-            streamRunning = false;
+
+            //Thread Objekt entfernen
+            streamThread = null;
+
             return true;
         } catch (IOException ex) {
             return false;

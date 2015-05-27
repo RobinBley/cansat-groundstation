@@ -19,6 +19,7 @@ public class DataSourceConfiguration {
     Map<Class, Object> configuration = new ConcurrentSkipListMap<>();
 
     public void setConfigurationItem(Class key, Object item) {
+        //TODO: Bug finden, crasht mit Class java.lang.Class cannot be cast to java.lang.Comparable
         configuration.put(key, item);
     }
 

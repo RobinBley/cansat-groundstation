@@ -37,6 +37,7 @@ public class VisualizationTopComponent extends DataReceiverComponent {
      */
     public VisualizationTopComponent(Config currentConfig) {
         super();
+        
         //Trace intialisieren
         trace = new Trace2DSimple();
 
@@ -118,7 +119,7 @@ public class VisualizationTopComponent extends DataReceiverComponent {
         );
         chartLayout.setVerticalGroup(
             chartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 282, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -154,7 +155,7 @@ public class VisualizationTopComponent extends DataReceiverComponent {
                     .addComponent(btnUpdateView))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(8, 8, 8))
         );
     }// </editor-fold>//GEN-END:initComponents
 

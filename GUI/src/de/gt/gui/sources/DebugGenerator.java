@@ -43,7 +43,7 @@ public class DebugGenerator {
      */
     public Map<String, Double> generate() {
         Random r = new Random();
-        return values.entrySet().stream()
+        Map<String, Double> ret = values.entrySet().stream()
                 .filter(e -> Math.random() > 0.98)
                 .map(e -> {
                     String k = e.getKey();
@@ -51,6 +51,8 @@ public class DebugGenerator {
                     values.put(k, last + r.doubles(0.1, 4.0).findFirst().getAsDouble());
                     return new SimpleEntry<>(k, last);
                 }).collect(MapCollector.create());
+
+        return ret;
     }
 
 }
