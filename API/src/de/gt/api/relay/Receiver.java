@@ -1,5 +1,6 @@
 package de.gt.api.relay;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,4 +18,7 @@ public interface Receiver {
      */
     void receive(Map<String, Double> datum);
     
+    void importData(Map<String, List<Double>> data);
+    
+    void clear();
 }
