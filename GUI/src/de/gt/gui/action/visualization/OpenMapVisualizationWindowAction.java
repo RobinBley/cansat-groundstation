@@ -40,13 +40,13 @@ public final class OpenMapVisualizationWindowAction implements ActionListener {
         } else {
             GPSKey gpsKey = this.pipeline.getConfig().getGpsKey();
 
-            if(gpsKey != null){
+            if (gpsKey != null) {
                 //Neues Fenster für Graphenvisualisierung erzeugen
                 EarthTopComponent mapVisualizationWindow = new EarthTopComponent(gpsKey);
 
                 //Visualisierungsfenster anzeigen
                 mapVisualizationWindow.open();
-            } else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Map visualization is not available to this satellite because the application doesn't know how to fetch satellites position");
             }
         }

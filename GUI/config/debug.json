@@ -8,8 +8,8 @@
 	"latitude",
 	"longitude",
 	"altitude"
-    ]
-    "gps" :{
+    ],  
+    "gps":{
         "latitude" : "latitude",
         "longitude" : "longitude",
         "altitude" : "altitude"

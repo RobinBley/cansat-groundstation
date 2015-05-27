@@ -5,6 +5,7 @@
  */
 package de.gt.gui.window;
 
+import de.gt.api.config.Config;
 import de.gt.api.gps.GPSKey;
 import de.gt.api.relay.Receiver;
 import gov.nasa.worldwind.BasicModel;
@@ -35,22 +36,25 @@ import org.openide.util.NbBundle.Messages;
     "CTL_LivePathEarthTopComponent=LivePathEarth Window",
     "HINT_LivePathEarthTopComponent=This is a LivePathEarth window"
 })
-public final class EarthTopComponent extends TopComponent implements Receiver {
-    
+public final class EarthTopComponent extends DataReceiverComponent {
+
     private static final AnnotationAttributes ATTRIBS = new AnnotationAttributes();
+
     static {
         ATTRIBS.setAdjustWidthToText(AVKey.SIZE_FIT_TEXT);
     }
-    
+
     private final List<Position> positions = new ArrayList<>();
-    
+
     private final GPSKey k;
-    
+
     private WorldWindowGLCanvas wwd;
     private RenderableLayer layer;
     private Polyline path;
-    
+
     public EarthTopComponent(GPSKey k) {
+        super();
+        
         this.k = k;
         initComponents();
         setName(Bundle.CTL_LivePathEarthTopComponent());
@@ -63,7 +67,7 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
         layer.addRenderable(a);
         wwd.redraw();
     }
-    
+
     @Override
     public void receive(Map<String, Double> datum) {
         double latitude = datum.get(k.getLatitudeKey());
@@ -77,12 +81,10 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
         GlobeAnnotation a = new GlobeAnnotation(b.toString(), p, ATTRIBS);
         add(p, a);
     }
-    
+
     /**
-     * DO NOT TOUCH 
-     * DO NOT OPEN WITH EDITOR!
-     * NBP doesn't allow to add complex custom components
-     * using the editor, manual code editing was needed.
+     * DO NOT TOUCH DO NOT OPEN WITH EDITOR! NBP doesn't allow to add complex
+     * custom components using the editor, manual code editing was needed.
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
@@ -96,14 +98,19 @@ public final class EarthTopComponent extends TopComponent implements Receiver {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addComponent(wwd, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 400, Short.MAX_VALUE)
+                .addComponent(wwd, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addComponent(wwd, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 300, Short.MAX_VALUE)
+                .addComponent(wwd, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
-    }// </editor-fold>
+    }// </editor-fold
+
+    @Override
+    public void configChanged(Config newConfig) {
+        //TODO: Close map is Gps is not available
+    }
 }
