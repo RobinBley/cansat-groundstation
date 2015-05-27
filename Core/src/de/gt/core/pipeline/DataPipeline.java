@@ -2,12 +2,16 @@ package de.gt.core.pipeline;
 
 import de.gt.api.config.Config;
 import de.gt.api.input.dataformat.DataFormat;
+import de.gt.api.log.Out;
 import de.gt.api.relay.Receiver;
 import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
+import de.gt.core.input.logging.JSONLogger;
 import de.gt.core.relay.DataProvider;
+import java.io.File;
 import java.io.IOException;
-import java.time.chrono.ThaiBuddhistChronology;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import org.openide.util.lookup.ServiceProvider;
@@ -41,6 +45,33 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
 
     //Speichert den Thread in dem der pull Stream läuft, damit ist die ganze Pipeline gethreadet
     private Thread streamThread;
+
+    private JSONLogger logger;
+
+    public DataPipeline() {
+        File logFile = getLogFile();
+
+        if (logFile != null) {
+            try {
+                logger = new JSONLogger(getLogFile());
+                
+                //Logger am Relay registrieren
+                registerDataReceiver(logger);
+            } catch (IOException ex) {
+                Out.log("Fehler beim initialisieren des JSON Logs für den Datenempfang");
+            }
+        }
+    }
+
+    private File getLogFile() {
+        //Timestamp für Log File erzeugen
+        Timestamp currenTimestamp = new Timestamp((new Date()).getTime());
+
+        //Logfile Objekt erzeugen
+        File logFile = new File("log/" + currenTimestamp.toString() + ".log");
+
+        return logFile;
+    }
 
     /**
      * Tauscht den Parser aus und bindet den neuen Parser an die Pipeline an.
@@ -152,7 +183,7 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
 
         //Receiver aus Relay entfernen
         pipeRelay.removeReceiver(receiver);
-        
+
         //Receiver aus Set entfernen
         receivingComponents.remove(receiver);
 
