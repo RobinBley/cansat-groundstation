@@ -4,6 +4,7 @@ import de.gt.api.streamutils.MapCollector;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Collection;
 import java.util.Map;
+import java.util.PrimitiveIterator.OfDouble;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -42,13 +43,13 @@ public class DebugGenerator {
      * @return set of data
      */
     public Map<String, Double> generate() {
-        Random r = new Random();
+        OfDouble doubles = new Random().doubles(0.1, 4.0).iterator();
         Map<String, Double> ret = values.entrySet().stream()
-                .filter(e -> Math.random() > 0.98)
+                .filter(e -> Math.random() < 0.6)
                 .map(e -> {
                     String k = e.getKey();
                     double last = values.get(k);
-                    values.put(k, last + r.doubles(0.1, 4.0).findFirst().getAsDouble());
+                    values.put(k, last + doubles.nextDouble());
                     return new SimpleEntry<>(k, last);
                 }).collect(MapCollector.create());
 

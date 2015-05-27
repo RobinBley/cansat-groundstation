@@ -7,6 +7,7 @@ import de.gt.gui.dialog.sources.DebugConfigurationDialog;
 import java.io.IOException;
 import java.util.Map;
 import org.json.JSONObject;
+import org.openide.util.Exceptions;
 
 /**
  * Debugquelle, welche JSON generiert
@@ -14,7 +15,7 @@ import org.json.JSONObject;
  * @author mhuisi
  */
 public class DebugJSON implements DataSource {
-
+    
     private DataFormat formatter;
     private final DebugGenerator gen;
     private boolean closed = true;
@@ -34,6 +35,11 @@ public class DebugJSON implements DataSource {
             JSONObject json = new JSONObject();
             gen.generate().entrySet().forEach(e -> json.put(e.getKey(), e.getValue()));
             formatter.parseData(json.toString());
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                Exceptions.printStackTrace(ex);
+            }
         }
     }
 

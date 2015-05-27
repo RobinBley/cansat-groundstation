@@ -51,7 +51,7 @@ public final class TextDisplayTopComponent extends DataReceiverComponent {
         datum.entrySet().stream()
                 .map(e -> String.format("%s: %s\n", e.getKey(), e.getValue()))
                 .forEach(sb::append);
-        sb.append("-----");
+        sb.append("-----\n");
         Document d = jTextPane1.getDocument();
         try {
             d.insertString(d.getLength(), sb.toString(), null);
