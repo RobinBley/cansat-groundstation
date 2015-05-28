@@ -98,7 +98,7 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
                     .addComponent(jLabel4))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboBoxDataFormat, 0, 846, Short.MAX_VALUE)
+                    .addComponent(comboBoxDataFormat, 0, 853, Short.MAX_VALUE)
                     .addComponent(textFieldName)
                     .addComponent(comboBoxDataSource, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -151,6 +151,8 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
                     .addComponent(btnAbort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jPanel2.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jPanel2.AccessibleContext.accessibleName")); // NOI18N
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

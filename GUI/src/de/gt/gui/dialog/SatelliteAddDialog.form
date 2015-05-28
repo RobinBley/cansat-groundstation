@@ -137,6 +137,11 @@
           </Border>
         </Property>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="de/gt/gui/dialog/Bundle.properties" key="SatelliteAddDialog.jPanel2.AccessibleContext.accessibleName" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </AccessibilityProperties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -150,7 +155,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="comboBoxDataFormat" pref="846" max="32767" attributes="0"/>
+                      <Component id="comboBoxDataFormat" pref="853" max="32767" attributes="0"/>
                       <Component id="textFieldName" max="32767" attributes="0"/>
                       <Component id="comboBoxDataSource" max="32767" attributes="0"/>
                   </Group>

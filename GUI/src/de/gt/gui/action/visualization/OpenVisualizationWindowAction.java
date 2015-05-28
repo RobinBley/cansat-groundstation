@@ -24,7 +24,7 @@ import org.openide.util.NbBundle.Messages;
     @ActionReference(path = "Menu/Window", position = 3333),
     @ActionReference(path = "Shortcuts", name = "D-G")
 })
-@Messages("CTL_OpenVisualizationWindowAction=Vizualization")
+@Messages("CTL_OpenVisualizationWindowAction=Graph Visualization")
 public final class OpenVisualizationWindowAction implements ActionListener {
 
     private final DataPipeline pipeline;
@@ -46,7 +46,7 @@ public final class OpenVisualizationWindowAction implements ActionListener {
             //Fenster öffnen
             visualizationWindow.open();
         } else {
-            JOptionPane.showMessageDialog(null, "Das Visualisierungsfenster steht nur zur Verfügung, wenn eine Satelitenkonfiguration geladen wurde");
+            JOptionPane.showMessageDialog(null, "A satellite configuration needs to be loaded to use this visualization.");
         }
     }
 }

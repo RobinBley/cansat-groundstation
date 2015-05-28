@@ -34,7 +34,7 @@ public final class TableDisplayTopComponent extends DataReceiverComponent {
     public TableDisplayTopComponent(Config config) {
         super();
         initComponents();
-        setName(Bundle.CTL_TableDisplayTopComponent());
+        setName("Table Visualisation");
         setToolTipText(Bundle.HINT_TableDisplayTopComponent());
 
         this.config = config;
