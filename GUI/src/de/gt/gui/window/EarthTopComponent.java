@@ -68,7 +68,7 @@ public final class EarthTopComponent extends DataReceiverComponent {
     }
 
     @Override
-    public void receive(Map<String, Double> datum) {
+    public synchronized void receive(Map<String, Double> datum) {
         double latitude = datum.get(k.getLatitudeKey());
         double longitude = datum.get(k.getLongitudeKey());
         double altitude = datum.get(k.getAltitudeKey());

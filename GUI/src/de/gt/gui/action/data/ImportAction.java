@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.gt.gui.action;
+package de.gt.gui.action.data;
 
 import de.gt.api.datapipeline.DataPipeline;
 import de.gt.api.importer.Importer;
