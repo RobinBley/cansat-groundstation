@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.openide.util.lookup.ServiceProvider;
 
@@ -240,5 +242,9 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
         } catch (IOException ex) {
             return false;
         }
+    }
+    
+    public void importData(Map<String, List<String>> importData){
+        //TODO: Stream loop
     }
 }

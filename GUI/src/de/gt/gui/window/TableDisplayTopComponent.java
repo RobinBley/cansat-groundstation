@@ -6,6 +6,7 @@
 package de.gt.gui.window;
 
 import de.gt.api.config.Config;
+import java.util.List;
 import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 import org.openide.windows.TopComponent;
@@ -118,5 +119,10 @@ public final class TableDisplayTopComponent extends DataReceiverComponent {
         };
 
         jTable1.setModel(model);
+    }
+
+    @Override
+    public void imported(Map<String, List<Double>> importData) {
+        //TODO: Implement import for table display
     }
 }

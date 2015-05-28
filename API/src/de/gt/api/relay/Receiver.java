@@ -17,8 +17,4 @@ public interface Receiver {
      * @param datum 
      */
     void receive(Map<String, Double> datum);
-    
-    void importData(Map<String, List<Double>> data);
-    
-    void clear();
 }

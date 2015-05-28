@@ -5,6 +5,8 @@ import de.gt.api.input.dataformat.DataFormat;
 import de.gt.api.relay.Receiver;
 import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Stellt den Pipeline-Wrapper dar, welche die Interaktion mit der
@@ -93,5 +95,13 @@ public interface DataPipeline {
      * @return True beim erfolgreichen Stoppen des Streams, ansonsten False
      */
     public boolean stopStream();
+    
+    /**
+     * Wird für das importieren von Daten in Datenpipeline genutzt, dadurch
+     * werden alle vorher gecacheten Daten gelöscht.
+     * 
+     * @param importData 
+     */
+    public void importData(Map<String, List<String>> importData);
 
 }

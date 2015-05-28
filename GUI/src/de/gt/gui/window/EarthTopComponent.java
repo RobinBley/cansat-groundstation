@@ -113,4 +113,9 @@ public final class EarthTopComponent extends DataReceiverComponent {
     public void configChanged(Config newConfig) {
         //TODO: Close map is Gps is not available
     }
+
+    @Override
+    public void imported(Map<String, List<Double>> importData) {
+        //TODO: Implement import
+    }
 }
