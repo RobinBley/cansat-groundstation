@@ -37,7 +37,10 @@ public class VisualizationTopComponent extends DataReceiverComponent {
      * Creates new form VizualizationTopComponent
      */
     public VisualizationTopComponent(Config currentConfig) {
+        //Anbindung zur Pipeline herstellen
         super();
+        
+        setName("Graphvisualisation");
 
         //Trace intialisieren
         trace = new Trace2DSimple();
