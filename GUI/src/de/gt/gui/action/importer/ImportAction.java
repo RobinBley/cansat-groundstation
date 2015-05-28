@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -61,31 +62,48 @@ public final class ImportAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Aktuelle Importer abrufen
-        Collection<? extends Importer> availableImporters = Lookup.getDefault().lookupAll(Importer.class);
+        boolean showImportDialog = false;
 
-        //Filter erneuern mit aktuellen Importern
-        filter = new FileNameExtensionFilter("Data files", getValidFileNameExt(availableImporters));
-        chooser.setFileFilter(filter);
+        if (this.pipeline.isStreamRunning()) {
+            //Wenn der Stream läuft
+            int val = JOptionPane.showConfirmDialog(WindowManager.getDefault().getMainWindow(), "Import will stop the datastream which is currently running, do you want to proceed?");
 
-        //Status der Dateiauswahl
-        int fileChoosenStatus = chooser.showOpenDialog(WindowManager.getDefault().getMainWindow());
+            if (val == JOptionPane.YES_OPTION) {
+                //User möchte stream beenden, dialog zeigen
+                showImportDialog = true;
+            }
+        } else {
+            //Kein Stream, darum import dialog zeigen
+            showImportDialog = true;
+        }
 
-        if (fileChoosenStatus == JFileChooser.APPROVE_OPTION) {
-            //Wenn eine Exception aufgetreten
-            File choosenFile = chooser.getSelectedFile();
+        if (showImportDialog) {
+            //Aktuelle Importer abrufen
+            Collection<? extends Importer> availableImporters = Lookup.getDefault().lookupAll(Importer.class);
 
-            //Datei-Endung der ausgewählten Datei feststellen
-            String fileExt = getFileExt(choosenFile);
+            //Filter erneuern mit aktuellen Importern
+            filter = new FileNameExtensionFilter("Data files", getValidFileNameExt(availableImporters));
+            chooser.setFileFilter(filter);
 
-            //Richtigen Importer finden
-            Importer usableImporter = availableImporters.stream()
-                    .filter(i -> i.importFileExt().equals(fileExt))
-                    .findFirst()
-                    .get();
+            //Status der Dateiauswahl
+            int fileChoosenStatus = chooser.showOpenDialog(WindowManager.getDefault().getMainWindow());
 
-            //Daten in die Pipeline importieren
-            this.pipeline.importData(usableImporter.importData(choosenFile));
+            if (fileChoosenStatus == JFileChooser.APPROVE_OPTION) {
+                //Wenn eine Exception aufgetreten
+                File choosenFile = chooser.getSelectedFile();
+
+                //Datei-Endung der ausgewählten Datei feststellen
+                String fileExt = getFileExt(choosenFile);
+
+                //Richtigen Importer finden
+                Importer usableImporter = availableImporters.stream()
+                        .filter(i -> i.importFileExt().equals(fileExt))
+                        .findFirst()
+                        .get();
+
+                //Daten in die Pipeline importieren
+                this.pipeline.importData(usableImporter.importData(choosenFile));
+            }
         }
     }
 }
