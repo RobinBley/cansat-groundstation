@@ -31,6 +31,4 @@ public abstract class DataReceiverComponent extends TopComponent implements Conf
     protected void componentClosed() {
         pipeline.unregisterDataReceiver(this);
     }
-
-    public abstract void imported(Map<String, List<Double>> importData);
 }
