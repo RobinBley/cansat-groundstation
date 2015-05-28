@@ -9,7 +9,7 @@ import java.util.Map;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Diese Klasse regelt das exportieren von Daten in eine CSV Datei.
+ * Diese Klasse regelt das Exportieren von Daten in eine CSV Datei.
  *
  * @author Robin
  */

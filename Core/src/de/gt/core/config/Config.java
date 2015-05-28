@@ -13,7 +13,7 @@ public class Config implements de.gt.api.config.Config {
     private final String name;
     private final String identifier;
     private final String format;
-    private final Collection<String> valueConfigs;
+    private final Collection<String> keys;
     private final String source;
     private final GPSKey gps;
 
@@ -23,13 +23,13 @@ public class Config implements de.gt.api.config.Config {
      * @param name - Name des Satelliten
      * @param identifier - identifier des Satelliten
      * @param format - Übertragungsformat
-     * @param valueConfigs - keys
+     * @param keys - keys
      */
-    public Config(String name, String identifier, String format, String source, Collection<String> valueConfigs, GPSKey gps) {
+    public Config(String name, String identifier, String format, String source, Collection<String> keys, GPSKey gps) {
         this.name = name;
         this.identifier = identifier;
         this.format = format;
-        this.valueConfigs = valueConfigs;
+        this.keys = keys;
         this.source = source;
         this.gps = gps;
     }
@@ -51,7 +51,7 @@ public class Config implements de.gt.api.config.Config {
 
     @Override
     public Collection<String> getKeys() {
-        return valueConfigs;
+        return keys;
     }
 
     @Override
