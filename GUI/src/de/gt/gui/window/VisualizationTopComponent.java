@@ -144,7 +144,7 @@ public class VisualizationTopComponent extends DataReceiverComponent {
                         .addComponent(cmbYAxis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnUpdateView)
-                        .addGap(0, 281, Short.MAX_VALUE)))
+                        .addGap(0, 333, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
