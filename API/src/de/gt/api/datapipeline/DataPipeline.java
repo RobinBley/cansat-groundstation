@@ -102,12 +102,12 @@ public interface DataPipeline {
      *
      * @param importData
      */
-    public void importData(List<Map<String, Double>> importData);
+    public void importData(Map<String, List<Double>> importData);
 
     /**
      * Exportiert die in der Pipeline gecacheten Daten.
      *
      * @return
      */
-    public List<Map<String, Double>> exportData();
+    public Map<String, List<Double>> exportData();
 }

@@ -13,11 +13,11 @@ import java.util.Map;
 public interface Configurable {
 
     /**
-     * Getriggert wenn die Konfigurationsdatei
-     * verändert wird
-     * @param newConfig 
+     * Getriggert wenn die Konfigurationsdatei verändert wird
+     *
+     * @param newConfig
      */
     void configChanged(Config newConfig);
-    
-    public abstract void imported(List<Map<String, Double>> importData);
+
+    public abstract void imported(Map<String, List<Double>> importData);
 }

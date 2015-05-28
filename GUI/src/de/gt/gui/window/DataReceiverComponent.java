@@ -4,7 +4,7 @@ import de.gt.api.config.Config;
 import de.gt.api.datapipeline.DataPipeline;
 import de.gt.api.relay.Configurable;
 import de.gt.api.relay.Receiver;
-import java.awt.Image;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.openide.util.Lookup;
@@ -36,18 +36,28 @@ public abstract class DataReceiverComponent extends TopComponent implements Conf
     public abstract void clearData();
 
     @Override
-    public void configChanged(Config newConfig){
+    public void configChanged(Config newConfig) {
         //Nicht alle Komponenten reagieren auf Config Änderungen
         return;
     }
-    
+
     @Override
-    public void imported(List<Map<String, Double>> importData) {
+    public void imported(Map<String, List<Double>> importData) {
         //Alle Daten löschen
         clearData();
 
-        //Daten importieren
-        importData.stream().forEach(d -> this.receive(d));
+        List<Double> firstList = importData.values().stream().findFirst().get();
+        
+        for(int i = 0; i < firstList.size(); i++){
+            Map<String, Double> datum = new HashMap<>();
+            
+            for (String key : importData.keySet()) {
+                for (List<Double> values : importData.values()) {
+                    datum.put(key, values.get(i));
+                }
+            }
+            
+            this.receive(datum);
+        }
     }
-
 }

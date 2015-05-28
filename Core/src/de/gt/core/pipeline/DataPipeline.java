@@ -12,12 +12,12 @@ import de.gt.core.relay.DataProvider;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import org.openide.util.lookup.ServiceProvider;
 
@@ -53,11 +53,11 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
 
     private JSONLogger logger;
 
-    private List<Map<String, Double>> dataCache;
+    private Map<String, List<Double>> dataCache;
 
     public DataPipeline() {
         //Cache für Datenpipeline
-        dataCache = new ArrayList<>();
+        dataCache = new HashMap<>();
 
         File logFile = getLogFile();
 
@@ -253,7 +253,7 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
     }
 
     @Override
-    public void importData(List<Map<String, Double>> importData) {
+    public void importData(Map<String, List<Double>> importData) {
         //Import an alle Komponenten durchgeben
         this.receivingComponents.stream()
                 .filter(c -> c instanceof Configurable)
@@ -264,12 +264,16 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
     }
 
     @Override
-    public List<Map<String, Double>> exportData() {
+    public Map<String, List<Double>> exportData() {
+        //Gecachete Daten zurückgeben
         return dataCache;
     }
 
     @Override
-    public void receive(Map<String, Double> datum) {
-        dataCache.add(datum);
+    public void receive(Map<String, Double> data) {
+        //Daten in Data Cache lagern
+        for (Entry<String, Double> datum : data.entrySet()) {
+            dataCache.get(datum.getKey()).add(datum.getValue());
+        }
     }
 }

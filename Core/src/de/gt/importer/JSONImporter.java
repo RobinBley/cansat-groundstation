@@ -17,10 +17,13 @@ import org.openide.util.lookup.ServiceProvider;
 
 /**
  * Imports data from JSON
+ *
  * @author mhuisi
  */
 @ServiceProvider(service = Importer.class)
 public class JSONImporter implements Importer {
+
+    private final String IMPORT_FILE_EXT = "json";
 
     @Override
     public Map<String, List<Double>> importData(File input) {
@@ -41,7 +44,7 @@ public class JSONImporter implements Importer {
                 jsonData = new JSONObject(line);
                 //Es wird versucht ein JSONArray aus der Zeile zuerzeugen.
                 for (String key : jsonData.keySet()) {
-                    if(!data.containsKey(key)){
+                    if (!data.containsKey(key)) {
                         data.put(key, new ArrayList<>());
                     }
                     try {
@@ -73,5 +76,10 @@ public class JSONImporter implements Importer {
         }
         //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.
         return data;
+    }
+
+    @Override
+    public String importFileExt() {
+        return IMPORT_FILE_EXT;
     }
 }

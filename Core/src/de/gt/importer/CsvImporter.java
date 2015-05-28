@@ -21,6 +21,8 @@ import org.openide.util.lookup.ServiceProvider;
 @ServiceProvider(service = Importer.class)
 public class CsvImporter implements Importer {
 
+    public final String IMPORT_FILE_EXT = "csv";
+
     @Override
     public Map<String, List<Double>> importData(File input) {
         //Eine HashMap wird erzeugt, welche spaeter die Daten des uebergebenen Files enthaelt.
@@ -60,6 +62,11 @@ public class CsvImporter implements Importer {
         }
         //Die Hashmap, welche die Daten der uebergebenen Datei enthaelt, wird zurueckgegeben.
         return data;
+    }
+
+    @Override
+    public String importFileExt() {
+        return IMPORT_FILE_EXT;
     }
 
 }

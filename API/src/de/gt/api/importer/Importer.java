@@ -6,6 +6,7 @@ import java.util.Map;
 
 /**
  * Stellt einen Import-Parser dar
+ *
  * @author Robin
  */
 public interface Importer {
@@ -17,4 +18,12 @@ public interface Importer {
      * @return Eingelesene Daten in Form einer Map.
      */
     public Map<String, List<Double>> importData(File input);
+
+    /**
+     * Gibt an welche Dateiendungen durch den implementierenden Importer
+     * importiert werden können
+     *
+     * @return String
+     */
+    public String importFileExt();
 }
