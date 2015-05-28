@@ -10,7 +10,8 @@ package de.gt.api.export;
  * @author Kevin
  */
 public interface Exporter {
+
     public String getExporterName();
-    
+
     public String getFileExt();
 }

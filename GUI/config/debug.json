@@ -5,13 +5,13 @@
     "source": "Debug",
     "values": [
         "temperature",
-	"latitude",
-	"longitude",
-	"altitude"
-    ],  
-    "gps":{
-        "latitude" : "latitude",
-        "longitude" : "longitude",
-        "altitude" : "altitude"
+        "latitude",
+        "longitude",
+        "altitude"
+    ],
+    "gps": {
+        "latitude": "latitude",
+        "longitude": "longitude",
+        "altitude": "altitude"
     }
 }

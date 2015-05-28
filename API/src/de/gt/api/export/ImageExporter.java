@@ -12,6 +12,7 @@ import java.io.File;
  *
  * @author Kevin
  */
-public interface ImageExporter extends Exporter{
+public interface ImageExporter extends Exporter {
+
     public boolean exportData(Image image, File output);
 }

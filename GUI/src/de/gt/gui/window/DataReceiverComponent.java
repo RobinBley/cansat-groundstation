@@ -47,18 +47,18 @@ public abstract class DataReceiverComponent extends TopComponent implements Conf
         clearData();
 
         List<Double> firstList = importData.values().stream().findFirst().get();
-        
+
         Map<String, Double> datum = new HashMap<>();
-        for(int i = 0; i < firstList.size(); i++){
+        for (int i = 0; i < firstList.size(); i++) {
             datum.clear();
-            
+
             for (String key : importData.keySet()) {
                 for (List<Double> values : importData.values()) {
                     //Valuekey mit String key in datum Map verknüpfen
                     datum.put(key, values.get(i));
                 }
             }
-            
+
             this.receive(datum);
         }
     }

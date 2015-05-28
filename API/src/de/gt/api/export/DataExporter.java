@@ -6,9 +6,10 @@ import java.util.Map;
 
 /**
  * Stellt einen Datenexporter dar
+ *
  * @author Robin
  */
-public interface DataExporter extends Exporter{
+public interface DataExporter extends Exporter {
 
     /**
      * Daten werden exportiert.

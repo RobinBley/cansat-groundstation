@@ -42,8 +42,7 @@ public class CsvImportExportTest {
         values.add(1D);
         values.add(32.4324D);
         data.put("time", (List<Double>) values.clone());
-        
-        
+
     }
 
     /**

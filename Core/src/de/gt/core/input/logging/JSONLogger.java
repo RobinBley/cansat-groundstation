@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 /**
  * Logs data in the JSON format
+ *
  * @author mhuisi
  */
 public class JSONLogger implements Receiver {
@@ -19,6 +20,7 @@ public class JSONLogger implements Receiver {
 
     /**
      * Constructor
+     *
      * @param file - file to log to
      * @throws IOException thrown when file cannot be opened
      */

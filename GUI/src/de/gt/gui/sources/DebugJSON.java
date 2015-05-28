@@ -15,7 +15,7 @@ import org.openide.util.Exceptions;
  * @author mhuisi
  */
 public class DebugJSON implements DataSource {
-    
+
     private DataFormat formatter;
     private final DebugGenerator gen;
     private boolean closed = true;

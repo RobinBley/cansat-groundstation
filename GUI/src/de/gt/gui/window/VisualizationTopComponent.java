@@ -39,7 +39,7 @@ public class VisualizationTopComponent extends DataReceiverComponent {
     public VisualizationTopComponent(Config currentConfig) {
         //Anbindung zur Pipeline herstellen
         super();
-        
+
         setName("Graph Visualisation");
 
         //Trace intialisieren
@@ -166,7 +166,6 @@ public class VisualizationTopComponent extends DataReceiverComponent {
     private void btnUpdateViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateViewActionPerformed
 
     }//GEN-LAST:event_btnUpdateViewActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdateView;

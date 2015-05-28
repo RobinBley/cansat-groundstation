@@ -42,7 +42,7 @@ public final class OpenVisualizationWindowAction implements ActionListener {
 
             //Neues Fenster für Graphenvisualisierung erzeugen
             VisualizationTopComponent visualizationWindow = new VisualizationTopComponent(c);
-            
+
             //Fenster öffnen
             visualizationWindow.open();
         } else {

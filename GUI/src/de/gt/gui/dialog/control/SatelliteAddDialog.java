@@ -1,5 +1,8 @@
 package de.gt.gui.dialog.control;
 
+import de.gt.api.input.dataformat.DataFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -8,6 +11,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.openide.util.Lookup;
 
 /**
  *
@@ -30,7 +34,6 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
     private JSONObject config;
 
     //Models für DataFormat und DataSource
-    private DefaultComboBoxModel<String> cmbModelDataSource = new DefaultComboBoxModel<>();
     private DefaultComboBoxModel<String> cmbModelDataFormat = new DefaultComboBoxModel<>();
 
     //Models für die GPS Keys
@@ -48,6 +51,18 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
         initComponents();
     }
 
+    @Override
+    public void setVisible(boolean b) {
+        if (b) {
+            this.config = null;
+
+            getAvailableParsers().stream()
+                    .forEach(d -> cmbModelDataFormat.addElement(d.getName()));
+        }
+
+        super.setVisible(b);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +77,7 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDataKeys = new javax.swing.JTable();
+        btnAddDataKey = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         cmbDataFormat = new javax.swing.JComboBox();
         cmbDataSource = new javax.swing.JComboBox();
@@ -124,22 +140,36 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
             tblDataKeys.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.tblDataKeys.columnModel.title0")); // NOI18N
         }
 
+        org.openide.awt.Mnemonics.setLocalizedText(btnAddDataKey, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.btnAddDataKey.text")); // NOI18N
+        btnAddDataKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddDataKeyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAddDataKey, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAddDataKey, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jPanel2.border.title"))); // NOI18N
 
-        cmbDataFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbDataFormat.setModel(cmbModelDataFormat);
 
         cmbDataSource.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Debug", "Serial"}));
 
@@ -194,17 +224,17 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jPanel3.border.title"))); // NOI18N
         jPanel3.setEnabled(false);
 
-        cmbKeyGpsLatitude.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbKeyGpsLatitude.setModel(cmbModelGpsLat);
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jLabel2.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jLabel5.text")); // NOI18N
 
-        cmbKeyGpsLongitude.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbKeyGpsLongitude.setModel(cmbModelGpsLong);
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jLabel6.text")); // NOI18N
 
-        cmbKeyGpsAltitude.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbKeyGpsAltitude.setModel(cmbModelGpsAlt);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -284,7 +314,7 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCreateSatellite, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAbort, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jPanel2.AccessibleContext.accessibleName")); // NOI18N
@@ -295,6 +325,17 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
 
     public JSONObject getConfig() {
         return config;
+    }
+
+    public List<DataFormat> getAvailableParsers() {
+        List<DataFormat> availableParsers = new ArrayList<>();
+
+        Lookup.getDefault()
+                .lookupAll(DataFormat.class)
+                .stream()
+                .forEach(d -> availableParsers.add(d));
+
+        return availableParsers;
     }
 
     private void btnCreateSatelliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateSatelliteActionPerformed
@@ -360,7 +401,7 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
                 .forEach(n -> {
                     String dataKey = (String) dataKeyModel.getValueAt(n, 0);
 
-                    if (!dataKey.equals("")) {
+                    if (dataKey != null && !dataKey.equals("")) {
                         //Alle Models updaten
                         cmbModelGpsAlt.addElement(dataKey);
                         cmbModelGpsLong.addElement(dataKey);
@@ -378,8 +419,13 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnAbortActionPerformed
 
+    private void btnAddDataKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDataKeyActionPerformed
+        dataKeyModel.addRow(new Object[]{""});
+    }//GEN-LAST:event_btnAddDataKeyActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbort;
+    private javax.swing.JButton btnAddDataKey;
     private javax.swing.JButton btnCreateSatellite;
     private javax.swing.JCheckBox checkHasPositionKeys;
     private javax.swing.JComboBox cmbDataFormat;

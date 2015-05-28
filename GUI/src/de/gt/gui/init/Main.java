@@ -9,18 +9,20 @@ import org.openide.util.Exceptions;
 
 /**
  * Startup script
+ *
  * @author Kevin
  */
 public class Main extends ModuleInstall {
+
     @Override
-    public void restored(){
+    public void restored() {
         /*
-            Beim ZIP-Package: Hauptordner der Applikation als CWD
-            Beim Standard-Debug-Build GUI/ als CWD
-        */
+         Beim ZIP-Package: Hauptordner der Applikation als CWD
+         Beim Standard-Debug-Build GUI/ als CWD
+         */
         File configDir = new File("config");
-        
-        if(!configDir.exists()){
+
+        if (!configDir.exists()) {
             //Ordner für Config erstellen
             configDir.mkdir();
         }

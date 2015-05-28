@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * Prints the received data to the console
+ *
  * @author Robin
  */
 public class ConsoleOutput implements Receiver {

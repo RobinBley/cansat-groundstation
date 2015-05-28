@@ -9,5 +9,5 @@ package de.gt.api.input.dataformat;
  *
  * @author Kevin
  */
-public class UnknownFormatException extends Exception{
+public class UnknownFormatException extends Exception {
 }

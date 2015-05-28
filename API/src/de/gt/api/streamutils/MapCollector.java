@@ -7,21 +7,21 @@ import java.util.stream.Collectors;
 
 /**
  * Erstellt Entry-Stream-Collectors
+ *
  * @author mhuisi
  */
 public class MapCollector {
 
     /**
-     * Erstellt einen neuen Collector
-     * welcher es erlaubt, einen Stream aus
-     * Entries<K, V> in eine Map<K, V> zu
-     * collecten.
+     * Erstellt einen neuen Collector welcher es erlaubt, einen Stream aus
+     * Entries<K, V> in eine Map<K, V> zu collecten.
+     *
      * @param <K>
      * @param <V>
-     * @return 
+     * @return
      */
     public static <K, V> Collector<Entry<K, V>, ?, Map<K, V>> create() {
-	return Collectors.toMap(Entry::getKey, Entry::getValue);
+        return Collectors.toMap(Entry::getKey, Entry::getValue);
     }
-    
+
 }

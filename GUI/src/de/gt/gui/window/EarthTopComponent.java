@@ -38,7 +38,7 @@ import org.openide.util.NbBundle.Messages;
 public final class EarthTopComponent extends DataReceiverComponent {
 
     private final List<Position> positions = new ArrayList<>();
-    
+
     private final GPSKey k;
 
     private WorldWindowGLCanvas wwd;
@@ -65,9 +65,8 @@ public final class EarthTopComponent extends DataReceiverComponent {
     }
 
     /**
-     * Diesen Code NICHT mit dem Designer berühren!
-     * Der Designer erlaubt es nicht, komplexe Komponenten wie 
-     * GL Canvasse einfach zu nutzen.
+     * Diesen Code NICHT mit dem Designer berühren! Der Designer erlaubt es
+     * nicht, komplexe Komponenten wie GL Canvasse einfach zu nutzen.
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {

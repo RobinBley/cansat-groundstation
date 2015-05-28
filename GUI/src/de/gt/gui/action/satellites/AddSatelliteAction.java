@@ -19,6 +19,7 @@ import org.openide.util.NbBundle.Messages;
 @ActionReference(path = "Menu/File/Satellites", position = 1000)
 @Messages("CTL_AddSatelliteAction=Add")
 public final class AddSatelliteAction extends DialogAction {
+
     private final JDialog addSatelliteDialog;
 
     public AddSatelliteAction() {

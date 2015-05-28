@@ -93,7 +93,7 @@ public final class TextDisplayTopComponent extends DataReceiverComponent {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void clearData(){
+    public void clearData() {
         //Text löschen
         jTextPane1.setText("");
     }
