@@ -1,10 +1,44 @@
 package de.gt.gui.dialog.control;
 
+import java.util.stream.IntStream;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 /**
  *
  * @author Kevin
  */
 public class SatelliteAddDialog extends javax.swing.JDialog {
+
+    //Keys für Config
+    private static final String NAME_KEY = "name";
+    private static final String FORMAT_KEY = "format";
+    private static final String VALUES_KEY = "values";
+    private static final String SOURCE_KEY = "source";
+    private static final String GPS_KEY = "gps";
+
+    //GPS Subkeys
+    private static final String GPS_KEY_LAT = "latitude";
+    private static final String GPS_KEY_LONG = "longitude";
+    private static final String GPS_KEY_ALT = "altitude";
+
+    private JSONObject config;
+
+    //Models für DataFormat und DataSource
+    private DefaultComboBoxModel<String> cmbModelDataSource = new DefaultComboBoxModel<>();
+    private DefaultComboBoxModel<String> cmbModelDataFormat = new DefaultComboBoxModel<>();
+
+    //Models für die GPS Keys
+    private DefaultComboBoxModel<String> cmbModelGpsLat = new DefaultComboBoxModel<>();
+    private DefaultComboBoxModel<String> cmbModelGpsLong = new DefaultComboBoxModel<>();
+    private DefaultComboBoxModel<String> cmbModelGpsAlt = new DefaultComboBoxModel<>();
+
+    private DefaultTableModel dataKeyModel;
 
     /**
      * Creates new form SatelliteAddDialog
@@ -23,55 +57,91 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnOkay = new javax.swing.JButton();
+        btnCreateSatellite = new javax.swing.JButton();
         btnAbort = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableDataKeys = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblDataKeys = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        comboBoxDataFormat = new javax.swing.JComboBox();
-        comboBoxDataSource = new javax.swing.JComboBox();
+        cmbDataFormat = new javax.swing.JComboBox();
+        cmbDataSource = new javax.swing.JComboBox();
         textFieldName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        cmbKeyGpsLatitude = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        cmbKeyGpsLongitude = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        cmbKeyGpsAltitude = new javax.swing.JComboBox();
+        checkHasPositionKeys = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        org.openide.awt.Mnemonics.setLocalizedText(btnOkay, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.btnOkay.text")); // NOI18N
-        btnOkay.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(btnCreateSatellite, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.btnCreateSatellite.text")); // NOI18N
+        btnCreateSatellite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOkayActionPerformed(evt);
+                btnCreateSatelliteActionPerformed(evt);
             }
         });
 
         org.openide.awt.Mnemonics.setLocalizedText(btnAbort, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.btnAbort.text")); // NOI18N
+        btnAbort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbortActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jPanel1.border.title"))); // NOI18N
 
-        jScrollPane2.setViewportView(tableDataKeys);
+        this.dataKeyModel = new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null}
+            },
+            new String [] {
+                "Key"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        };
+        tblDataKeys.setModel(this.dataKeyModel);
+        this.dataKeyModel.addTableModelListener(new TableModelListener(){
+            public void tableChanged(TableModelEvent e){
+                //DataKeys wurden geändert
+                dataKeysModified();
+            }
+        });
+        jScrollPane3.setViewportView(tblDataKeys);
+        if (tblDataKeys.getColumnModel().getColumnCount() > 0) {
+            tblDataKeys.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.tblDataKeys.columnModel.title0")); // NOI18N
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jPanel2.border.title"))); // NOI18N
 
-        comboBoxDataFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbDataFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        comboBoxDataSource.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbDataSource.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Debug", "Serial"}));
 
         textFieldName.setText(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.textFieldName.text")); // NOI18N
         textFieldName.addActionListener(new java.awt.event.ActionListener() {
@@ -98,9 +168,9 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
                     .addComponent(jLabel4))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboBoxDataFormat, 0, 853, Short.MAX_VALUE)
+                    .addComponent(cmbDataFormat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldName)
-                    .addComponent(comboBoxDataSource, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmbDataSource, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -112,14 +182,70 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
                     .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxDataSource, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbDataSource, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxDataFormat, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbDataFormat, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jPanel3.border.title"))); // NOI18N
+        jPanel3.setEnabled(false);
+
+        cmbKeyGpsLatitude.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jLabel2.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jLabel5.text")); // NOI18N
+
+        cmbKeyGpsLongitude.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jLabel6.text")); // NOI18N
+
+        cmbKeyGpsAltitude.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmbKeyGpsLatitude, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addComponent(cmbKeyGpsLongitude, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmbKeyGpsAltitude, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbKeyGpsLatitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbKeyGpsLongitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbKeyGpsAltitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addContainerGap(67, Short.MAX_VALUE))
+        );
+
+        org.openide.awt.Mnemonics.setLocalizedText(checkHasPositionKeys, org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.checkHasPositionKeys.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,15 +254,19 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnCreateSatellite, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAbort, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(checkHasPositionKeys, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(723, Short.MAX_VALUE)
-                .addComponent(btnOkay, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAbort, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,39 +274,130 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOkay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAbort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(checkHasPositionKeys)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCreateSatellite, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAbort, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel2.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jPanel2.AccessibleContext.accessibleName")); // NOI18N
+        jPanel3.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(SatelliteAddDialog.class, "SatelliteAddDialog.jPanel3.AccessibleContext.accessibleName")); // NOI18N
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOkayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkayActionPerformed
-        
-    }//GEN-LAST:event_btnOkayActionPerformed
+    public JSONObject getConfig() {
+        return config;
+    }
+
+    private void btnCreateSatelliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateSatelliteActionPerformed
+        String name = textFieldName.getText();
+
+        if (name.equals("")) {
+            JOptionPane.showMessageDialog(null, "Satellite name needs to be at least one character long");
+            return;
+        }
+
+        //Datenquelle auslesen
+        String dataSource = (String) cmbDataSource.getSelectedItem();
+
+        //Datenformat auslesen
+        String dataFormat = (String) cmbDataFormat.getSelectedItem();
+
+        //Speichert die Keys
+        JSONArray dataKeys = new JSONArray();
+
+        if (tblDataKeys.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "Satellite needs one or more data keys");
+            return;
+        }
+
+        //Alle keys dem JSONArray hinzufügen
+        IntStream.range(0, tblDataKeys.getRowCount() + 1)
+                .forEach(n -> dataKeys.put(tblDataKeys.getModel().getValueAt(n, 0)));
+
+        //Speichert die GpsKeys
+        JSONObject gpsKey = null;
+
+        //Wenn Gps Keys mitgespeichert werden sollen, benutze diese
+        if (checkHasPositionKeys.isSelected()) {
+            gpsKey = new JSONObject();
+
+            //Gps Sub-Keys auslesen und dem GPS Key hinzufügen
+            gpsKey.put(GPS_KEY_ALT, cmbKeyGpsAltitude.getSelectedItem());
+            gpsKey.put(GPS_KEY_LAT, cmbKeyGpsLatitude.getSelectedItem());
+            gpsKey.put(GPS_KEY_LONG, cmbKeyGpsLongitude.getSelectedItem());
+        }
+
+        //JSONObject für Config zusammensetzen
+        JSONObject config = new JSONObject();
+        config.put(NAME_KEY, name);
+        config.put(SOURCE_KEY, dataSource);
+        config.put(FORMAT_KEY, dataFormat);
+        config.put(VALUES_KEY, dataKeys);
+        config.put(GPS_KEY, GPS_KEY);
+
+        this.config = config;
+
+        //Dialog schließen
+        dispose();
+    }//GEN-LAST:event_btnCreateSatelliteActionPerformed
+
+    private void dataKeysModified() {
+        cmbModelGpsAlt.removeAllElements();
+        cmbModelGpsLat.removeAllElements();
+        cmbModelGpsLong.removeAllElements();
+
+        //Alle Models aktualisieren
+        IntStream.range(0, tblDataKeys.getRowCount())
+                .forEach(n -> {
+                    String dataKey = (String) dataKeyModel.getValueAt(n, 0);
+
+                    if (!dataKey.equals("")) {
+                        //Alle Models updaten
+                        cmbModelGpsAlt.addElement(dataKey);
+                        cmbModelGpsLong.addElement(dataKey);
+                        cmbModelGpsLat.addElement(dataKey);
+                    }
+                });
+    }
 
     private void textFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNameActionPerformed
-        
+
     }//GEN-LAST:event_textFieldNameActionPerformed
+
+    private void btnAbortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbortActionPerformed
+        this.config = null;
+        dispose();
+    }//GEN-LAST:event_btnAbortActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbort;
-    private javax.swing.JButton btnOkay;
-    private javax.swing.JComboBox comboBoxDataFormat;
-    private javax.swing.JComboBox comboBoxDataSource;
+    private javax.swing.JButton btnCreateSatellite;
+    private javax.swing.JCheckBox checkHasPositionKeys;
+    private javax.swing.JComboBox cmbDataFormat;
+    private javax.swing.JComboBox cmbDataSource;
+    private javax.swing.JComboBox cmbKeyGpsAltitude;
+    private javax.swing.JComboBox cmbKeyGpsLatitude;
+    private javax.swing.JComboBox cmbKeyGpsLongitude;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tableDataKeys;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tblDataKeys;
     private javax.swing.JTextField textFieldName;
     // End of variables declaration//GEN-END:variables
 }

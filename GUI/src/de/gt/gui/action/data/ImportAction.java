@@ -1,4 +1,4 @@
-package de.gt.gui.action;
+package de.gt.gui.action.data;
 
 import de.gt.api.datapipeline.DataPipeline;
 import de.gt.api.importer.Importer;
