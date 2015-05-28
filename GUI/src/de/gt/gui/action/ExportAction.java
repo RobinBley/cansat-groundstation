@@ -16,7 +16,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -78,10 +81,15 @@ public final class ExportAction implements ActionListener {
             } else if (exporter instanceof PositionExporter) {
                 PositionExporter positionExporter = (PositionExporter) exporter;
 
+                if (!positionExporter.exportData(this.pipeline.exportData(), this.pipeline.getConfig().getGpsKey(), exportTargetFile)) {
+                    JOptionPane.showMessageDialog(null, "Error while exporting");
+                }
             } else if (exporter instanceof DataExporter) {
                 DataExporter dataExporter = (DataExporter) exporter;
 
-                dataExporter.exportData(this.pipeline.exportData(), exportTargetFile);
+                if (!dataExporter.exportData(this.pipeline.exportData(), exportTargetFile)) {
+                    JOptionPane.showMessageDialog(null, "Error while exporting");
+                }
             } else {
                 //TODO: Fehler beim Exportieren, weil der Exporter keines der drei dataexport interfaces unterstützt
             }

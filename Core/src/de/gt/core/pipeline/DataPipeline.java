@@ -12,6 +12,7 @@ import de.gt.core.relay.DataProvider;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -51,8 +52,10 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
     //Speichert den Thread in dem der pull Stream läuft, damit ist die ganze Pipeline gethreadet
     private Thread streamThread;
 
+    //Logt für die Applikation
     private JSONLogger logger;
 
+    //Cached die Daten die über das Relay kommen
     private Map<String, List<Double>> dataCache;
 
     public DataPipeline() {
@@ -108,6 +111,17 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
         if (this.pipeParser != null) {
             this.pipeParser.configure(c);
         }
+
+        //Cache für die aufnahme von Satellitendaten vorbereiten
+        setupCache(c);
+    }
+
+    private void setupCache(Config c) {
+        //Cache leeren
+        dataCache.clear();
+
+        //Alle Keys für ValueLists anlegen
+        c.getKeys().stream().forEach(k -> dataCache.put(k, new ArrayList<Double>()));
     }
 
     /**
@@ -225,6 +239,8 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
         if (pipeSource == null) {
             return false;
         }
+
+        pipeRelay.addReceiver(this);
 
         //DataSource threaden
         streamThread = new Thread(pipeSource::open);
