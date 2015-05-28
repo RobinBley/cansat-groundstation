@@ -44,7 +44,7 @@ public class CsvExport implements DataExporter {
                 for (String key : data.keySet()) {
                     try {
                         buffer.append(data.get(key).get(index));
-                    } catch(Exception e)  {
+                    } catch (Exception e) {
                     }
                     buffer.append(";");
                 }
@@ -60,5 +60,10 @@ public class CsvExport implements DataExporter {
     @Override
     public String getExporterName() {
         return "CSV";
+    }
+
+    @Override
+    public String getFileExt() {
+        return "csv";
     }
 }

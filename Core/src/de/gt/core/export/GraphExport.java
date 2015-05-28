@@ -63,4 +63,9 @@ public class GraphExport implements ImageExporter {
     public String getExporterName() {
         return "Graph Export";
     }
+
+    @Override
+    public String getFileExt() {
+        return "jpg";
+    }
 }

@@ -11,4 +11,6 @@ package de.gt.api.export;
  */
 public interface Exporter {
     public String getExporterName();
+    
+    public String getFileExt();
 }

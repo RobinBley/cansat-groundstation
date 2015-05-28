@@ -77,4 +77,9 @@ public class TxtExport implements DataExporter {
         return "Formatierter Text";
     }
 
+    @Override
+    public String getFileExt() {
+        return "txt";
+    }
+
 }

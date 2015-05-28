@@ -112,4 +112,9 @@ public class KMLExport implements PositionExporter {
         return "Google Maps KML";
     }
 
+    @Override
+    public String getFileExt() {
+        return "kml";
+    }
+
 }
