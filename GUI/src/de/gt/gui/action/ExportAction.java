@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.gt.gui.action.export;
+package de.gt.gui.action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
