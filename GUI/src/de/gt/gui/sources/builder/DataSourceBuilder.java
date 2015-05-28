@@ -10,7 +10,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.openide.util.Lookup;
 
 /**
@@ -21,10 +22,10 @@ public class DataSourceBuilder extends WindowAdapter {
 
     private DataSourceConfigurationDialog dialog;
     private Class dataSourceClass;
-    
+
     private DataPipeline pipeline;
-    
-    public DataSourceBuilder(){
+
+    public DataSourceBuilder() {
         pipeline = Lookup.getDefault().lookup(DataPipeline.class);
     }
 
@@ -74,7 +75,7 @@ public class DataSourceBuilder extends WindowAdapter {
         DataSourceConfiguration config = dialog.getConfiguration();
 
         //Parametersignatur der Konfiguration auslesen
-        Set<Class> paramSignature = config.getParamSignature();
+        List<Class> paramSignature = config.getParamSignature();
 
         //Konstruktor suchen der auf die Konfigurationssignatur passt
         Constructor c = findConstructor(dataSourceClass, paramSignature);
@@ -99,7 +100,7 @@ public class DataSourceBuilder extends WindowAdapter {
         cleanUp();
     }
 
-    private Constructor findConstructor(Class classToSearchFor, Set<Class> paramSignature) {
+    private Constructor findConstructor(Class classToSearchFor, List<Class> paramSignature) {
         Constructor[] constructors = classToSearchFor.getConstructors();
 
         for (Constructor c : constructors) {
