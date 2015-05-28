@@ -54,7 +54,7 @@ public final class EarthTopComponent extends DataReceiverComponent {
 
     public EarthTopComponent(GPSKey k) {
         super();
-        
+
         this.k = k;
         initComponents();
         setName(Bundle.CTL_LivePathEarthTopComponent());
@@ -114,15 +114,12 @@ public final class EarthTopComponent extends DataReceiverComponent {
     }
 
     @Override
-    public void imported(List<Map<String, Double>> importData) {
+    public void clearData() {
         //Traces entfernen
         layer.removeAllRenderables();
-        
+
         //Polyline wieder aufbauen
         path = new Polyline();
         layer.addRenderable(path);
-        
-        //TODO: Call receive for all data units
-        
     }
 }

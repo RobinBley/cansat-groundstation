@@ -8,6 +8,7 @@ package de.gt.gui.window;
 import de.gt.api.config.Config;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 import javax.swing.table.DefaultTableModel;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
@@ -122,7 +123,8 @@ public final class TableDisplayTopComponent extends DataReceiverComponent {
     }
 
     @Override
-    public void imported(List<Map<String, Double>> importData) {
-        //TODO: Implement import for table display
+    public void clearData() {
+        //Alle Zeilen löschen
+        IntStream.range(0, model.getRowCount()).forEach(n -> model.removeRow(n));
     }
 }

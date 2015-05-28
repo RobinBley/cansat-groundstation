@@ -93,12 +93,8 @@ public final class TextDisplayTopComponent extends DataReceiverComponent {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void configChanged(Config newConfig) {
-        //TODO: Default method in Receiver
-    }
-
-    @Override
-    public void imported(List<Map<String, Double>> importData) {
-        //TODO: Implement import, should need no impl, exchange with default method
+    public void clearData(){
+        //Text löschen
+        jTextPane1.setText("");
     }
 }

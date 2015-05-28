@@ -33,12 +33,21 @@ public abstract class DataReceiverComponent extends TopComponent implements Conf
         pipeline.unregisterDataReceiver(this);
     }
 
+    public abstract void clearData();
+
     @Override
-    public void imported(List<Map<String, Double>> importData){
-        //Standardmäßig kein Verhalten bei Import, wird nur von Komponenten überschrieben die die Funktionalität unterstützen
+    public void configChanged(Config newConfig){
+        //Nicht alle Komponenten reagieren auf Config Änderungen
         return;
     }
+    
+    @Override
+    public void imported(List<Map<String, Double>> importData) {
+        //Alle Daten löschen
+        clearData();
 
-    
-    
+        //Daten importieren
+        importData.stream().forEach(d -> this.receive(d));
+    }
+
 }

@@ -197,7 +197,8 @@ public class VisualizationTopComponent extends DataReceiverComponent {
     }
 
     @Override
-    public void imported(List<Map<String, Double>> importData) {
-        //TODO: Delete trace and rebuild new Trace with given importData
+    public void clearData() {
+        //Alle Punkte vom Trace entfernen
+        trace.removeAllPoints();
     }
 }
