@@ -5,7 +5,7 @@ import de.gt.api.datapipeline.DataPipeline;
 import de.gt.api.input.dataformat.DataFormat;
 import de.gt.api.input.dataformat.UnknownFormatException;
 import de.gt.gui.action.DialogAction;
-import de.gt.gui.dialog.SatelliteChooseDialog;
+import de.gt.gui.dialog.control.SatelliteChooseDialog;
 import de.gt.gui.sources.DebugJSON;
 import de.gt.gui.sources.Serial;
 import de.gt.gui.sources.UnknownDataSourceException;

@@ -1,7 +1,7 @@
 package de.gt.gui.action.satellites;
 
 import de.gt.gui.action.DialogAction;
-import de.gt.gui.dialog.SatelliteAddDialog;
+import de.gt.gui.dialog.control.SatelliteAddDialog;
 import java.awt.event.ActionEvent;
 import javax.swing.JDialog;
 import org.openide.awt.ActionID;
