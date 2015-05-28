@@ -44,8 +44,12 @@ public final class ManageSatellitesAction extends DialogAction {
         this.chooseSatelliteDialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                //Config hat sich geändert, darum müssen alle Konfigurierbaren Komponenten benachrichtigt werden
-                onConfigChanged(chooseSatelliteDialog.getConfig());
+                Config c = chooseSatelliteDialog.getConfig();
+
+                if (c != null) {
+                    //Config hat sich geändert, darum müssen alle Konfigurierbaren Komponenten benachrichtigt werden
+                    onConfigChanged(c);
+                }
             }
         });
     }

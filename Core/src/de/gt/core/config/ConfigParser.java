@@ -48,8 +48,13 @@ public class ConfigParser implements de.gt.api.config.ConfigParser {
                 throw new InvalidConfigException();
             }
 
-            //Identifier des Satelliten feststellen
-            String identifier = parsedConfig.getString(IDENTIFIER_KEY);
+            //Standardmäßig kein Identifier, da dieser zurzeit noch nicht genutzt wird
+            String identifier = null;
+
+            if (parsedConfig.has(IDENTIFIER_KEY)) {
+                //Identifier des Satelliten feststellen
+                identifier = parsedConfig.getString(IDENTIFIER_KEY);
+            }
 
             //Einzelne Keys bestimmen
             List<String> keys = jsonArrayToList(parsedConfig.getJSONArray(VALUES_KEY));
@@ -57,7 +62,7 @@ public class ConfigParser implements de.gt.api.config.ConfigParser {
             //Versuchen GPS Konfiguration abzurufen
             GPSKey gps = null;
 
-            if (parsedConfig.has(GPS_KEY)) {
+            if (parsedConfig.has(GPS_KEY) && parsedConfig.get(GPS_KEY) != null) {
                 //Gps Container aus der Json Datei holen
                 JSONObject gpsKeyCollection = parsedConfig.getJSONObject(GPS_KEY);
 
@@ -108,7 +113,6 @@ public class ConfigParser implements de.gt.api.config.ConfigParser {
 
     private boolean isValidConfig(JSONObject parsedConfig) {
         return !(parsedConfig.isNull(NAME_KEY)
-                || parsedConfig.isNull(IDENTIFIER_KEY)
                 || parsedConfig.isNull(FORMAT_KEY)
                 || parsedConfig.isNull(VALUES_KEY));
     }

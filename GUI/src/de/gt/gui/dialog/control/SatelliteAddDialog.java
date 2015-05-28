@@ -361,7 +361,7 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
         }
 
         //Alle keys dem JSONArray hinzufügen
-        IntStream.range(0, tblDataKeys.getRowCount() + 1)
+        IntStream.range(0, tblDataKeys.getRowCount())
                 .forEach(n -> dataKeys.put(tblDataKeys.getModel().getValueAt(n, 0)));
 
         //Speichert die GpsKeys
@@ -383,7 +383,7 @@ public class SatelliteAddDialog extends javax.swing.JDialog {
         config.put(SOURCE_KEY, dataSource);
         config.put(FORMAT_KEY, dataFormat);
         config.put(VALUES_KEY, dataKeys);
-        config.put(GPS_KEY, GPS_KEY);
+        config.put(GPS_KEY, gpsKey);
 
         this.config = config;
 

@@ -20,7 +20,12 @@ public class Main extends ModuleInstall {
          Beim ZIP-Package: Hauptordner der Applikation als CWD
          Beim Standard-Debug-Build GUI/ als CWD
          */
-        File configDir = new File("config");
+        setUpDir("config");
+        setUpDir("log");
+    }
+
+    private void setUpDir(String dirName) {
+        File configDir = new File(dirName);
 
         if (!configDir.exists()) {
             //Ordner für Config erstellen
