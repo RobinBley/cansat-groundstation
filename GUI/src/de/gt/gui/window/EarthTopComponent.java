@@ -57,7 +57,7 @@ public final class EarthTopComponent extends DataReceiverComponent {
 
         this.k = k;
         initComponents();
-        setName(Bundle.CTL_LivePathEarthTopComponent());
+        setName("Map Visualisation");
         setToolTipText(Bundle.HINT_LivePathEarthTopComponent());
     }
 

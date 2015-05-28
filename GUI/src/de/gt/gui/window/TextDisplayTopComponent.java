@@ -27,13 +27,13 @@ import org.openide.util.NbBundle.Messages;
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
 @ActionID(category = "Window", id = "de.gt.gui.window.TextDisplayTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
+@ActionReference(path = "Menu/Window")
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_TextDisplayAction",
         preferredID = "TextDisplayTopComponent"
 )
 @Messages({
-    "CTL_TextDisplayAction=TextDisplay",
+    "CTL_TextDisplayAction=Text Stream",
     "CTL_TextDisplayTopComponent=TextDisplay Window",
     "HINT_TextDisplayTopComponent=This is a TextDisplay window"
 })
@@ -42,7 +42,7 @@ public final class TextDisplayTopComponent extends DataReceiverComponent {
     public TextDisplayTopComponent() {
         super();
         initComponents();
-        setName(Bundle.CTL_TextDisplayTopComponent());
+        setName("Text Stream");
         setToolTipText(Bundle.HINT_TextDisplayTopComponent());
     }
 

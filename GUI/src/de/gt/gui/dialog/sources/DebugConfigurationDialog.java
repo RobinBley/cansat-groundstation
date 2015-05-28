@@ -60,7 +60,7 @@ public class DebugConfigurationDialog extends DataSourceConfigurationDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDummyGenerator)
-                    .addComponent(btnSetupCompleted, javax.swing.GroupLayout.PREFERRED_SIZE, 370, Short.MAX_VALUE))
+                    .addComponent(btnSetupCompleted, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

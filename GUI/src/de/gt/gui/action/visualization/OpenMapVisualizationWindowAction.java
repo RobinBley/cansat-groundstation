@@ -24,7 +24,7 @@ import org.openide.util.NbBundle.Messages;
     @ActionReference(path = "Menu/Window", position = 3334),
     @ActionReference(path = "Shortcuts", name = "D-M")
 })
-@Messages("CTL_OpenMapVisualizationWindowAction=Map Vizualization")
+@Messages("CTL_OpenMapVisualizationWindowAction=Map Visualization")
 public final class OpenMapVisualizationWindowAction implements ActionListener {
 
     private final DataPipeline pipeline;
@@ -36,7 +36,7 @@ public final class OpenMapVisualizationWindowAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (!this.pipeline.isConfigLoaded()) {
-            JOptionPane.showMessageDialog(null, "The map visualization is only available if a satellite configuration was loaded");
+            JOptionPane.showMessageDialog(null, "A satellite configuration needs to be loaded to use this visualization.");
         } else {
             GPSKey gpsKey = this.pipeline.getConfig().getGpsKey();
 
@@ -47,7 +47,7 @@ public final class OpenMapVisualizationWindowAction implements ActionListener {
                 //Visualisierungsfenster anzeigen
                 mapVisualizationWindow.open();
             } else {
-                JOptionPane.showMessageDialog(null, "Map visualization is not available to this satellite because the application doesn't know how to fetch satellites position");
+                JOptionPane.showMessageDialog(null, "Map visualization is not available to this satellite because there is no GPS key set for this satellite.");
             }
         }
     }

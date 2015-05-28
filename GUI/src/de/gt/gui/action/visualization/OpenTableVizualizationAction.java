@@ -26,7 +26,7 @@ import org.openide.util.NbBundle.Messages;
         displayName = "#CTL_OpenTableVizualizationAction"
 )
 @ActionReference(path = "Menu/Window", position = 3333)
-@Messages("CTL_OpenTableVizualizationAction=Tabellenvisualisierung")
+@Messages("CTL_OpenTableVizualizationAction=Table Visualization")
 public final class OpenTableVizualizationAction implements ActionListener {
 
     private DataPipeline pipeline;
@@ -47,7 +47,7 @@ public final class OpenTableVizualizationAction implements ActionListener {
             //Fenster öffnen
             tableComponent.open();
         } else {
-            JOptionPane.showMessageDialog(null, "Das Tabellen-Visualisierungsfenster steht nur zur Verfügung, wenn eine Satelitenkonfiguration geladen wurde");
+            JOptionPane.showMessageDialog(null, "A satellite configuration needs to be loaded to use this visualization.");
         }
     }
 }
