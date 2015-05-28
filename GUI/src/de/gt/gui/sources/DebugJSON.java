@@ -5,7 +5,6 @@ import de.gt.api.input.dataformat.DataFormat;
 import de.gt.api.sources.DataSourceConfigurationDialog;
 import de.gt.gui.dialog.sources.DebugConfigurationDialog;
 import java.io.IOException;
-import java.util.Map;
 import org.json.JSONObject;
 import org.openide.util.Exceptions;
 

@@ -37,6 +37,8 @@ public interface DataFormat {
     /**
      * Gibt den Namen des Parsers zum Abgleich 
      * mit der Config zurück
+     * 
+     * @return name
      */
     public String getName();
     

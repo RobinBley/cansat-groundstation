@@ -13,7 +13,7 @@ import java.util.Set;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Relay to move data from a formatter to several receivers.
+ * DataProvider zum Bewegen von Daten zu mehreren Receivern
  *
  * @author mhuisi
  */
@@ -24,8 +24,9 @@ public class DataProvider implements Relay {
     private final Map<String, Double> latest = new HashMap<>();
 
     /**
-     * Relays a datum to multiple receivers.
-     *
+     * Leitet ein Datum an mehrere Receiver weiter.
+     * Enthält ein Key "null" als Wert, so wird dieser Wert abgeflacht und der
+     * fehlende Wert durch den letzten erhaltenen Wert ersetzt.
      * @param datum
      */
     @Override

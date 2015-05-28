@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Parses a config
+ * Parset eine Config
  *
  * @author Kevin
  */
@@ -29,11 +29,11 @@ public class ConfigParser implements de.gt.api.config.ConfigParser {
     private static final String GPS_KEY_ALT = "altitude";
 
     /**
-     * Parses the config
+     * Parset die Config
      *
-     * @param configStr - data to parse
-     * @return parsed Config
-     * @throws InvalidConfigException - config cannot be parsed
+     * @param configStr - Daten, die geparst werden sollen
+     * @return geparste Config
+     * @throws InvalidConfigException - Config kann nicht geparst werden
      */
     @Override
     public Config parse(String configStr) throws InvalidConfigException {

@@ -25,6 +25,7 @@ public interface DataPipeline {
 
     /**
      * Gibt die aktuelle Pipeline Konfiguration zurück
+     * @return config
      */
     public Config getConfig();
 

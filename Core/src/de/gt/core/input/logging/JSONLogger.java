@@ -10,17 +10,17 @@ import java.util.Map;
 import org.json.JSONObject;
 
 /**
- * Logs data in the JSON format
- * @author mhuisi
+ * Loggt Daten in JSON
+ * @author robin
  */
 public class JSONLogger implements Receiver {
 
     private final File output;
 
     /**
-     * Constructor
-     * @param file - file to log to
-     * @throws IOException thrown when file cannot be opened
+     * Konstructor
+     * @param file - Ziellogdatei
+     * @throws IOException geworfen, wenn Datei nicht geöffnet werden kann
      */
     public JSONLogger(File file) throws IOException {
         if (!file.exists()) {

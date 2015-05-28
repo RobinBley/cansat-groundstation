@@ -5,7 +5,6 @@ import info.monitorenter.gui.chart.IAxis;
 import info.monitorenter.gui.chart.ITrace2D;
 import info.monitorenter.gui.chart.traces.Trace2DSimple;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import org.openide.util.NbBundle.Messages;

@@ -18,7 +18,7 @@ import java.util.stream.IntStream;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Exports to KML
+ * Exportiert in KML
  *
  * @author mhuisi
  */

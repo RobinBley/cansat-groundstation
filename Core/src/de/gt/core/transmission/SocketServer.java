@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 import org.json.JSONObject;
 
 /**
- *
- * @author Robin Ein Sever, welcher als Datenempfaenger dient und diese an alle
+ * Ein Sever, welcher als Datenempfaenger dient und diese an alle
  * zu diesem Server verbundenen Clients convertiert weiterleitet.
+ * @author Robin 
  */
 public class SocketServer implements Receiver, Runnable {
 

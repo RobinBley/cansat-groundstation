@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Imports data from JSON
+ * Importiert Daten von JSON
  *
  * @author mhuisi
  */

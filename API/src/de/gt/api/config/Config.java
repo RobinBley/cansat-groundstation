@@ -19,6 +19,7 @@ public interface Config {
 
     public String getSource();
     
+    @Override
     public String toString();
     
     public GPSKey getGpsKey();
