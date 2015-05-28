@@ -19,5 +19,5 @@ public interface Configurable {
      */
     void configChanged(Config newConfig);
     
-    public abstract void imported(Map<String, List<Double>> importData);
+    public abstract void imported(List<Map<String, Double>> importData);
 }

@@ -53,11 +53,11 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
 
     private JSONLogger logger;
 
-    private Map<String, List<Double>> dataCache;
+    private List<Map<String, Double>> dataCache;
 
     public DataPipeline() {
         //Cache für Datenpipeline
-        dataCache = new HashMap<>();
+        dataCache = new ArrayList<>();
 
         File logFile = getLogFile();
 
@@ -252,7 +252,8 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
         }
     }
 
-    public void importData(Map<String, List<Double>> importData) {
+    @Override
+    public void importData(List<Map<String, Double>> importData) {
         //Import an alle Komponenten durchgeben
         this.receivingComponents.stream()
                 .filter(c -> c instanceof Configurable)
@@ -263,27 +264,12 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
     }
 
     @Override
-    public Map<String, List<Double>> exportData() {
+    public List<Map<String, Double>> exportData() {
         return dataCache;
     }
 
     @Override
     public void receive(Map<String, Double> datum) {
-        datum.entrySet().stream().forEach(d -> {
-            List<Double> valList;
-
-            //Liste erstellen, wenn noch keine KeyList vorhanden
-            if (!dataCache.keySet().contains(d.getKey())) {
-                valList = new ArrayList<>();
-            } else {
-                valList = dataCache.get(d.getKey());
-            }
-
-            //Wert in Liste einfügen
-            valList.add(d.getValue());
-
-            //Map updaten mit aktualisierter Werteliste
-            dataCache.put(d.getKey(), valList);
-        });
+        dataCache.add(datum);
     }
 }

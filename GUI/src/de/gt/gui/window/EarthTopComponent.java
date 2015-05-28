@@ -65,7 +65,6 @@ public final class EarthTopComponent extends DataReceiverComponent {
         positions.add(p);
         path.setPositions(positions);
         layer.addRenderable(a);
-        wwd.redraw();
     }
 
     @Override
@@ -115,7 +114,15 @@ public final class EarthTopComponent extends DataReceiverComponent {
     }
 
     @Override
-    public void imported(Map<String, List<Double>> importData) {
-        //TODO: Implement import
+    public void imported(List<Map<String, Double>> importData) {
+        //Traces entfernen
+        layer.removeAllRenderables();
+        
+        //Polyline wieder aufbauen
+        path = new Polyline();
+        layer.addRenderable(path);
+        
+        //TODO: Call receive for all data units
+        
     }
 }

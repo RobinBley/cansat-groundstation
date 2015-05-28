@@ -38,7 +38,7 @@ public class VisualizationTopComponent extends DataReceiverComponent {
      */
     public VisualizationTopComponent(Config currentConfig) {
         super();
-        
+
         //Trace intialisieren
         trace = new Trace2DSimple();
 
@@ -197,7 +197,7 @@ public class VisualizationTopComponent extends DataReceiverComponent {
     }
 
     @Override
-    public void imported(Map<String, List<Double>> importData) {
+    public void imported(List<Map<String, Double>> importData) {
         //TODO: Delete trace and rebuild new Trace with given importData
     }
 }

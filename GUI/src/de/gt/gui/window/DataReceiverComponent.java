@@ -1,5 +1,6 @@
 package de.gt.gui.window;
 
+import de.gt.api.config.Config;
 import de.gt.api.datapipeline.DataPipeline;
 import de.gt.api.relay.Configurable;
 import de.gt.api.relay.Receiver;
@@ -31,4 +32,13 @@ public abstract class DataReceiverComponent extends TopComponent implements Conf
     protected void componentClosed() {
         pipeline.unregisterDataReceiver(this);
     }
+
+    @Override
+    public void imported(List<Map<String, Double>> importData){
+        //Standardmäßig kein Verhalten bei Import, wird nur von Komponenten überschrieben die die Funktionalität unterstützen
+        return;
+    }
+
+    
+    
 }

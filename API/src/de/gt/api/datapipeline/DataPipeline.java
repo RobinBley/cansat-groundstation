@@ -95,19 +95,19 @@ public interface DataPipeline {
      * @return True beim erfolgreichen Stoppen des Streams, ansonsten False
      */
     public boolean stopStream();
-    
+
     /**
      * Wird für das importieren von Daten in Datenpipeline genutzt, dadurch
      * werden alle vorher gecacheten Daten gelöscht.
-     * 
-     * @param importData 
+     *
+     * @param importData
      */
-    public void importData(Map<String, List<Double>> importData);
+    public void importData(List<Map<String, Double>> importData);
 
     /**
      * Exportiert die in der Pipeline gecacheten Daten.
-     * 
-     * @return 
+     *
+     * @return
      */
-    public Map<String, List<Double>> exportData();
+    public List<Map<String, Double>> exportData();
 }

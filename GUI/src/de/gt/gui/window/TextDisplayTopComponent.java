@@ -98,7 +98,7 @@ public final class TextDisplayTopComponent extends DataReceiverComponent {
     }
 
     @Override
-    public void imported(Map<String, List<Double>> importData) {
+    public void imported(List<Map<String, Double>> importData) {
         //TODO: Implement import, should need no impl, exchange with default method
     }
 }

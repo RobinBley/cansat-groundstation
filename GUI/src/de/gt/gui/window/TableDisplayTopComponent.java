@@ -122,7 +122,7 @@ public final class TableDisplayTopComponent extends DataReceiverComponent {
     }
 
     @Override
-    public void imported(Map<String, List<Double>> importData) {
+    public void imported(List<Map<String, Double>> importData) {
         //TODO: Implement import for table display
     }
 }
