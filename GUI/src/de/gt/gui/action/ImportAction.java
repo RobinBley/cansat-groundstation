@@ -10,9 +10,8 @@ import de.gt.api.importer.Importer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -48,10 +47,12 @@ public final class ImportAction implements ActionListener {
     }
 
     private String[] getValidFileNameExt(Collection<? extends Importer> availableImporters) {
-        return (String[]) availableImporters.stream()
+        Object[] validExtensions = availableImporters.stream()
                 .map(i -> i.importFileExt())
                 .collect(Collectors.toSet())
                 .toArray();
+
+        return Arrays.copyOf(validExtensions, validExtensions.length, String[].class);
     }
 
     private String getFileExt(File choosenFile) {
