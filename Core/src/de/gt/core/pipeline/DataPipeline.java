@@ -3,6 +3,7 @@ package de.gt.core.pipeline;
 import de.gt.api.config.Config;
 import de.gt.api.input.dataformat.DataFormat;
 import de.gt.api.log.Out;
+import de.gt.api.relay.Configurable;
 import de.gt.api.relay.Receiver;
 import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
@@ -11,7 +12,9 @@ import de.gt.core.relay.DataProvider;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +31,7 @@ import org.openide.util.lookup.ServiceProvider;
  *
  */
 @ServiceProvider(service = de.gt.api.datapipeline.DataPipeline.class)
-public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
+public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiver {
 
     //Quellteil der Pipeline
     private DataSource pipeSource;
@@ -50,13 +53,18 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
 
     private JSONLogger logger;
 
+    private Map<String, List<Double>> dataCache;
+
     public DataPipeline() {
+        //Cache für Datenpipeline
+        dataCache = new HashMap<>();
+
         File logFile = getLogFile();
 
         if (logFile != null) {
             try {
                 logger = new JSONLogger(getLogFile());
-                
+
                 //Logger am Relay registrieren
                 registerDataReceiver(logger);
             } catch (IOException ex) {
@@ -243,8 +251,39 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline {
             return false;
         }
     }
-    
-    public void importData(Map<String, List<String>> importData){
-        //TODO: Stream loop
+
+    public void importData(Map<String, List<Double>> importData) {
+        //Import an alle Komponenten durchgeben
+        this.receivingComponents.stream()
+                .filter(c -> c instanceof Configurable)
+                .map(c -> (Configurable) c)
+                .forEach(c -> c.imported(importData));
+
+        dataCache = importData;
+    }
+
+    @Override
+    public Map<String, List<Double>> exportData() {
+        return dataCache;
+    }
+
+    @Override
+    public void receive(Map<String, Double> datum) {
+        datum.entrySet().stream().forEach(d -> {
+            List<Double> valList;
+
+            //Liste erstellen, wenn noch keine KeyList vorhanden
+            if (!dataCache.keySet().contains(d.getKey())) {
+                valList = new ArrayList<>();
+            } else {
+                valList = dataCache.get(d.getKey());
+            }
+
+            //Wert in Liste einfügen
+            valList.add(d.getValue());
+
+            //Map updaten mit aktualisierter Werteliste
+            dataCache.put(d.getKey(), valList);
+        });
     }
 }

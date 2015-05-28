@@ -1,6 +1,8 @@
 package de.gt.api.relay;
 
 import de.gt.api.config.Config;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Interface für Konfigurierbare Component (Die Components die auf
@@ -16,4 +18,6 @@ public interface Configurable {
      * @param newConfig 
      */
     void configChanged(Config newConfig);
+    
+    public abstract void imported(Map<String, List<Double>> importData);
 }

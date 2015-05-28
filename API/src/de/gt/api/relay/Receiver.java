@@ -1,6 +1,5 @@
 package de.gt.api.relay;
 
-import java.util.List;
 import java.util.Map;
 
 /**
