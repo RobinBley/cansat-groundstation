@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Loads configs
+ * Lädt Configs
  *
  * @author Kevin
  */
@@ -16,11 +16,11 @@ import org.openide.util.lookup.ServiceProvider;
 public class ConfigLoader implements de.gt.api.config.ConfigLoader {
 
     /**
-     * Loads a config
+     * Lädt eine Config
      *
      * @param fileName
-     * @return loaded config data
-     * @throws IOException thrown when the config cannot be loaded
+     * @return geladene Configdaten
+     * @throws IOException geworfen wenn Config nicht geladen werden kann
      */
     @Override
     public String load(String fileName) throws IOException {

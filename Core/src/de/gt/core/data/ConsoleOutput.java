@@ -4,8 +4,7 @@ import de.gt.api.relay.Receiver;
 import java.util.Map;
 
 /**
- * Prints the received data to the console
- *
+ * Printet die empfangenen Daten in die Konsole
  * @author Robin
  */
 public class ConsoleOutput implements Receiver {

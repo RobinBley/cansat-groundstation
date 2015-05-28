@@ -1,26 +1,18 @@
 /*//GEN-LINE:variables
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+*/
 package de.gt.gui.window;
 
 import de.gt.api.config.Config;
 import de.gt.api.gps.GPSKey;
 import gov.nasa.worldwind.BasicModel;
-import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.awt.WorldWindowGLCanvas;
 import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.layers.RenderableLayer;
-import gov.nasa.worldwind.render.Annotation;
-import gov.nasa.worldwind.render.AnnotationAttributes;
-import gov.nasa.worldwind.render.GlobeAnnotation;
 import gov.nasa.worldwind.render.Polyline;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import javax.swing.JCheckBox;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 

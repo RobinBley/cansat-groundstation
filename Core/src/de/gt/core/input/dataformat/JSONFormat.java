@@ -15,7 +15,7 @@ import org.json.JSONObject;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Parses JSON data
+ * Parset JSON daten
  *
  * @author Robin
  */
@@ -29,6 +29,7 @@ public class JSONFormat implements DataFormat {
     public void parseData(String data) {
         if (relay == null) {
             Out.log("Cannot parse JSON because relay is not set.");
+            return;
         }
         try {
             JSONObject jsonData = new JSONObject(data);

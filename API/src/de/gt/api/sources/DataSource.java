@@ -2,7 +2,6 @@ package de.gt.api.sources;
 
 import de.gt.api.input.dataformat.DataFormat;
 import java.io.Closeable;
-import javax.swing.JDialog;
 
 /**
  * Interface für alle Datenquellen

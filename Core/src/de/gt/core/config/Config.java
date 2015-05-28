@@ -4,7 +4,7 @@ import de.gt.api.gps.GPSKey;
 import java.util.Collection;
 
 /**
- * Represents the data read from a config
+ * Stellt die Daten dar, die aus der Config gelesen werden
  *
  * @author Kevin
  */
@@ -13,23 +13,23 @@ public class Config implements de.gt.api.config.Config {
     private final String name;
     private final String identifier;
     private final String format;
-    private final Collection<String> valueConfigs;
+    private final Collection<String> keys;
     private final String source;
     private final GPSKey gps;
 
     /**
-     * Constructor
+     * Konstructor
      *
-     * @param name - name of the satellite
-     * @param identifier - identifier of the satellite
-     * @param format - transmission format
-     * @param valueConfigs - keys
+     * @param name - Name des Satelliten
+     * @param identifier - identifier des Satelliten
+     * @param format - Übertragungsformat
+     * @param keys - keys
      */
-    public Config(String name, String identifier, String format, String source, Collection<String> valueConfigs, GPSKey gps) {
+    public Config(String name, String identifier, String format, String source, Collection<String> keys, GPSKey gps) {
         this.name = name;
         this.identifier = identifier;
         this.format = format;
-        this.valueConfigs = valueConfigs;
+        this.keys = keys;
         this.source = source;
         this.gps = gps;
     }
@@ -51,7 +51,7 @@ public class Config implements de.gt.api.config.Config {
 
     @Override
     public Collection<String> getKeys() {
-        return valueConfigs;
+        return keys;
     }
 
     @Override

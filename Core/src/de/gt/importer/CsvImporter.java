@@ -14,7 +14,7 @@ import java.util.Map;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
- * Imports data from csv format
+ * Importiert Daten aus CSV
  *
  * @author Robin
  */

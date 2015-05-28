@@ -1,7 +1,7 @@
 package de.gt.api.config;
 
 /**
- * Config thrown when a config cannot be parsed
+ * Exception, die geworfen wird, wenn eine Config nicht geparst werden kann
  *
  * @author Kevin
  */

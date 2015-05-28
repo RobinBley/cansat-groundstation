@@ -12,7 +12,7 @@ import java.util.Map;
 public interface DataExporter extends Exporter {
 
     /**
-     * Daten werden exportiert.
+     * Exportiert Daten.
      *
      * @param data Daten, welche exportiert werden sollen.
      * @param output Die Datei, in der die Daten exportiert werden
