@@ -1,6 +1,6 @@
 package de.gt.core.export;
 
-import de.gt.api.export.Exporter;
+import de.gt.api.export.DataExporter;
 import de.gt.api.export.PositionExporter;
 import de.gt.api.gps.GPSKey;
 import de.gt.api.log.Out;
@@ -22,7 +22,7 @@ import org.openide.util.lookup.ServiceProvider;
  *
  * @author mhuisi
  */
-@ServiceProvider(service = de.gt.api.export.PositionExporter.class)
+@ServiceProvider(service = de.gt.api.export.Exporter.class)
 public class KMLExport implements PositionExporter {
 
     private static final String KML_TEMPLATE = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -105,6 +105,11 @@ public class KMLExport implements PositionExporter {
             Out.log("Cannot export KML to disc.");
             return false;
         }
+    }
+
+    @Override
+    public String getExporterName() {
+        return "Google Maps KML";
     }
 
 }

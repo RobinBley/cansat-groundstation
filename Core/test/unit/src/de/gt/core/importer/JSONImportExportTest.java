@@ -5,7 +5,7 @@
  */
 package de.gt.core.importer;
 
-import de.gt.api.export.Exporter;
+import de.gt.api.export.DataExporter;
 import de.gt.core.export.JSONExport;
 import de.gt.importer.JSONImporter;
 import java.io.File;
@@ -50,7 +50,7 @@ public class JSONImportExportTest {
      */
     @Test
     public void testImportData() {
-        Exporter exporter = new JSONExport();
+        DataExporter exporter = new JSONExport();
         exporter.exportData(data, file);
         JSONImporter importer = new JSONImporter();
         Assert.assertTrue(exporter.exportData(data, file));

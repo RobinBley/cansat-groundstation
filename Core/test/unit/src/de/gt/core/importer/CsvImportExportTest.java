@@ -5,7 +5,7 @@
  */
 package de.gt.core.importer;
 
-import de.gt.api.export.Exporter;
+import de.gt.api.export.DataExporter;
 import de.gt.api.importer.Importer;
 import de.gt.core.export.CsvExport;
 import de.gt.importer.CsvImporter;
@@ -51,7 +51,7 @@ public class CsvImportExportTest {
      */
     @Test
     public void testImportData() {
-        Exporter exporter = new CsvExport();
+        DataExporter exporter = new CsvExport();
         exporter.exportData(data, file);
         Importer importer = new CsvImporter();
         Assert.assertTrue(exporter.exportData(data, file));

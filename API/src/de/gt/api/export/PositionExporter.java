@@ -14,6 +14,7 @@ import java.util.Map;
  *
  * @author Kevin
  */
-public interface PositionExporter {
+public interface PositionExporter extends Exporter {
+
     public boolean exportData(Map<String, List<Double>> data, GPSKey k, File output);
 }

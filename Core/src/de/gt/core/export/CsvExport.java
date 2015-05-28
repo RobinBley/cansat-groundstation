@@ -1,6 +1,6 @@
 package de.gt.core.export;
 
-import de.gt.api.export.Exporter;
+import de.gt.api.export.DataExporter;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,7 +14,7 @@ import org.openide.util.lookup.ServiceProvider;
  * @author Robin
  */
 @ServiceProvider(service = de.gt.api.export.Exporter.class)
-public class CsvExport implements Exporter {
+public class CsvExport implements DataExporter {
 
     @Override
     public boolean exportData(Map<String, List<Double>> data, File output) {
@@ -55,5 +55,10 @@ public class CsvExport implements Exporter {
             System.out.println("Fehler beim exportieren der Daten");
         }
         return true;
+    }
+
+    @Override
+    public String getExporterName() {
+        return "CSV";
     }
 }

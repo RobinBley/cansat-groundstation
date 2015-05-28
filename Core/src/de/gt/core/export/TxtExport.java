@@ -1,6 +1,6 @@
 package de.gt.core.export;
 
-import de.gt.api.export.Exporter;
+import de.gt.api.export.DataExporter;
 import de.gt.api.log.Out;
 import java.io.File;
 import java.io.FileWriter;
@@ -15,7 +15,7 @@ import org.openide.util.lookup.ServiceProvider;
  * @author Robin
  */
 @ServiceProvider(service = de.gt.api.export.Exporter.class)
-public class TxtExport implements Exporter {
+public class TxtExport implements DataExporter {
 
     @Override
     public boolean exportData(Map<String, List<Double>> data, File output) {
@@ -70,6 +70,11 @@ public class TxtExport implements Exporter {
         }
 
         return true;
+    }
+
+    @Override
+    public String getExporterName() {
+        return "Formatierter Text";
     }
 
 }

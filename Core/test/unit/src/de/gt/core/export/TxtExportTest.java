@@ -1,6 +1,6 @@
 package de.gt.core.export;
 
-import de.gt.api.export.Exporter;
+import de.gt.api.export.DataExporter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ public class TxtExportTest {
 
     @Test
     public void testExportData() {
-        Exporter exporter = new TxtExport();
+        DataExporter exporter = new TxtExport();
         Map<String, List<Double>> data = new HashMap<String, List<Double>>();
         ArrayList<Double> values = new ArrayList<Double>();
         values.add(11111D);

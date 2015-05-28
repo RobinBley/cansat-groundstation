@@ -1,6 +1,6 @@
 package de.gt.core.export;
 
-import de.gt.api.export.Exporter;
+import de.gt.api.export.DataExporter;
 import de.gt.api.export.ImageExporter;
 import de.gt.api.log.Out;
 import java.awt.Image;
@@ -19,7 +19,7 @@ import org.openide.util.lookup.ServiceProvider;
  *
  * @author Robin
  */
-@ServiceProvider(service = de.gt.api.export.ImageExporter.class)
+@ServiceProvider(service = de.gt.api.export.Exporter.class)
 public class GraphExport implements ImageExporter {
 
     /**
@@ -59,4 +59,8 @@ public class GraphExport implements ImageExporter {
         return exportData(image, output, "jpg");
     }
 
+    @Override
+    public String getExporterName() {
+        return "Graph Export";
+    }
 }

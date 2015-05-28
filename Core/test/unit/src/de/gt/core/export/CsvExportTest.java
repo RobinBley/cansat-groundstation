@@ -1,6 +1,6 @@
 package de.gt.core.export;
 
-import de.gt.api.export.Exporter;
+import de.gt.api.export.DataExporter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ public class CsvExportTest {
      */
     @Test
     public void testExportData() {
-        Exporter exporter = new CsvExport();
+        DataExporter exporter = new CsvExport();
         Map<String, List<Double>> data = new HashMap<String, List<Double>>();
         ArrayList<Double> values = new ArrayList<Double>();
         values.add(19D);
