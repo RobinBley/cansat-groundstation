@@ -284,7 +284,16 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
 
     @Override
     public void importData(Map<String, List<Double>> importData) {
-        if (importData.keySet().equals(this.config.getKeys())) {
+        boolean doImport = false;
+
+        if (this.config != null) {
+            Set<String> importedKeySet = importData.keySet();
+            Set<String> configuredKeySet = new HashSet<String>(this.config.getKeys());
+            
+            doImport = importedKeySet.equals(configuredKeySet);
+        }
+
+        if (doImport) {
             //Import an alle Komponenten durchgeben
             this.receivingComponents.stream()
                     .filter(c -> c instanceof Configurable)

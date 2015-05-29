@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -97,8 +99,14 @@ public final class ImportAction implements ActionListener {
                         .findFirst()
                         .get();
 
-                //Daten in die Pipeline importieren
-                this.pipeline.importData(usableImporter.importData(choosenFile));
+                Map<String, List<Double>> importedData = usableImporter.importData(choosenFile); 
+                
+                if(importedData != null){
+                    //Daten in die Pipeline importieren
+                    this.pipeline.importData(importedData);
+                } else{
+                    JOptionPane.showMessageDialog(null, "An error occured while importing data");
+                }
             }
         }
     }
