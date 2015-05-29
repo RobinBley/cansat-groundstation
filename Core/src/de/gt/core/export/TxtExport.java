@@ -82,4 +82,7 @@ public class TxtExport implements DataExporter {
         return "txt";
     }
 
+    public String toString(){
+        return getExporterName();
+    }
 }

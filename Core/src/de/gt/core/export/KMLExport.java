@@ -117,4 +117,7 @@ public class KMLExport implements PositionExporter {
         return "kml";
     }
 
+    public String toString(){
+        return getExporterName();
+    }
 }

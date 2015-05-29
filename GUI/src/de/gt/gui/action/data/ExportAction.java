@@ -6,6 +6,7 @@ import de.gt.api.export.Exporter;
 import de.gt.api.export.ImageExporter;
 import de.gt.api.export.PositionExporter;
 import de.gt.gui.dialog.control.ExportDialog;
+import de.gt.gui.window.VisualizationTopComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -19,6 +20,7 @@ import org.openide.awt.ActionReference;
 import org.openide.awt.ActionRegistration;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle.Messages;
+import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 
 @ActionID(
@@ -71,6 +73,20 @@ public final class ExportAction implements ActionListener {
             if (exporter instanceof ImageExporter) {
                 ImageExporter imageExporter = (ImageExporter) exporter;
 
+                TopComponent component = TopComponent.getRegistry()
+                        .getOpened()
+                        .stream()
+                        .filter(c -> c instanceof VisualizationTopComponent)
+                        .findFirst()
+                        .get();
+
+                if(component != null){
+                    VisualizationTopComponent graph = (VisualizationTopComponent) component;
+                    
+                    //Exportieren des Graphen
+                    imageExporter.exportData(graph.snapShot(), exportTargetFile);
+                }
+                
             } else if (exporter instanceof PositionExporter) {
                 PositionExporter positionExporter = (PositionExporter) exporter;
 
@@ -84,7 +100,7 @@ public final class ExportAction implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Error while exporting");
                 }
             } else {
-                //TODO: Fehler beim Exportieren, weil der Exporter keines der drei dataexport interfaces unterstützt
+                JOptionPane.showMessageDialog(null, "Error while exporting, invalid exporter");
             }
         }
     }

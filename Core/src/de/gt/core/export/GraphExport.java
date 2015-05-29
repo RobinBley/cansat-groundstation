@@ -68,4 +68,9 @@ public class GraphExport implements ImageExporter {
     public String getFileExt() {
         return "jpg";
     }
+    
+    public String toString(){
+        return getExporterName();
+    }
+    
 }

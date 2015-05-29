@@ -4,6 +4,7 @@ import de.gt.api.config.Config;
 import info.monitorenter.gui.chart.IAxis;
 import info.monitorenter.gui.chart.ITrace2D;
 import info.monitorenter.gui.chart.traces.Trace2DLtd;
+import java.awt.Image;
 import java.util.Collection;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
@@ -40,7 +41,7 @@ public class VisualizationTopComponent extends DataReceiverComponent {
      */
     public VisualizationTopComponent(Config currentConfig) {
         //Anbindung zur Pipeline herstellen
-        super();
+        super();    
 
         setName("Graph Visualisation");
 
@@ -214,6 +215,10 @@ public class VisualizationTopComponent extends DataReceiverComponent {
 
         xKey = (String) xAxisVal.getSelectedItem();
         yKey = (String) yAxisVal.getSelectedItem();
+    }
+    
+    public Image snapShot(){
+        return chart.snapShot();
     }
 
     @Override

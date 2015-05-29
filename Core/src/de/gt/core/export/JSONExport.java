@@ -61,4 +61,8 @@ public class JSONExport implements DataExporter {
     public String getFileExt() {
         return "json";
     }
+    
+    public String toString(){
+        return getExporterName();
+    }
 }

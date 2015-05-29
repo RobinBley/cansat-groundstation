@@ -66,4 +66,8 @@ public class CsvExport implements DataExporter {
     public String getFileExt() {
         return "csv";
     }
+    
+    public String toString(){
+        return getExporterName();
+    }
 }
