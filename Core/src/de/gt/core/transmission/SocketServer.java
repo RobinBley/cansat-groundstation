@@ -14,9 +14,10 @@ import java.util.logging.Logger;
 import org.json.JSONObject;
 
 /**
- * Ein Sever, welcher als Datenempfaenger dient und diese an alle
- * zu diesem Server verbundenen Clients convertiert weiterleitet.
- * @author Robin 
+ * Ein Sever, welcher als Datenempfaenger dient und diese an alle zu diesem
+ * Server verbundenen Clients convertiert weiterleitet.
+ *
+ * @author Robin
  */
 public class SocketServer implements Receiver, Runnable {
 
@@ -76,6 +77,8 @@ public class SocketServer implements Receiver, Runnable {
             //Ein ServerSocket wird erstellt und ihm wird ein Port zugewiesen.
             ServerSocket serverSock = new ServerSocket(port);
             while (flag) {
+                Thread.sleep(100);
+
                 //Ein Socket zu einem Client wird erstellt.
                 Socket clientSocket = serverSock.accept();
                 //Dem Socket wird ein timeout hinzugefuegt.

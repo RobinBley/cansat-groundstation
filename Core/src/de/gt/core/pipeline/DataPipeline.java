@@ -221,13 +221,13 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
     }
 
     public void startServer() {
+        new Thread(server).start();
         registerDataReceiver(server);
-        server.start();
     }
 
     public void stopServer() {
-        unregisterDataReceiver(server);
         server.stop();
+        unregisterDataReceiver(server);
     }
 
     @Override
@@ -289,7 +289,7 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
         if (this.config != null) {
             Set<String> importedKeySet = importData.keySet();
             Set<String> configuredKeySet = new HashSet<String>(this.config.getKeys());
-            
+
             doImport = importedKeySet.equals(configuredKeySet);
         }
 

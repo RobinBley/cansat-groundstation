@@ -5,12 +5,14 @@
  */
 package de.gt.gui.action.server;
 
+import de.gt.api.datapipeline.DataPipeline;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionReferences;
 import org.openide.awt.ActionRegistration;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle.Messages;
 
 @ActionID(
@@ -28,8 +30,14 @@ import org.openide.util.NbBundle.Messages;
 @Messages("CTL_StartServerAction=Start Server")
 public final class StartServerAction implements ActionListener {
 
+    DataPipeline pipeline;
+
+    public StartServerAction() {
+        pipeline = Lookup.getDefault().lookup(DataPipeline.class);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO implement action body
+        this.pipeline.startServer();
     }
 }
