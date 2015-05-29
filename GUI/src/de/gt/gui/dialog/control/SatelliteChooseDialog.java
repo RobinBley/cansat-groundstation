@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import org.openide.util.Lookup;
 import de.gt.api.log.Out;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,12 +48,17 @@ public class SatelliteChooseDialog extends javax.swing.JDialog {
             this.config = null;
         }
         try {
-
             //Alle Elemente entfernen
             configChooser.removeAllElements();
 
             //Aktualisieren der Config auswahl
             getAvailableConfigs().stream().forEach(c -> configChooser.addElement(c));
+
+            if (configChooser.getSize() == 0) {
+                //Keine Konfigurationen verfügbar
+                JOptionPane.showMessageDialog(null, "There are no satellite configurations available, you might want to add an satellite config via satellites -> add");
+                return;
+            }
         } catch (IOException ex) {
             //TODO: Show Error to user
         }

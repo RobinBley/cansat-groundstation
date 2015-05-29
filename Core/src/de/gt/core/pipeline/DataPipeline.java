@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import org.openide.util.lookup.ServiceProvider;
 
 /**
@@ -283,13 +284,17 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
 
     @Override
     public void importData(Map<String, List<Double>> importData) {
-        //Import an alle Komponenten durchgeben
-        this.receivingComponents.stream()
-                .filter(c -> c instanceof Configurable)
-                .map(c -> (Configurable) c)
-                .forEach(c -> c.imported(importData));
+        if (importData.keySet().equals(this.config.getKeys())) {
+            //Import an alle Komponenten durchgeben
+            this.receivingComponents.stream()
+                    .filter(c -> c instanceof Configurable)
+                    .map(c -> (Configurable) c)
+                    .forEach(c -> c.imported(importData));
 
-        dataCache = importData;
+            dataCache = importData;
+        } else {
+            JOptionPane.showMessageDialog(null, "Please load the satellite configuration which was used to export this data");
+        }
     }
 
     @Override
