@@ -42,7 +42,12 @@ public class SatelliteChooseDialog extends javax.swing.JDialog {
 
     @Override
     public void setVisible(boolean b) {
+        if (b) {
+            //Config immer Null setzen, damit der Dialog state zurückgesetzt ist
+            this.config = null;
+        }
         try {
+
             //Alle Elemente entfernen
             configChooser.removeAllElements();
 
