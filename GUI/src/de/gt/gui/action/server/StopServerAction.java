@@ -14,7 +14,7 @@ import org.openide.awt.ActionRegistration;
 import org.openide.util.NbBundle.Messages;
 
 @ActionID(
-        category = "File",
+        category = "Server",
         id = "de.gt.gui.action.server.StopServerAction"
 )
 @ActionRegistration(
@@ -22,14 +22,13 @@ import org.openide.util.NbBundle.Messages;
         displayName = "#CTL_StopServerAction"
 )
 @ActionReferences({
-    @ActionReference(path = "Menu/File", position = 3333, separatorAfter = 3383),
+    @ActionReference(path = "Menu/Server", position = 3333, separatorAfter = 3383),
     @ActionReference(path = "Toolbars/Server", position = 0)
 })
-@Messages("CTL_StopServerAction=Stoo Server")
+@Messages("CTL_StopServerAction=Stop Server")
 public final class StopServerAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO implement action body
     }
 }

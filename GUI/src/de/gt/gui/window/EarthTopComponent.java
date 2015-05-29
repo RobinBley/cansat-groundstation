@@ -4,6 +4,7 @@ package de.gt.gui.window;
 
 import de.gt.api.config.Config;
 import de.gt.api.gps.GPSKey;
+import de.gt.api.log.Out;
 import gov.nasa.worldwind.BasicModel;
 import gov.nasa.worldwind.awt.WorldWindowGLCanvas;
 import gov.nasa.worldwind.geom.Position;
@@ -11,6 +12,7 @@ import gov.nasa.worldwind.layers.RenderableLayer;
 import gov.nasa.worldwind.render.Polyline;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Map;
 import org.openide.windows.TopComponent;
@@ -48,12 +50,16 @@ public final class EarthTopComponent extends DataReceiverComponent {
 
     @Override
     public synchronized void receive(Map<String, Double> datum) {
-        double latitude = datum.get(k.getLatitudeKey());
-        double longitude = datum.get(k.getLongitudeKey());
-        double altitude = datum.get(k.getAltitudeKey());
-        Position p = Position.fromDegrees(latitude, longitude, altitude);
-        positions.add(p);
-        path.setPositions(positions);
+        try {
+            double latitude = datum.get(k.getLatitudeKey());
+            double longitude = datum.get(k.getLongitudeKey());
+            double altitude = datum.get(k.getAltitudeKey());
+            Position p = Position.fromDegrees(latitude, longitude, altitude);
+            positions.add(p);
+            path.setPositions(positions);
+        } catch (ConcurrentModificationException ex) {
+            Out.log("Worldwind bug interlly (Does not kill the application)");
+        }
     }
 
     /**
