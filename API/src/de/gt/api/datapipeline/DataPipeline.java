@@ -25,6 +25,7 @@ public interface DataPipeline {
 
     /**
      * Gibt die aktuelle Pipeline Konfiguration zurück
+     *
      * @return config
      */
     public Config getConfig();
@@ -111,4 +112,8 @@ public interface DataPipeline {
      * @return
      */
     public Map<String, List<Double>> exportData();
+
+    public void startServer();
+
+    public void stopServer();
 }

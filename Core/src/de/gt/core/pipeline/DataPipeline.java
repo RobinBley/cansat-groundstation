@@ -9,6 +9,7 @@ import de.gt.api.relay.Relay;
 import de.gt.api.sources.DataSource;
 import de.gt.core.input.logging.JSONLogger;
 import de.gt.core.relay.DataProvider;
+import de.gt.core.transmission.SocketServer;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -57,6 +58,8 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
 
     //Cached die Daten die über das Relay kommen
     private Map<String, List<Double>> dataCache;
+
+    private SocketServer server = new SocketServer();
 
     public DataPipeline() {
         //Cache für Datenpipeline
@@ -214,6 +217,16 @@ public class DataPipeline implements de.gt.api.datapipeline.DataPipeline, Receiv
         if (streamWasRunning) {
             startStream();
         }
+    }
+
+    public void startServer() {
+        registerDataReceiver(server);
+        server.start();
+    }
+
+    public void stopServer() {
+        unregisterDataReceiver(server);
+        server.stop();
     }
 
     @Override
