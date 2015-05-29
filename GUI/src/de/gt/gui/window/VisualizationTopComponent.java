@@ -3,7 +3,7 @@ package de.gt.gui.window;
 import de.gt.api.config.Config;
 import info.monitorenter.gui.chart.IAxis;
 import info.monitorenter.gui.chart.ITrace2D;
-import info.monitorenter.gui.chart.traces.Trace2DSimple;
+import info.monitorenter.gui.chart.traces.Trace2DLtd;
 import java.util.Collection;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
@@ -32,6 +32,9 @@ public class VisualizationTopComponent extends DataReceiverComponent {
 
     private ITrace2D trace;
 
+    private String xKey;
+    private String yKey;
+
     /**
      * Creates new form VizualizationTopComponent
      */
@@ -42,7 +45,7 @@ public class VisualizationTopComponent extends DataReceiverComponent {
         setName("Graph Visualisation");
 
         //Trace intialisieren
-        trace = new Trace2DSimple();
+        trace = new Trace2DLtd();
 
         //Komboboxmodel für X Achsen-Wertauswahl
         xAxisVal = new DefaultComboBoxModel<>();
@@ -163,7 +166,11 @@ public class VisualizationTopComponent extends DataReceiverComponent {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateViewActionPerformed
+        xKey = (String) cmbXAxis.getSelectedItem();
+        yKey = (String) cmbYAxis.getSelectedItem();
 
+        this.clearData();
+        this.imported(this.pipeline.exportData());
     }//GEN-LAST:event_btnUpdateViewActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -177,7 +184,10 @@ public class VisualizationTopComponent extends DataReceiverComponent {
 
     @Override
     public void receive(Map<String, Double> datum) {
-        trace.addPoint(datum.get(xAxisVal.getSelectedItem()), datum.get(yAxisVal.getSelectedItem()));
+        Double xVal = datum.get(xKey);
+        Double yVal = datum.get(yKey);
+
+        trace.addPoint(xVal, yVal);
     }
 
     private void initComboBoxModel(Collection<String> newVals, DefaultComboBoxModel<String> model) {
@@ -189,12 +199,21 @@ public class VisualizationTopComponent extends DataReceiverComponent {
     }
 
     @Override
+    protected void componentOpened() {
+        super.componentOpened();
+        configChanged(this.pipeline.getConfig());
+    }
+
+    @Override
     public void configChanged(Config newConfig) {
         Collection<String> keys = newConfig.getKeys();
 
         //Models neu intialisieren
         initComboBoxModel(keys, xAxisVal);
         initComboBoxModel(keys, yAxisVal);
+
+        xKey = (String) xAxisVal.getSelectedItem();
+        yKey = (String) yAxisVal.getSelectedItem();
     }
 
     @Override
